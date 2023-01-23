@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url("../fonts/Nunito-ExtraLight.eot");
+    src: url("../fonts/Nunito-ExtraLight.eot?#iefix") format("embedded-opentype"), url("../fonts/Nunito-ExtraLight.woff2") format("woff2"), url("../fonts/Nunito-ExtraLight.woff") format("woff"), url("../fonts/Nunito-ExtraLight.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    border: "2px solid";
+    border-color: #dbdbdb;
+    background: rgba(211, 211, 211, 1);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.slick-slide>div {
+    margin: 0 20px;
+}
+
+.slick-list {
+    margin: 0 20px;
+}
+
+.center div.MuiBox-root {
+    filter: blur(2px);
+    opacity: 0.5;
+    transition: all 300ms ease;
+}
+
+.center .slick-center div.MuiBox-root {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1.07);
+}
+
+@media screen and (min-width: 899px) {
+    .slick-dots li button:before {
+        font-size: 12px !important;
+    }
+}
+
+.slick-dots li button:before {
+    color: #ffeb3b !important;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #ff9800 !important;
+}
+
+.arrow {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: #cddc39;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.arrow:hover {
+    color: #ff9800;
+}
+
+.arrow-next {
+    right: -25px;
+}
+
+.arrow-prev {
+    left: -25px;
+}
