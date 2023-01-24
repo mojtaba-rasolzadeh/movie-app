@@ -5,6 +5,9 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getPersonDetails } from "../services/MovieService";
 import SocialLinks from "../components/pages/people/SocialLinks";
 import PersonalInfo from "../components/pages/people/PersonalInfo";
+import Biography from "../components/pages/people/Biography";
+import KnownFor from "../components/pages/people/KnownFor";
+import Acting from "../components/pages/people/Acting";
 
 const Person = () => {
   const { personId } = useParams();
@@ -34,7 +37,7 @@ const Person = () => {
   }, []);
   return (
     <Grid container sx={{ my: 5 }}>
-      <Grid xs={12} sm={6.4} md={4.2} lg={3.1} xl={2.35}>
+      <Grid xs={12} sm={7.2} md={4.5} lg={3.28} xl={2.5}>
         <Box>
           <Avatar
             variant="rounded"
@@ -45,11 +48,11 @@ const Person = () => {
           <PersonalInfo {...person} />
         </Box>
       </Grid>
-      <Grid xs={12} sm={5.6} md={7.8} lg={8.9} xl={9.65}>
+      <Grid xs={12} sm={4.8} md={7.5} lg={8} xl={9.5}>
         <Box sx={{ pl: { xs: 0, sm: 4 } }}>
-          {/* <Biography {...person} /> */}
-          {/* <KnownForMovies {...person} /> */}
-          {/* <Acting {...person} /> */}
+          <Biography {...person} />
+          <KnownFor {...person} />
+          <Acting {...person} />
         </Box>
       </Grid>
     </Grid>
