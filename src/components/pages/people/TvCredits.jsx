@@ -9,7 +9,7 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { Preview, PlagiarismRounded } from "@mui/icons-material";
+import { PlagiarismRounded } from "@mui/icons-material";
 import { teal, lightGreen, deepPurple } from "@mui/material/colors";
 
 const TvCredits = ({ tvCredits }) => {

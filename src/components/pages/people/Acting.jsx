@@ -2,26 +2,40 @@ import { useState } from "react";
 import {
   Box,
   Typography,
-  Button,
   Menu,
   MenuItem,
   List,
   ListItem,
   ListItemText,
-  ListItemIcon,
 } from "@mui/material";
-import { amber, cyan, lime, deepOrange } from "@mui/material/colors";
-import { ArrowDropDown, KeyboardArrowDown } from "@mui/icons-material";
+import { lime, yellow } from "@mui/material/colors";
+import { ArrowDropDown } from "@mui/icons-material";
 import CombinedCredits from "./CombinedCredits";
 import MovieCredits from "./MovieCredits";
 import TvCredits from "./TvCredits";
 
-const options = ["all", "movies", "tv"];
+// const options = ["all", "movies", "tv"];
 
 const Acting = ({ combined_credits, movie_credits, tv_credits }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const open = Boolean(anchorEl);
+
+  const options = [
+    // "all", "movies", "tv"
+    {
+      menuLabel: "all",
+      creditsLength: combined_credits && combined_credits.cast.length,
+    },
+    {
+      menuLabel: "movies",
+      creditsLength: movie_credits && movie_credits.cast.length,
+    },
+    {
+      menuLabel: "tv",
+      creditsLength: tv_credits && tv_credits.cast.length,
+    },
+  ];
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -55,10 +69,12 @@ const Acting = ({ combined_credits, movie_credits, tv_credits }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          my: 6,
+          my: 2,
         }}
       >
-        <Typography variant="h5">Acting</Typography>
+        <Typography variant="h5" sx={{ color: yellow[200] }}>
+          Acting
+        </Typography>
         <List component="nav" aria-label="select-item">
           <ListItem
             button
@@ -69,7 +85,8 @@ const Acting = ({ combined_credits, movie_credits, tv_credits }) => {
             onClick={handleClick}
             sx={{ textTransform: "capitalize", letterSpacing: 1 }}
           >
-            <ListItemText secondary={options[selectedIndex]} />
+            {/* <ListItemText secondary={options[selectedIndex].menuLabel}> */}
+            <ListItemText sx={{color:lime[500]}}>{options[selectedIndex].menuLabel}</ListItemText>
             <ArrowDropDown />
           </ListItem>
         </List>
@@ -95,7 +112,10 @@ const Acting = ({ combined_credits, movie_credits, tv_credits }) => {
               gap: 2,
             }}
           >
-            {option}
+            {option.menuLabel}
+            <Typography variant="caption" color="text.secondary" sx={{mt:'4px'}}>
+              {option.creditsLength}
+            </Typography>
           </MenuItem>
         ))}
       </Menu>

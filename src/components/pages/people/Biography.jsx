@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Box, Typography, Link } from "@mui/material";
-import { teal, blueGrey } from "@mui/material/colors";
+import { teal, yellow } from "@mui/material/colors";
 
 const Biography = ({ id, name, biography }) => {
   const newLineIndex = biography && biography.indexOf("\n");
@@ -27,8 +27,10 @@ const Biography = ({ id, name, biography }) => {
         </Typography>
       </Link>
       <Box sx={{ display: "flex", flexDirection: "column", mt: 4 }}>
-        <Typography variant="h6">Biography</Typography>
-        <Typography sx={{ mt: 1.5, color: 'text.secondary', fontWeight: 300 }}>
+        <Typography variant="h5" sx={{ color: yellow[200] }}>
+          Biography
+        </Typography>
+        <Typography sx={{ mt: 1.5, color: "text.secondary", fontWeight: 300 }}>
           {_.isEmpty(biography)
             ? `We don't have a biography for ${name}.`
             : biography && biography.includes("\n")
@@ -36,7 +38,7 @@ const Biography = ({ id, name, biography }) => {
             : biography}
         </Typography>
         {biography && biography.includes("\n") && (
-          <Typography sx={{ mt: 3, color: 'text.secondary', fontWeight: 300 }}>
+          <Typography sx={{ mt: 3, color: "text.secondary", fontWeight: 300 }}>
             {biography && biography.slice(newLineIndex)}
           </Typography>
         )}

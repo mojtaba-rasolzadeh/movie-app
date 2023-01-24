@@ -7,13 +7,13 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
-import { blueGrey } from "@mui/material/colors";
+import { yellow } from "@mui/material/colors";
 import { MediaScrollbar } from "../../constant";
 
 const KnownFor = ({ combined_credits }) => {
   return (
     <Box sx={{ mt: 4 }}>
-      <Typography variant="h6" sx={{ mb: 2 }}>
+      <Typography variant="h5" sx={{ color: yellow[200], mb: 2 }}>
         Known For
       </Typography>
       <MediaScrollbar width={714} gap={2}>
