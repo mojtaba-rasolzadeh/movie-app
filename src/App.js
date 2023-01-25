@@ -20,6 +20,7 @@ import PopularPeople from "./pages/people/PopularPeople";
 import Movie from "./pages/movie/Movie";
 import MoviesGenre from "./pages/movie/MoviesGenre";
 import Person from "./pages/Person";
+import CastAndCrew from "./pages/movie/CastAndCrew";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -84,6 +85,7 @@ const App = () => {
           <Route path="/movie/:movieId" element={<Movie />} />{" "}
           <Route path="/genre/:genreId/movie" element={<MoviesGenre />} />{" "}
           <Route path="/person/:personId" element={<Person />} />{" "}
+          <Route path="/movie/:movieId/cast" element={<CastAndCrew />} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

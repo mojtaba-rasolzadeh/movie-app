@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 import { MediaScrollbar, ViewMoreButton } from "../../../components/constant";
-import { orange, teal, yellow } from "@mui/material/colors";
+import { teal } from "@mui/material/colors";
 
 const TopBilledCast = ({ id, title, credits }) => {
   return (
@@ -135,9 +135,7 @@ const TopBilledCast = ({ id, title, credits }) => {
                 sx={{
                   display: "inline-block",
                   fontWeight: "600",
-                  // color: orange[700],
                   color: "#fff",
-                  // "&:hover": { color: orange[600] },
                   "&:hover": { color: "text.secondary" },
                 }}
               >
