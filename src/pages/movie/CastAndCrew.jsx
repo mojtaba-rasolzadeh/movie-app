@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Avatar, Box, Card, CardActionArea, CardContent } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { Loader } from "../../components/constant";
 import { getMovie } from "../../services/MovieService";
-import { Typography } from "@mui/material";
+import Actors from "../../components/pages/movie/Actors";
+import Crew from "../../components/pages/movie/Crew";
+import BackToMain from "../../components/pages/movie/BackToMain";
 
 const CastAndCrew = () => {
   const { movieId } = useParams();
 
   const [loading, setLoading] = useState(false);
+  const [movie, setMovie] = useState([]);
   const [castAndCrew, setCastAndCrew] = useState([]);
 
-  console.log(castAndCrew && castAndCrew.cast);
+  console.log(loading)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +25,7 @@ const CastAndCrew = () => {
         const { status, data } = await getMovie(parseInt(movieId));
         if (status === 200) {
           setLoading(false);
+          setMovie(data);
           setCastAndCrew(data.credits);
         }
       } catch (err) {
@@ -33,68 +37,23 @@ const CastAndCrew = () => {
   }, []);
 
   return (
-    <Grid container sx={{my:5}}>
-      <Grid xs={6}>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-          <Typography variant="h5">Cast</Typography>
-          <Typography variant="subtitle1" color="text.secondary">
-            {castAndCrew.cast && castAndCrew.cast.length}
-          </Typography>
-        </Box>
-        {castAndCrew.cast &&
-          castAndCrew.cast.map((cast) => (
-            <Card key={cast.id} sx={{ display: "flex", mt: 2 }}>
-              <CardActionArea sx={{ width: 66, borderRadius: 1 }}>
-                <Link
-                  to={`/person/${cast.id}-${cast.name
-                    .split(/[\s:,]/)
-                    .join("-")
-                    .split("--")
-                    .join("-")
-                    .toLowerCase()}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Avatar
-                    variant="rounded"
-                    sx={{ width: 66, height: 66 }}
-                    src={`https://www.themoviedb.org/t/p/w66_and_h66_face${cast.profile_path}`}
-                  />
-                </Link>
-              </CardActionArea>
-              <CardContent sx={{ p: "12px", paddingBottom: "8px!important" }}>
-                <Link
-                  to={`/person/${cast.id}-${cast.name
-                    .split(/[\s:,]/)
-                    .join("-")
-                    .split("--")
-                    .join("-")
-                    .toLowerCase()}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      letterSpacing: 1,
-                      color: "#fff",
-                      "&:hover": { color: "text.secondary" },
-                    }}
-                  >
-                    {cast.name}
-                  </Typography>
-                </Link>
-                <Typography
-                  variant="caption"
-                  color="text.secondary"
-                  sx={{ letterSpacing: 1 }}
-                >
-                  {cast.character}
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
-      </Grid>
-      <Grid xs={6}></Grid>
-    </Grid>
+    <>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          <BackToMain movie={movie} />
+          <Grid container spacing={3} sx={{ my: 2 }}>
+            <Grid xs={6}>
+              <Actors castAndCrew={castAndCrew} />
+            </Grid>
+            <Grid xs={6}>
+              <Crew castAndCrew={castAndCrew} />
+            </Grid>
+          </Grid>
+        </>
+      )}
+    </>
   );
 };
 
