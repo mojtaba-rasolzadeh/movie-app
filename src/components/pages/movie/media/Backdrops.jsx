@@ -3,6 +3,15 @@ import { Avatar, Typography } from "@mui/material";
 import { MediaScrollbar, ViewMoreButton } from "../../../constant";
 
 const Backdrops = ({ id, title, images }) => {
+  let width;
+
+  if (images.backdrops && images.backdrops.length <= 1) {
+    width = 610;
+  } else if (images.backdrops && images.backdrops.length < 6) {
+    width = 1100;
+  } else {
+    width = 1343;
+  }
   return (
     <>
       {_.isEmpty(images) ? (
@@ -10,7 +19,7 @@ const Backdrops = ({ id, title, images }) => {
           {`No backdrops have been added to ${title}.`}
         </Typography>
       ) : (
-        <MediaScrollbar>
+        <MediaScrollbar width={width}>
           {images &&
             images.backdrops
               .slice(0, 6)

@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import {
   Box,
   Avatar,
   Typography,
-  Link,
   CardActionArea,
   Card,
   CardContent,
@@ -22,7 +22,7 @@ const KnownFor = ({ combined_credits }) => {
             <Card key={movie.id} sx={{ minWidth: 130, width: 130 }}>
               <CardActionArea sx={{ borderRadius: 1 }}>
                 <Link
-                  href={`/${movie.media_type === "tv" ? "tv" : "movie"}/${
+                  to={`/${movie.media_type === "tv" ? "tv" : "movie"}/${
                     movie.id
                   }`}
                 >
@@ -36,10 +36,9 @@ const KnownFor = ({ combined_credits }) => {
               </CardActionArea>
               <CardContent sx={{ p: "12px", paddingBottom: "12px!important" }}>
                 <Link
-                  href={`/${movie.media_type === "tv" ? "tv" : "movie"}/${
+                  to={`/${movie.media_type === "tv" ? "tv" : "movie"}/${
                     movie.id
                   }`}
-                  underline="none"
                 >
                   <Typography
                     variant="subtitle2"

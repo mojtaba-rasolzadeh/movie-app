@@ -12,7 +12,7 @@ const Keywords = ({ keywords }) => {
       >
         Keywords
       </Typography>
-      {_.isEmpty(keywords) ? (
+      {_.isEmpty(keywords && keywords.keywords) ? (
         <Typography variant="body2" sx={{ color: lime[100] }}>
           No keywords have been added.
         </Typography>
