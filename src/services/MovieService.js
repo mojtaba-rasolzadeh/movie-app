@@ -43,7 +43,7 @@ export const getListCountries = () => {
     return axios.get(`${url}/configuration/countries?api_key=${API_KEY}`);
 };
 
-export const getListLanguages = () => {
+export const getLanguagesList = () => {
     return axios.get(`${url}/configuration/languages?api_key=${API_KEY}`);
 };
 

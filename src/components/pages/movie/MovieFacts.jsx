@@ -1,7 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import { lime } from "@mui/material/colors";
 
-const MovieFacts = ({ status, original_language, budget, revenue }) => {
+const MovieFacts = ({
+  languagesList,
+  status,
+  original_language,
+  budget,
+  revenue,
+}) => {
   return (
     <Box
       sx={{
@@ -31,9 +37,14 @@ const MovieFacts = ({ status, original_language, budget, revenue }) => {
         >
           Original Language
         </Typography>
-        <Typography variant="body2" sx={{ color: lime[100] }}>
-          {/* {localeCodeToEnglish(original_language)} */}
-        </Typography>
+        {languagesList.map(
+          (language, index) =>
+            language.iso_639_1 === original_language && (
+              <Typography key={index} variant="body2" sx={{ color: lime[100] }}>
+                {language.english_name}
+              </Typography>
+            )
+        )}
       </div>
       <div>
         <Typography

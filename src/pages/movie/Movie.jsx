@@ -1,17 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Divider, Box, IconButton, Link, Tooltip } from "@mui/material";
-import {
-  Facebook,
-  InsertLinkRounded,
-  Instagram,
-  LinkRounded,
-  SlowMotionVideo,
-  Twitter,
-} from "@mui/icons-material";
+import { Divider } from "@mui/material";
+
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { getMovie } from "../../services/MovieService";
+import { getLanguagesList, getMovie } from "../../services/MovieService";
 import { Loader } from "../../components";
 import MovieDetails from "../../components/pages/movie/MovieDetails";
 import TopBilledCast from "../../components/pages/movie/TopBilledCast";
@@ -23,20 +16,21 @@ import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
 
 const Movie = () => {
+  const { movieId } = useParams();
   const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState([]);
-  const { movieId } = useParams();
-
-  console.log(movie);
+  const [languagesList, setLanguagesList] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         const { status, data } = await getMovie(movieId);
+        const { data: languageData } = await getLanguagesList();
         if (status === 200) {
           setLoading(false);
           setMovie(data);
+          setLanguagesList(languageData);
         }
       } catch (err) {
         setLoading(false);
@@ -65,7 +59,7 @@ const Movie = () => {
             </Grid>
             <Grid xs={12} sm={3}>
               <SocialLinks {...movie.external_ids} />
-              <MovieFacts {...movie} />
+              <MovieFacts languagesList={languagesList} {...movie} />
               <Keywords keywords={movie.keywords} />
             </Grid>
           </Grid>
