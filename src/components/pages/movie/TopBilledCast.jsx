@@ -15,6 +15,9 @@ import { teal } from "@mui/material/colors";
 const TopBilledCast = ({ id, title, credits }) => {
   return (
     <>
+      <Typography variant="h5" gutterBottom sx={{ color: teal[500] }}>
+        Top Billed Cast
+      </Typography>
       {credits && _.isEmpty(credits.cast) ? (
         <Box>
           <Typography color="text.secondary">
@@ -42,9 +45,6 @@ const TopBilledCast = ({ id, title, credits }) => {
         </Box>
       ) : (
         <>
-          <Typography variant="h5" gutterBottom sx={{ color: teal[500] }}>
-            Top Billed Cast
-          </Typography>
           <MediaScrollbar
             gap={2}
             width={credits && credits.cast.length < 9 && 1232}

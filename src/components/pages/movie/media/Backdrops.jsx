@@ -14,7 +14,7 @@ const Backdrops = ({ id, title, images }) => {
   }
   return (
     <>
-      {_.isEmpty(images) ? (
+      {_.isEmpty(images.backdrops) ? (
         <Typography sx={{ color: "text.secondary", fontWeight: 300 }}>
           {`No backdrops have been added to ${title}.`}
         </Typography>

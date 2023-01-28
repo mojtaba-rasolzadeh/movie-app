@@ -43,6 +43,7 @@ const MovieDetails = ({
   const [play, setPlay] = useState(false);
   const [trailer, setTrailer] = useState(null);
 
+
   const handleClose = () => {
     setOpen(false);
     setPlay(false);
@@ -56,6 +57,22 @@ const MovieDetails = ({
     );
     setTrailer(trailer ? trailer : videos.results[0]);
   };
+
+  let playTrialer;
+  if ((videos && videos.results.length > 0) || (videos && videos.length > 0)) {
+    playTrialer = (
+      <Button
+        variant="text"
+        startIcon={<PlayArrowRounded />}
+        sx={{ color: "#fff" }}
+        onClick={displayTrailer}
+      >
+        Play Trailer
+      </Button>
+    );
+  } else {
+    playTrialer = null;
+  }
   return (
     <>
       <Card
@@ -107,15 +124,14 @@ const MovieDetails = ({
         <CardContent sx={{ pl: { md: 5 }, zIndex: 10 }}>
           <Box>
             <Link
-              to={`/movie/${id}-${
-                original_title &&
+              to={`/movie/${id}-${original_title &&
                 original_title
                   .split(/[\s:,]/)
                   .join("-")
                   .split("--")
                   .join("-")
                   .toLowerCase()
-              }`}
+                }`}
               style={{ textDecoration: "none" }}
             >
               <Typography
@@ -164,10 +180,9 @@ const MovieDetails = ({
                   {genres.map((genre, index) => (
                     <Link
                       key={genre.id}
-                      to={`/genre/${genre.id}-${
-                        genre.name &&
+                      to={`/genre/${genre.id}-${genre.name &&
                         genre.name.toLowerCase().split(" ").join("-")
-                      }/movie`}
+                        }/movie`}
                       underline="none"
                       style={{ textDecoration: "none" }}
                     >
@@ -212,16 +227,7 @@ const MovieDetails = ({
                 User <br /> Score
               </Typography>
             </Box>
-            {videos && (
-              <Button
-                variant="text"
-                startIcon={<PlayArrowRounded />}
-                sx={{ color: "#fff" }}
-                onClick={displayTrailer}
-              >
-                Play Trailer
-              </Button>
-            )}
+            {playTrialer}
           </Box>
           <Box>
             <Typography variant="body1" color="text.secondary">

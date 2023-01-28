@@ -15,7 +15,7 @@ const Posters = ({ id, title, images }) => {
 
   return (
     <>
-      {_.isEmpty(images) ? (
+      {_.isEmpty(images.posters) ? (
         <Typography sx={{ color: "text.secondary", fontWeight: 300 }}>
           {`No posters have been added to ${title}.`}
         </Typography>
@@ -34,15 +34,14 @@ const Posters = ({ id, title, images }) => {
               ))}
           {images && images.posters.length > 6 && (
             <ViewMoreButton
-              link={`/movie/${id}-${
-                title &&
+              link={`/movie/${id}-${title &&
                 title
                   .split(/[\W]/)
                   .join("-")
                   .split("--")
                   .join("-")
                   .toLowerCase()
-              }/images/posters`}
+                }/images/posters`}
             />
           )}
         </MediaScrollbar>
