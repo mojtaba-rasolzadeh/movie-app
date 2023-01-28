@@ -21,6 +21,7 @@ import Movie from "./pages/movie/Movie";
 import MoviesGenre from "./pages/movie/MoviesGenre";
 import Person from "./pages/Person";
 import CastAndCrew from "./pages/movie/CastAndCrew";
+import MoviesRelatedToTheKeyword from "./pages/movie/MoviesRelatedToTheKeyword";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -86,6 +87,10 @@ const App = () => {
           <Route path="/genre/:genreId/movie" element={<MoviesGenre />} />{" "}
           <Route path="/person/:personId" element={<Person />} />{" "}
           <Route path="/movie/:movieId/cast" element={<CastAndCrew />} />{" "}
+          <Route
+            path="/keyword/:keywordId/movie"
+            element={<MoviesRelatedToTheKeyword />}
+          />
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

@@ -37,7 +37,7 @@ const Media = ({ id, title, videos, images }) => {
   };
   return (
     <Box sx={{ width: "100%", my: 4 }}>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 5, my: 3 }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 4, my: 3 }}>
         <Typography variant="h5" sx={{ color: teal[500] }}>
           Media
         </Typography>
@@ -56,7 +56,7 @@ const Media = ({ id, title, videos, images }) => {
           <Tab
             label={
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700] }}>Videos </Typography>
+                <Typography sx={{ color: yellow[700],textTransform:'capitalize',letterSpacing:1 }}>Videos </Typography>
                 <Chip
                   label={
                     <Typography
@@ -79,7 +79,7 @@ const Media = ({ id, title, videos, images }) => {
           <Tab
             label={
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700] }}>Backdrops </Typography>
+                <Typography sx={{ color: yellow[700],textTransform:'capitalize',letterSpacing:1 }}>Backdrops </Typography>
                 <Chip
                   label={
                     <Typography
@@ -102,7 +102,7 @@ const Media = ({ id, title, videos, images }) => {
           <Tab
             label={
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700] }}>Posters </Typography>
+                <Typography sx={{ color: yellow[700] ,textTransform:'capitalize',letterSpacing:1}}>Posters </Typography>
                 <Chip
                   label={
                     <Typography

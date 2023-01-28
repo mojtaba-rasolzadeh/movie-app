@@ -15,8 +15,17 @@ const Social = ({ title, reviews }) => {
           my: 3,
         }}
       >
-        <Typography variant="h5" sx={{color:teal[500]}}>Social</Typography>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+        <Typography variant="h5" sx={{ color: teal[500] }}>
+          Social
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: 1.5,
+          }}
+        >
           <Typography sx={{ color: yellow[700] }}>Reviews </Typography>
           <Chip
             label={

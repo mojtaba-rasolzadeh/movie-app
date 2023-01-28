@@ -43,10 +43,12 @@ export const getListCountries = () => {
     return axios.get(`${url}/configuration/countries?api_key=${API_KEY}`);
 };
 
+// languages list
 export const getLanguagesList = () => {
     return axios.get(`${url}/configuration/languages?api_key=${API_KEY}`);
 };
 
+// counteries list
 export const getListCountriesWatchProvider = () => {
     return axios.get(
         `${url}/watch/providers/regions?api_key=${API_KEY}&language=en-US`
@@ -146,3 +148,13 @@ export const getFreeToWatch = (typeWatch) => {
         `${url}/discover/${typeWatch}?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&watch_region=US&with_watch_monetization_types=free`
     );
 };
+
+// get keyword details
+export const getKeywordDetails = (keywordId) => {
+    return axios.get(`${url}/keyword/${keywordId}?api_key=${API_KEY}`);
+}
+
+// movies related keyword
+export const getMoviesRelatedToTheKeyword = (keywordId, page = 1) => {
+    return axios.get(`${url}/keyword/${keywordId}/movies?api_key=${API_KEY}&language=en-US&page=${page}`);
+}

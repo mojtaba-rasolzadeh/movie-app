@@ -1,9 +1,9 @@
+import { Link } from "react-router-dom";
 import _ from "lodash";
 import { Box, Typography, Chip } from "@mui/material";
 import { lime } from "@mui/material/colors";
 
 const Keywords = ({ keywords }) => {
-  console.log(keywords);
   return (
     <Box sx={{ mb: 4 }}>
       <Typography
@@ -19,11 +19,9 @@ const Keywords = ({ keywords }) => {
       ) : (
         <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap", mt: 2 }}>
           {keywords.keywords.map((keyword) => (
-            <Chip
+            <Link
               key={keyword.id}
-              label={keyword.name}
-              component="a"
-              href={`/keyword/${keyword.id}-${
+              to={`/keyword/${keyword.id}-${
                 keyword.name &&
                 keyword.name
                   .split(" ")
@@ -32,8 +30,16 @@ const Keywords = ({ keywords }) => {
                   .join("-")
                   .toLowerCase()
               }/movie`}
-              clickable
-            />
+              style={{ textDecoration: "none"}}
+            >
+              <Chip
+                // key={keyword.id}
+                label={keyword.name}
+                // component="a"
+
+                clickable
+              />
+            </Link>
           ))}
         </Box>
       )}

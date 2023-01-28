@@ -11,33 +11,35 @@ import {
   Chip,
 } from "@mui/material";
 import { blueGrey, deepOrange, grey, lime, teal } from "@mui/material/colors";
-import {
-  getDiscoverMovieWithGenres,
-  getGenresMovieList,
-} from "../../services/MovieService";
+
 import MoviePagination from "../../components/pages/movie/MoviePagination";
 import { Loader } from "../../components";
 
-const MoviesGenre = ({ id, poster_path, title, release_date, overview }) => {
-  const { genreId } = useParams();
+import {
+  getKeywordDetails,
+  getMoviesRelatedToTheKeyword,
+} from "../../services/MovieService";
+
+const MoviesRelatedToTheKeyword = () => {
+  const { keywordId } = useParams();
   const [loading, setLoading] = useState(false);
-  const [genre, setGenre] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [keyword, setKeyword] = useState({});
 
   const fetchData = async (page) => {
     try {
       setLoading(true);
-      const { status, data } = await getDiscoverMovieWithGenres(
-        parseInt(genreId),
+      const { status, data: moviesData } = await getMoviesRelatedToTheKeyword(
+        parseInt(keywordId),
         page
       );
-      const { data: genresData } = await getGenresMovieList();
+      const { data: keywordData } = await getKeywordDetails(
+        parseInt(keywordId)
+      );
       if (status === 200) {
         setLoading(false);
-        setMovies(data);
-        setGenre(
-          genresData.genres.find((genre) => genre.id === parseInt(genreId))
-        );
+        setMovies(moviesData);
+        setKeyword(keywordData);
       }
     } catch (err) {
       setLoading(false);
@@ -48,7 +50,6 @@ const MoviesGenre = ({ id, poster_path, title, release_date, overview }) => {
   useEffect(() => {
     fetchData();
   }, []);
-
   return (
     <Box sx={{ py: 4 }}>
       <Box
@@ -59,19 +60,24 @@ const MoviesGenre = ({ id, poster_path, title, release_date, overview }) => {
           mb: 3,
         }}
       >
-        <Typography
-          sx={{
-            fontSize: "2rem",
-            fontWeight: 700,
-            letterSpacing: 2,
-            color: teal[400],
-            "&:hover": {
-              color: teal[500],
-            },
-          }}
+        <Link
+          href={`/keyword/${keyword.id}-${keyword.name}/movie`}
+          style={{ textDecoration: "none" }}
         >
-          {genre.name}
-        </Typography>
+          <Typography
+            sx={{
+              fontSize: "2rem",
+              fontWeight: 700,
+              letterSpacing: 2,
+              color: teal[400],
+              "&:hover": {
+                color: teal[500],
+              },
+            }}
+          >
+            {keyword.name}
+          </Typography>
+        </Link>
         {movies.total_results && (
           <Chip
             label={
@@ -159,4 +165,5 @@ const MoviesGenre = ({ id, poster_path, title, release_date, overview }) => {
     </Box>
   );
 };
-export default MoviesGenre;
+
+export default MoviesRelatedToTheKeyword;
