@@ -83,12 +83,14 @@ export const getPeople = (peopleType = "popular", page = 1) => {
   `);
 };
 
-export const getMovie = (movieId) => {
+// movie
+export const getMovie = (movieId, reviewsPage = 1) => {
     return axios.get(
-        `${url}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,images,keywords,credits,reviews,external_ids,recommendations`
+        `${url}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,images,keywords,credits,reviews&page=${reviewsPage},external_ids,recommendations`
     );
 };
 
+// tvShows
 export const getTv = (tvId) => {
     return axios.get(
         `${url}/tv/${tvId}?api_key=${API_KEY}&append_to_response=videos`

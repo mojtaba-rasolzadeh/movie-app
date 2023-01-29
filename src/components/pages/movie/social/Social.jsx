@@ -4,7 +4,7 @@ import { teal, yellow } from "@mui/material/colors";
 
 import Review from "./Review";
 
-const Social = ({ title, reviews }) => {
+const Social = ({ id, title, reviews }) => {
   return (
     <Box sx={{ width: "100%", my: 4 }}>
       <Box
@@ -52,7 +52,7 @@ const Social = ({ title, reviews }) => {
           {` We don't have any reviews for ${title}.`}
         </Typography>
       ) : (
-        <Review reviews={reviews} />
+        <Review movieId={id} movieTitle={title} reviews={reviews} />
       )}
     </Box>
   );

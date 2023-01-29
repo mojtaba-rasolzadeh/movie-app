@@ -5,7 +5,7 @@ import { deepOrange, amber, yellow, lime } from "@mui/material/colors";
 import { StarRateRounded } from "@mui/icons-material";
 import Slider from "react-slick";
 
-const Review = ({ reviews }) => {
+const Review = ({ movieId, movieTitle, reviews }) => {
   const settings = {
     arrows: false,
     dots: true,
@@ -25,9 +25,8 @@ const Review = ({ reviews }) => {
               <Grid key={review.id} container wrap="nowrap" spacing={3}>
                 <Grid xs={0} sm={3.4} md={2.2} lg={1.5} xl={1.1}>
                   <Avatar
-                    src={`https://image.tmdb.org/t/p/w64_and_h64_face/${
-                      review.author_details && review.author_details.avatar_path
-                    }`}
+                    src={`https://image.tmdb.org/t/p/w64_and_h64_face/${review.author_details && review.author_details.avatar_path
+                      }`}
                     alt={review.author}
                     sx={{
                       display: { xs: "none", sm: "inline-flex" },
@@ -85,10 +84,9 @@ const Review = ({ reviews }) => {
                       >
                         Written by{" "}
                         <Link
-                          to={`/u/${
-                            review.author_details &&
+                          to={`/u/${review.author_details &&
                             review.author_details.username.split(" ").join("+")
-                          }`}
+                            }`}
                           style={{ textDecoration: "none" }}
                         >
                           <Typography
@@ -142,7 +140,7 @@ const Review = ({ reviews }) => {
             </Paper>
           ))}
       </Slider>
-      <Link to={`hi`} style={{ textDecoration: "none" }}>
+      <Link to={`/movie/${movieId}-${movieTitle && movieTitle.split(/[\s:,]/).join("-").split("--").join("-").toLowerCase()}/reviews`} style={{ textDecoration: "none" }}>
         <Typography
           sx={{
             display: "inline-block",

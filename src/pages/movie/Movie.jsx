@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Divider } from "@mui/material";
-
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { getLanguagesList, getMovie } from "../../services/MovieService";
