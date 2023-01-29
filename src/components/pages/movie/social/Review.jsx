@@ -25,7 +25,7 @@ const Review = ({ reviews }) => {
               <Grid key={review.id} container wrap="nowrap" spacing={3}>
                 <Grid xs={0} sm={3.4} md={2.2} lg={1.5} xl={1.1}>
                   <Avatar
-                    src={`https://image.tmdb.org/t/p/w400/${
+                    src={`https://image.tmdb.org/t/p/w64_and_h64_face/${
                       review.author_details && review.author_details.avatar_path
                     }`}
                     alt={review.author}

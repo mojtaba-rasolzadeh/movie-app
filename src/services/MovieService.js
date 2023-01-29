@@ -158,3 +158,8 @@ export const getKeywordDetails = (keywordId) => {
 export const getMoviesRelatedToTheKeyword = (keywordId, page = 1) => {
     return axios.get(`${url}/keyword/${keywordId}/movies?api_key=${API_KEY}&language=en-US&page=${page}`);
 }
+
+// Retrieve the details of a movie or TV show review
+export const getDetailsOfMovieOrTvShowReview = (reviewId) => {
+    return axios.get(`${url}/review/${reviewId}?api_key=${API_KEY}`)
+}

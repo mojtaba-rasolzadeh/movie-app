@@ -22,6 +22,7 @@ import MoviesGenre from "./pages/movie/MoviesGenre";
 import Person from "./pages/Person";
 import CastAndCrew from "./pages/movie/CastAndCrew";
 import MoviesRelatedToTheKeyword from "./pages/movie/MoviesRelatedToTheKeyword";
+import Review from "./pages/Review";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -91,6 +92,7 @@ const App = () => {
             path="/keyword/:keywordId/movie"
             element={<MoviesRelatedToTheKeyword />}
           />
+          <Route path="/review/:reviewId" element={<Review />} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

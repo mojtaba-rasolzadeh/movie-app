@@ -29,7 +29,7 @@ const MainLayout = ({ children }) => {
           >
             {children}
           </Box>
-          <Footer />
+          {location.pathname === "/" && <Footer />}
         </Box>
       </HelmetProvider>
     </ThemeProvider>
