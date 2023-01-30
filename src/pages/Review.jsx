@@ -49,21 +49,15 @@ const Review = () => {
                             {review.media_title}
                         </Typography>
                     </Link>
-                    <Box sx={{ display: 'flex', gap: 3, my: 5 }}>
+                    <Box sx={{ display: 'flex', gap: 3, py: 5 }}>
                         <Box>
-                            <Link
-                                to={`/u/${review.author_details && review.author_details.username}`}
-                                style={{ textDecoration: "none", color: lime[500] }}
-                            >
-
-                                <Avatar variant="circular" sx={{
-                                    width: 64,
-                                    height: 64,
-                                    bgcolor: deepOrange[500],
-                                    color: "#fff",
-                                }} src={`https://www.themoviedb.org/t/p/w64_and_h64_face${review.author_details && review.author_details.avatar_path
-                                    }`} alt={review.author_details && review.author_details.username} />
-                            </Link>
+                            <Avatar variant="circular" sx={{
+                                width: 64,
+                                height: 64,
+                                bgcolor: deepOrange[500],
+                                color: "#fff",
+                            }} src={`https://www.themoviedb.org/t/p/w64_and_h64_face${review.author_details && review.author_details.avatar_path
+                                }`} alt={review.author_details && review.author_details.username} />
                         </Box>
                         <Box>
                             <Typography
@@ -71,13 +65,12 @@ const Review = () => {
                                 variant="body1"
                                 sx={{ letterSpacing: 1 }}
                             >Written by
-                                <Link
-                                    to={`/u/${review.author_details && review.author_details.username}`}
+                                <Typography variant="caption"
                                     style={{ textDecoration: "none", color: lime[500] }}
                                 >
                                     {" "}{review.author_details && review.author_details.name ? review.author_details.name : review.author_details && review.author_details.username}{" "}
 
-                                </Link>
+                                </Typography>
                                 on {new Date(review.created_at
                                 ).toLocaleDateString("en-US", {
                                     month: "long",

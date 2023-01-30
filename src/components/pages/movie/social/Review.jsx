@@ -20,7 +20,7 @@ const Review = ({ movieId, movieTitle, reviews }) => {
     <Box>
       <Slider {...settings}>
         {reviews &&
-          reviews.results.map((review) => (
+          reviews.results.slice(0,3).map((review) => (
             <Paper key={review.id} variant="outlined" sx={{ p: 2 }}>
               <Grid key={review.id} container wrap="nowrap" spacing={3}>
                 <Grid xs={0} sm={3.4} md={2.2} lg={1.5} xl={1.1}>
@@ -83,24 +83,17 @@ const Review = ({ movieId, movieTitle, reviews }) => {
                         sx={{ fontWeight: "200" }}
                       >
                         Written by{" "}
-                        <Link
-                          to={`/u/${review.author_details &&
-                            review.author_details.username.split(" ").join("+")
-                            }`}
-                          style={{ textDecoration: "none" }}
+                        <Typography
+                          variant="caption"
+                          component="strong"
+                          sx={{
+                            color: amber[400],
+                            fontWeight: "700",
+                          }}
                         >
-                          <Typography
-                            variant="caption"
-                            component="strong"
-                            sx={{
-                              color: amber[400],
-                              fontWeight: "700",
-                              "&:hover": { color: amber[700] },
-                            }}
-                          >
-                            {review.author}
-                          </Typography>
-                        </Link>{" "}
+                          {review.author}
+                        </Typography>
+                        {" "}
                         on{" "}
                         {new Date(review.created_at).toLocaleDateString(
                           "en-US",
@@ -109,13 +102,9 @@ const Review = ({ movieId, movieTitle, reviews }) => {
                       </Typography>
                     </Box>
                     <Box sx={{ mt: 5 }}>
-                      {review.content && review.content.length <= 594 ? (
-                        <Typography variant="body1" sx={{ fontWeight: "300" }}>
-                          {review.content}
-                        </Typography>
-                      ) : (
-                        <Typography variant="body1" sx={{ fontWeight: "300" }}>
-                          {review.content && review.content.slice(0, 601)}...{" "}
+                      <Typography variant="body1" sx={{ fontWeight: "300" }}>
+                        {review.content && review.content.slice(0, 287)}
+                        {review.content && review.content.length > 287 &&
                           <Link
                             to={`/review/${review.id}`}
                             style={{ textDecorationColor: lime[500] }}
@@ -127,12 +116,11 @@ const Review = ({ movieId, movieTitle, reviews }) => {
                                 "&:hover": { color: lime[700] },
                               }}
                             >
-                              {" "}
+                              ...{" "}
                               read the rest.
                             </Typography>
-                          </Link>
-                        </Typography>
-                      )}
+                          </Link>}
+                      </Typography>
                     </Box>
                   </Box>
                 </Grid>

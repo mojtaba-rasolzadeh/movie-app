@@ -9,9 +9,9 @@ const MoviePagination = ({ movieData, fetchData }) => {
   };
   return (
     <>
-      {movieData.total_pages > 1 && (
+      {movieData && movieData.total_pages > 1 && (
         <Pagination
-          count={movieData.total_pages > 500 ? 500 : movieData.total_pages}
+          count={movieData && movieData.total_pages > 500 ? 500 : movieData.total_pages}
           page={page}
           onChange={handleChagePage}
           shape="rounded"
