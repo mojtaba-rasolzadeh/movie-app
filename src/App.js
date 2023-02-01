@@ -25,6 +25,7 @@ import MoviesRelatedToTheKeyword from "./pages/movie/MoviesRelatedToTheKeyword";
 import Review from "./pages/Review";
 import Reviews from "./pages/Reviews";
 import TrailersAndVideos from "./pages/movie/TrailersAndVideos";
+import Backdrops from "./pages/movie/Backdrops";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -97,6 +98,7 @@ const App = () => {
           <Route path="/review/:reviewId" element={<Review />} />{" "}
           <Route path="/movie/:movieId/reviews" element={<Reviews />} />{" "}
           <Route path="/movie/:movieId/videos" element={<TrailersAndVideos/>} />{" "}
+          <Route path="/movie/:movieId/images/backdrops" element={<Backdrops/>} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

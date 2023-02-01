@@ -15,8 +15,8 @@ import { grey, orange, teal, yellow } from "@mui/material/colors";
 
 import { getMovie } from '../../services/MovieService';
 import BackToMain from '../../components/pages/movie/BackToMain';
-import Videos from '../../components/pages/movie/trailersAndVideos/Videos';
 import { Loader } from '../../components';
+import Images from '../../components/pages/movie/backdrops/Images';
 
 
 function TabPanel(props) {
@@ -43,11 +43,13 @@ function tabProps(index) {
 }
 
 
-const TrailersAndVideos = () => {
+const Backdrops = () => {
     const { movieId } = useParams();
     const [loading, setLoading] = useState(false);
     const [movie, setMovie] = useState({});
-    const [videos, setVideos] = useState([]);
+    const [images, setImages] = useState([]);
+
+    console.log(images)
 
     const [value, setValue] = useState(0);
 
@@ -56,7 +58,8 @@ const TrailersAndVideos = () => {
     };
 
     const displayLengthItem = (item) => {
-        let results = videos.filter(video => video.type === item);
+        console.log(item)
+        let results = images.filter(image => image.iso_639_1 === item);
         return results.length;
     };
 
@@ -68,7 +71,7 @@ const TrailersAndVideos = () => {
                 if (status === 200) {
                     setLoading(false);
                     setMovie(data);
-                    setVideos(data.videos.results);
+                    setImages(data.images.backdrops);
                 }
             } catch (err) {
                 setLoading(false);
@@ -81,19 +84,19 @@ const TrailersAndVideos = () => {
         <>
             {
                 loading ? <Loader /> :
-                    <Box sx={{py:5}}>
+                    <Box sx={{ py: 5 }}>
                         <BackToMain movie={movie} />
-                        <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5    }}>
+                        <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5 }}>
                             <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
                                 <Card sx={{ maxWidth: 258, height: 385 }}>
                                     <CardHeader
-                                        title="Videos"
+                                        title="Backdrops"
                                         sx={{ backgroundColor: teal[500], textAlign: 'center' }}
                                     />
                                     <CardContent>
                                         <Tabs
                                             orientation="vertical"
-                                            // variant="scrollable"
+
                                             value={value}
                                             onChange={handleChange}
                                             aria-label="vertical tabs example"
@@ -120,7 +123,7 @@ const TrailersAndVideos = () => {
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Trailers</Typography>
+                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>English</Typography>
                                                         <Chip
                                                             label={
                                                                 <Typography
@@ -130,8 +133,7 @@ const TrailersAndVideos = () => {
                                                                         ".Mui-selected": { color: yellow[500] },
                                                                     }}
                                                                 >
-                                                                    {displayLengthItem("Trailer")}
-                                                                    {/* {movies.total_results !== undefined && (movies.total_results).toLocaleString()} */}
+                                                                    {displayLengthItem("en")}
                                                                 </Typography>
                                                             }
                                                             size="small"
@@ -157,7 +159,7 @@ const TrailersAndVideos = () => {
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Teasers</Typography>
+                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Italian</Typography>
                                                         <Chip
                                                             label={
                                                                 <Typography
@@ -167,7 +169,7 @@ const TrailersAndVideos = () => {
                                                                         ".Mui-selected": { color: yellow[500] },
                                                                     }}
                                                                 >
-                                                                    {displayLengthItem("Teaser")}
+                                                                    {displayLengthItem("it")}
                                                                 </Typography>
                                                             }
                                                             size="small"
@@ -191,7 +193,7 @@ const TrailersAndVideos = () => {
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Clips</Typography>
+                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>No Language</Typography>
                                                         <Chip
                                                             label={
                                                                 <Typography
@@ -201,12 +203,12 @@ const TrailersAndVideos = () => {
                                                                         ".Mui-selected": { color: yellow[500] },
                                                                     }}
                                                                 >
-                                                                    {displayLengthItem("Clip")}
+                                                                    {displayLengthItem(null)}
                                                                 </Typography>
                                                             }
                                                             size="small"
                                                             sx={{ backgroundColor: orange[500] }}
-                                                        //   sx={{ backgroundColor: value === 1 && orange[500] }}
+
                                                         />
                                                     </Box>
                                                 }
@@ -227,7 +229,7 @@ const TrailersAndVideos = () => {
                                                         }}
                                                     >
                                                         <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>
-                                                            Behind the Scenes
+                                                            Portuguese
                                                         </Typography>
                                                         <Chip
                                                             label={
@@ -238,7 +240,7 @@ const TrailersAndVideos = () => {
                                                                         ".Mui-selected": { color: yellow[500] },
                                                                     }}
                                                                 >
-                                                                    {displayLengthItem("Behind the Scenes")}
+                                                                    {displayLengthItem("pt")}
                                                                 </Typography>
                                                             }
                                                             size="small"
@@ -262,7 +264,7 @@ const TrailersAndVideos = () => {
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Bloopers
+                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Russian
                                                         </Typography>
                                                         <Chip
                                                             label={
@@ -275,7 +277,7 @@ const TrailersAndVideos = () => {
                                                                         },
                                                                     }}
                                                                 >
-                                                                    {displayLengthItem("Blooper")}
+                                                                    {displayLengthItem("ru")}
                                                                 </Typography>
                                                             }
                                                             size="small"
@@ -299,7 +301,7 @@ const TrailersAndVideos = () => {
                                                             alignItems: "center",
                                                         }}
                                                     >
-                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Featurettes</Typography>
+                                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>Ukrainian</Typography>
                                                         <Chip
                                                             label={
                                                                 <Typography
@@ -309,7 +311,7 @@ const TrailersAndVideos = () => {
                                                                         ".Mui-selected": { color: yellow[500] },
                                                                     }}
                                                                 >
-                                                                    {displayLengthItem("Featurettes")}
+                                                                    {displayLengthItem("uk")}
                                                                 </Typography>
                                                             }
                                                             size="small"
@@ -329,22 +331,22 @@ const TrailersAndVideos = () => {
                             </Grid>
                             <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
                                 <TabPanel value={value} index={0}>
-                                    <Videos allVideos={videos} type="Trailer" />
+                                    <Images allImages={images} type="en" />
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
-                                    <Videos allVideos={videos} type="Teaser" />
+                                    <Images allImages={images} type="it" />
                                 </TabPanel>
                                 <TabPanel value={value} index={2}>
-                                    <Videos allVideos={videos} type="Clip" />
+                                    <Images allImages={images} type={null} />
                                 </TabPanel>
                                 <TabPanel value={value} index={3}>
-                                    <Videos allVideos={videos} type="Behind the Scenes" />
+                                    <Images allImages={images} type="pt" />
                                 </TabPanel>
                                 <TabPanel value={value} index={4}>
-                                    <Videos allVideos={videos} type="Blooper" />
+                                    <Images allImages={images} type="ru" />
                                 </TabPanel>
                                 <TabPanel value={value} index={5}>
-                                    <Videos allVideos={videos} type="Featurettes" />
+                                    <Images allImages={images} type="uk" />
                                 </TabPanel>
                             </Grid>
                         </Grid>
@@ -354,7 +356,4 @@ const TrailersAndVideos = () => {
     );
 }
 
-export default TrailersAndVideos;
-
-
-
+export default Backdrops;
