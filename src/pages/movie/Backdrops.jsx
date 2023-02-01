@@ -331,22 +331,22 @@ const Backdrops = () => {
                             </Grid>
                             <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
                                 <TabPanel value={value} index={0}>
-                                    <Images allImages={images} type="en" />
+                                    <Images allImages={images} imageType="en" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
-                                    <Images allImages={images} type="it" />
+                                    <Images allImages={images} imageType="it" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={2}>
-                                    <Images allImages={images} type={null} />
+                                    <Images allImages={images} imageType={null} moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={3}>
-                                    <Images allImages={images} type="pt" />
+                                    <Images allImages={images} imageType="pt" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={4}>
-                                    <Images allImages={images} type="ru" />
+                                    <Images allImages={images} imageType="ru" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={5}>
-                                    <Images allImages={images} type="uk" />
+                                    <Images allImages={images} imageType="uk" moiveTitle={movie} />
                                 </TabPanel>
                             </Grid>
                         </Grid>

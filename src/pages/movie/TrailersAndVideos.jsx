@@ -81,9 +81,9 @@ const TrailersAndVideos = () => {
         <>
             {
                 loading ? <Loader /> :
-                    <Box sx={{py:5}}>
+                    <Box sx={{ py: 5 }}>
                         <BackToMain movie={movie} />
-                        <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5    }}>
+                        <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5 }}>
                             <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
                                 <Card sx={{ maxWidth: 258, height: 385 }}>
                                     <CardHeader
@@ -329,22 +329,22 @@ const TrailersAndVideos = () => {
                             </Grid>
                             <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
                                 <TabPanel value={value} index={0}>
-                                    <Videos allVideos={videos} type="Trailer" />
+                                    <Videos allVideos={videos} videoType="Trailer" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={1}>
-                                    <Videos allVideos={videos} type="Teaser" />
+                                    <Videos allVideos={videos} videoType="Teaser" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={2}>
-                                    <Videos allVideos={videos} type="Clip" />
+                                    <Videos allVideos={videos} videoType="Clip" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={3}>
-                                    <Videos allVideos={videos} type="Behind the Scenes" />
+                                    <Videos allVideos={videos} videoType="Behind the Scenes" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={4}>
-                                    <Videos allVideos={videos} type="Blooper" />
+                                    <Videos allVideos={videos} videoType="Blooper" moiveTitle={movie} />
                                 </TabPanel>
                                 <TabPanel value={value} index={5}>
-                                    <Videos allVideos={videos} type="Featurettes" />
+                                    <Videos allVideos={videos} videoType="Featurettes" moiveTitle={movie} />
                                 </TabPanel>
                             </Grid>
                         </Grid>

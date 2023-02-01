@@ -5,9 +5,9 @@ import { orange } from "@mui/material/colors";
 import Youtube from "react-youtube";
 
 
-const Videos = ({ allVideos, type }) => {
+const Videos = ({ allVideos, videoType,moiveTitle }) => {
 
-    const filtredVideos = allVideos.filter(video => video.type === type);
+    const filtredVideos = allVideos.filter(video => video.type === videoType);
 
     const [open, setOpen] = useState(false);
     const [play, setPlay] = useState(false);
@@ -99,7 +99,7 @@ const Videos = ({ allVideos, type }) => {
                     ))
                 ) : (
                     <Typography variant="body1" sx={{ letterSpacing: 1 }}>
-                        {`There are no English ${type} added to Violent Night.`}
+                        {`There are no English ${videoType} added to ${moiveTitle.title}.`}
                     </Typography>
                 )
             }

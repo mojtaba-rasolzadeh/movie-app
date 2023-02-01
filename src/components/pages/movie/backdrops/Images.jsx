@@ -1,27 +1,7 @@
-import { useState } from "react";
 import { Box, Typography, Avatar, Link, Tooltip } from "@mui/material";
-import { Close, PlayArrowRounded } from "@mui/icons-material";
-import { orange } from "@mui/material/colors";
-import Youtube from "react-youtube";
 
-
-const Images = ({ allImages, type }) => {
-
-    const filterdImages = allImages.filter(image => image.iso_639_1 === type);
-    console.log(filterdImages)
-    const [open, setOpen] = useState(false);
-    const [play, setPlay] = useState(false);
-
-    const handleClose = () => {
-        setOpen(false);
-        setPlay(false);
-    };
-
-    const handleToggle = () => {
-        setPlay(true);
-        setOpen((prevOpen) => !prevOpen);
-    };
-
+const Images = ({ allImages, imageType,moiveTitle }) => {
+    const filterdImages = allImages.filter(image => image.iso_639_1 === imageType);
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
             {
@@ -39,7 +19,7 @@ const Images = ({ allImages, type }) => {
                     ))
                 ) : (
                     <Typography variant="body1" sx={{ letterSpacing: 1 }}>
-                        {`There are no English ${type} added to Violent Night.`}
+                        {`There are no English ${imageType} added to ${moiveTitle.title}.`}
                     </Typography>
                 )
             }
