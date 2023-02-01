@@ -32,6 +32,8 @@ function tabProps(index) {
 const Media = ({ id, title, videos, images }) => {
   const [value, setValue] = useState(0);
 
+  console.log(images)
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

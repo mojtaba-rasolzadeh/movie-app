@@ -11,8 +11,8 @@ const Images = ({ allImages, imageType, moiveTitle }) => {
                             <Link href={`https://www.themoviedb.org/t/p/original${image.file_path}`} underline="none" target="_blank">
                                 <Avatar
                                     variant="rounded"
-                                    sx={{ width: 310, height: 175 }}
-                                    src={`https://www.themoviedb.org/t/p/w500_and_h282_face${image.file_path}`}
+                                    sx={{ width: 224, height: 339 }}
+                                    src={`https://www.themoviedb.org/t/p/w220_and_h330_face${image.file_path}`}
                                 />
                             </Link>
                         </Tooltip>

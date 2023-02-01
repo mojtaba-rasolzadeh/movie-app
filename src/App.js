@@ -26,6 +26,7 @@ import Review from "./pages/Review";
 import Reviews from "./pages/Reviews";
 import TrailersAndVideos from "./pages/movie/TrailersAndVideos";
 import Backdrops from "./pages/movie/Backdrops";
+import Posters from "./pages/movie/Posters";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -99,6 +100,7 @@ const App = () => {
           <Route path="/movie/:movieId/reviews" element={<Reviews />} />{" "}
           <Route path="/movie/:movieId/videos" element={<TrailersAndVideos/>} />{" "}
           <Route path="/movie/:movieId/images/backdrops" element={<Backdrops/>} />{" "}
+          <Route path="/movie/:movieId/images/posters" element={<Posters/>} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}
