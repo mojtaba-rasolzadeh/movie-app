@@ -6,8 +6,8 @@ const Images = ({ allImages, imageType, moiveTitle }) => {
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
             {
                 filterdImages.length > 0 ? (
-                    filterdImages.map(image => (
-                        <Tooltip title="View Original" followCursor>
+                    filterdImages.map((image, index) => (
+                        <Tooltip key={index} title="View Original" followCursor>
                             <Link href={`https://www.themoviedb.org/t/p/original${image.file_path}`} underline="none" target="_blank">
                                 <Avatar
                                     variant="rounded"

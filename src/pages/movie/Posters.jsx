@@ -52,10 +52,7 @@ const Posters = () => {
     const [imageType] = useState(new Set());
     const imageTypeToArray = [...imageType];
 
-    if (images) {
-        images.map((image) => imageType.add(image.iso_639_1))
-    }
-    console.log(imageTypeToArray)
+    if (images) images.map((image) => imageType.add(image.iso_639_1))
 
     const [value, setValue] = useState(0);
 
@@ -64,10 +61,20 @@ const Posters = () => {
     };
 
     const displayLengthItem = (item) => {
-        // console.log(item)
         let results = images.filter(image => image.iso_639_1 === item);
         return results.length;
     };
+
+    const displayLanguage = (imageLanguage) => {
+        let result;
+        if (typeof imageLanguage !== 'string') {
+            result = 'No Language';
+        } else {
+            result = languagesList.find(item => item.iso_639_1 === imageLanguage);
+            result = result && result.english_name;
+        }
+        return <Typography key={result} variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>{result}</Typography>
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -127,6 +134,7 @@ const Posters = () => {
                                             {
                                                 imageTypeToArray.map((image, index) => (
                                                     <Tab
+                                                        key={index}
                                                         label={
                                                             <Box
                                                                 sx={{
@@ -136,15 +144,9 @@ const Posters = () => {
                                                                     alignItems: "center",
                                                                 }}
                                                             >
-                                                                {languagesList.map(
-                                                                    (language, index) =>
-                                                                        language.iso_639_1 === image && (
-                                                                            <Typography key={index} variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>
-                                                                                {language.english_name}
-                                                                                {/* {!_.isNull(image) && "No Language" } */}
-                                                                            </Typography>
-                                                                        )
-                                                                )}
+                                                                {
+                                                                    displayLanguage(image)
+                                                                }
                                                                 <Chip
                                                                     label={
                                                                         <Typography
