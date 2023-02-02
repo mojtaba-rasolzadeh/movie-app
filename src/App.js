@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import { MovieContext } from "./context/MovieContext";
 import { MainLayout, Navbar } from "./components";
-import { getMovies } from "./services/MovieService";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import {
@@ -27,6 +26,7 @@ import Reviews from "./pages/Reviews";
 import TrailersAndVideos from "./pages/movie/TrailersAndVideos";
 import Backdrops from "./pages/movie/Backdrops";
 import Posters from "./pages/movie/Posters";
+import TvShow from "./pages/tvShow/TvShow";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -35,27 +35,6 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [backdrops, setBackdrops] = useState([]);
-
-  // const API_KEY = "e5f34d07a7faa12dae140e0a4798d6ba";
-
-  // useEffect(() => {
-  //   const fetchPopularMovies = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       const { status, data: popularData } = await getMovies();
-
-  //       if (status === 200) {
-  //         setIsLoading(false);
-  //         setPopularMovies(popularData);
-  //         setBackdrops(popularData.results);
-  //       }
-  //     } catch (err) {
-  //       setIsLoading(false);
-  //       console.log(err.message);
-  //     }
-  //   };
-  //   fetchPopularMovies();
-  // }, []);
 
   return (
     <MovieContext.Provider
@@ -101,6 +80,7 @@ const App = () => {
           <Route path="/movie/:movieId/videos" element={<TrailersAndVideos/>} />{" "}
           <Route path="/movie/:movieId/images/backdrops" element={<Backdrops/>} />{" "}
           <Route path="/movie/:movieId/images/posters" element={<Posters/>} />{" "}
+          <Route path="/tv/:tvId" element={<TvShow />} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

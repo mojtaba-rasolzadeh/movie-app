@@ -3,6 +3,7 @@ import { lime } from "@mui/material/colors";
 
 const MovieFacts = ({
   languagesList,
+  original_title,
   status,
   original_language,
   budget,
@@ -19,6 +20,20 @@ const MovieFacts = ({
         my: 4,
       }}
     >
+      {
+        original_title &&
+        <div>
+          <Typography
+            variant="body1"
+            sx={{ letterSpacing: 2, fontWeight: "700", color: lime[500] }}
+          >
+            Original Title
+          </Typography>
+          <Typography variant="body2" sx={{ color: lime[100] }}>
+            {original_title}
+          </Typography>
+        </div>
+      }
       <div>
         <Typography
           variant="body1"

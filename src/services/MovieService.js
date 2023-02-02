@@ -86,14 +86,14 @@ export const getPeople = (peopleType = "popular", page = 1) => {
 // movie
 export const getMovie = (movieId, reviewsPage = 1) => {
     return axios.get(
-        `${url}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,images,keywords,credits,reviews&page=${reviewsPage},external_ids,recommendations`
+        `${url}/movie/${movieId}?api_key=${API_KEY}&append_to_response=videos,images,keywords,credits,external_ids,recommendations,reviews&page=${reviewsPage}`
     );
 };
 
 // tvShows
-export const getTv = (tvId) => {
+export const getTv = (tvId, reviewsPage = 1) => {
     return axios.get(
-        `${url}/tv/${tvId}?api_key=${API_KEY}&append_to_response=videos`
+        `${url}/tv/${tvId}?api_key=${API_KEY}&append_to_response=videos,images,keywords,credits,external_ids,recommendations,reviews&page=${reviewsPage}`
     );
 };
 

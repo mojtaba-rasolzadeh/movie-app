@@ -14,6 +14,7 @@ import { MediaScrollbar } from "../../constant";
 import { teal } from "@mui/material/colors";
 
 const Recommendations = ({ title, recommendations }) => {
+  console.log(recommendations)
   return (
     <Box sx={{ my: 4 }}>
       <Typography variant="h5" gutterBottom sx={{ color: teal[500] }}>

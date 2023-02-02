@@ -267,7 +267,6 @@ const MovieDetails = ({
             </IconButton>
             <Youtube
               videoId={trailer.key}
-              title={"hello mojooo"}
               opts={{
                 width: "640",
                 height: "390",

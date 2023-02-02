@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { getLanguagesList, getMovie } from "../../services/MovieService";
+import { getLanguagesList, getTv } from "../../services/MovieService";
 import { Loader } from "../../components";
-import MovieDetails from "../../components/pages/movie/MovieDetails";
+import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
 import TopBilledCast from "../../components/pages/movie/TopBilledCast";
 import Social from "../../components/pages/movie/social/Social";
 import Media from "../../components/pages/movie/media/Media";
@@ -14,21 +14,21 @@ import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
 
-const Movie = () => {
-  const { movieId } = useParams();
+const TvShow = () => {
+  const { tvId } = useParams();
   const [loading, setLoading] = useState(false);
-  const [movie, setMovie] = useState([]);
+  const [tvShow, setTvShow] = useState([]);
   const [languagesList, setLanguagesList] = useState([]);
-  console.log(movie)
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const { status, data } = await getMovie(movieId);
+        const { status, data } = await getTv(tvId);
         const { data: languageData } = await getLanguagesList();
         if (status === 200) {
           setLoading(false);
-          setMovie(data);
+          setTvShow(data);
           setLanguagesList(languageData);
         }
       } catch (err) {
@@ -45,26 +45,26 @@ const Movie = () => {
         <Loader />
       ) : (
         <>
-          <MovieDetails {...movie} />
-          <Grid container spacing={2} sx={{ my: 3 }}>
+          <TvShowDetails {...tvShow} />
+          {/* <Grid container spacing={2} sx={{ my: 3 }}>
             <Grid xs={12} sm={9}>
-              <TopBilledCast {...movie} />
+              <TopBilledCast {...tvShow} />
               <Divider />
-              <Social {...movie} />
+              <Social {...tvShow} />
               <Divider />
-              <Media {...movie} />
+              <Media {...tvShow} />
               <Divider />
-              <Recommendations {...movie} />
+              <Recommendations {...tvShow} />
             </Grid>
             <Grid xs={12} sm={3}>
-              <SocialLinks {...movie.external_ids} />
-              <MovieFacts languagesList={languagesList} {...movie} />
-              <Keywords keywords={movie.keywords} />
+              <SocialLinks {...tvShow.external_ids} />
+              <MovieFacts languagesList={languagesList} {...tvShow} />
+              <Keywords keywords={tvShow.keywords} />
             </Grid>
-          </Grid>
+          </Grid> */}
         </>
       )}
     </>
   );
 };
-export default Movie;
+export default TvShow;
