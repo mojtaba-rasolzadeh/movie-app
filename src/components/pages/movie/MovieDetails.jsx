@@ -208,7 +208,7 @@ const MovieDetails = ({
               )}
             </Box>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 4, my: 3 }}>
+          <Box sx={{ display: "flex",flexWrap:'wrap', alignItems: "center", gap: 4, my: 3 }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <Box
                 sx={{

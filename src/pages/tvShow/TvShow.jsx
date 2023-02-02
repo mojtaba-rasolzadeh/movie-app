@@ -6,19 +6,21 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getLanguagesList, getTv } from "../../services/MovieService";
 import { Loader } from "../../components";
 import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
-import TopBilledCast from "../../components/pages/movie/TopBilledCast";
 import Social from "../../components/pages/movie/social/Social";
 import Media from "../../components/pages/movie/media/Media";
 import Recommendations from "../../components/pages/movie/Recommendations";
 import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
+import SeriesCast from "../../components/pages/tvShows/SeriesCast";
 
 const TvShow = () => {
   const { tvId } = useParams();
   const [loading, setLoading] = useState(false);
   const [tvShow, setTvShow] = useState([]);
   const [languagesList, setLanguagesList] = useState([]);
+
+  console.log(tvShow)
   
   useEffect(() => {
     const fetchData = async () => {
@@ -46,22 +48,22 @@ const TvShow = () => {
       ) : (
         <>
           <TvShowDetails {...tvShow} />
-          {/* <Grid container spacing={2} sx={{ my: 3 }}>
+          <Grid container spacing={2} sx={{ my: 3 }}>
             <Grid xs={12} sm={9}>
-              <TopBilledCast {...tvShow} />
+              <SeriesCast {...tvShow} />
               <Divider />
-              <Social {...tvShow} />
+              {/* <Social {...tvShow} />
               <Divider />
               <Media {...tvShow} />
               <Divider />
-              <Recommendations {...tvShow} />
+              <Recommendations {...tvShow} /> */}
             </Grid>
-            <Grid xs={12} sm={3}>
+            {/* <Grid xs={12} sm={3}>
               <SocialLinks {...tvShow.external_ids} />
               <MovieFacts languagesList={languagesList} {...tvShow} />
               <Keywords keywords={tvShow.keywords} />
-            </Grid>
-          </Grid> */}
+            </Grid> */}
+          </Grid>
         </>
       )}
     </>

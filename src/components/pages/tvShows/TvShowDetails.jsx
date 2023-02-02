@@ -43,6 +43,7 @@ const TvShowDetails = ({
     const [play, setPlay] = useState(false);
     const [trailer, setTrailer] = useState(null);
 
+    console.log(trailer)
 
     const handleClose = () => {
         setOpen(false);
@@ -221,7 +222,7 @@ const TvShowDetails = ({
                             )}
                         </Box>
                     </Box>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 4, my: 3 }}>
+                    <Box sx={{ display: "flex", flexWrap: 'wrap', alignItems: "center", gap: 4, my: 3 }}>
                         <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
                             <Box
                                 sx={{

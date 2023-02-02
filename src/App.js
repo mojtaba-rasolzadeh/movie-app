@@ -35,19 +35,16 @@ const App = () => {
   const [activeLink, setActiveLink] = useState("Popular");
   const [movies, setMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
-  const [backdrops, setBackdrops] = useState([]);
 
   return (
     <MovieContext.Provider
       value={{
         query,
         setQuery,
-        // API_KEY,
         isloading,
         activeLink,
         popularMovies,
         movies,
-        backdrops,
         setMovies,
         setPopularMovies,
         setActiveLink,
@@ -75,9 +72,9 @@ const App = () => {
           />
           <Route path="/review/:reviewId" element={<Review />} />{" "}
           <Route path="/movie/:movieId/reviews" element={<Reviews />} />{" "}
-          <Route path="/movie/:movieId/videos" element={<TrailersAndVideos/>} />{" "}
-          <Route path="/movie/:movieId/images/backdrops" element={<Backdrops/>} />{" "}
-          <Route path="/movie/:movieId/images/posters" element={<Posters/>} />{" "}
+          <Route path="/movie/:movieId/videos" element={<TrailersAndVideos />} />{" "}
+          <Route path="/movie/:movieId/images/backdrops" element={<Backdrops />} />{" "}
+          <Route path="/movie/:movieId/images/posters" element={<Posters />} />{" "}
           {/* TV Shows */}
           <Route path="/tv" element={<PopularTvShows />} />{" "}
           <Route path="/tv/airing-today" element={<AiringTodayTvShows />} />{" "}
