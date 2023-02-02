@@ -18,7 +18,7 @@ import {
 import MoviePagination from "../../components/pages/movie/MoviePagination";
 import { Loader } from "../../components";
 
-const MoviesGenre = ({ id, poster_path, title, release_date, overview }) => {
+const MoviesGenre = () => {
   const { genreId } = useParams();
   const [loading, setLoading] = useState(false);
   const [genre, setGenre] = useState([]);
@@ -65,9 +65,6 @@ const MoviesGenre = ({ id, poster_path, title, release_date, overview }) => {
             fontWeight: 700,
             letterSpacing: 2,
             color: teal[400],
-            "&:hover": {
-              color: teal[500],
-            },
           }}
         >
           {genre.name}

@@ -101,20 +101,28 @@ export const getDiscoverMovie = () => {
     return axios.get(`${url}/discover/movie?api_key=${API_KEY}&page=3`);
 };
 
+// dicover movie with genres
 export const getDiscoverMovieWithGenres = (genreId, page = 1) => {
     return axios.get(
         `${url}/discover/movie?api_key=${API_KEY}&language=en-US&page=${page}&with_genres=${genreId}`
     );
 };
 
-export const getDiscoverTvWithGenres = (genreId) => {
+// dicover tvShow with genres
+export const getDiscoverTvShowWithGenres = (genreId, page = 1) => {
     return axios.get(
-        `${url}/discover/tv?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=1&with_genres=${genreId}`
+        `${url}/discover/tv?api_key=${API_KEY}&language=en-US&page=${page}&with_genres=${genreId}`
     );
 };
 
+// genres movie list
 export const getGenresMovieList = () => {
     return axios.get(`${url}/genre/movie/list?api_key=${API_KEY}&language=en-US`);
+};
+
+// genres tvShow list
+export const getGenresTvShowList = () => {
+    return axios.get(`${url}/genre/tv/list?api_key=${API_KEY}&language=en-US`);
 };
 
 export const getPersonDetails = (personId) => {

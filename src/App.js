@@ -27,6 +27,7 @@ import TrailersAndVideos from "./pages/movie/TrailersAndVideos";
 import Backdrops from "./pages/movie/Backdrops";
 import Posters from "./pages/movie/Posters";
 import TvShow from "./pages/tvShow/TvShow";
+import TvShowsGenre from "./pages/tvShow/TvShowsGenre";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -57,15 +58,12 @@ const App = () => {
         <Navbar /> {/* <Toolbar /> */}{" "}
         <Routes>
           <Route path="/" element={<Home />} />{" "}
+          {/* Movies */}
           <Route path="/search" element={<Search />} />{" "}
           <Route path="/movie" element={<PopularMovies />} />{" "}
           <Route path="/movie/now_playing" element={<NowPlayingMovies />} />{" "}
           <Route path="/movie/top_rated" element={<TopRatedMovies />} />{" "}
           <Route path="/movie/upcoming" element={<UpcomingMovies />} />{" "}
-          <Route path="/tv" element={<PopularTvShows />} />{" "}
-          <Route path="/tv/airing-today" element={<AiringTodayTvShows />} />{" "}
-          <Route path="/tv/on-the-air" element={<OnTvShows />} />{" "}
-          <Route path="/tv/top-rated" element={<TopRatedTvShows />} />{" "}
           <Route path="/person" element={<PopularPeople />} />{" "}
           <Route path="/movie/:movieId" element={<Movie />} />{" "}
           <Route path="/genre/:genreId/movie" element={<MoviesGenre />} />{" "}
@@ -80,7 +78,13 @@ const App = () => {
           <Route path="/movie/:movieId/videos" element={<TrailersAndVideos/>} />{" "}
           <Route path="/movie/:movieId/images/backdrops" element={<Backdrops/>} />{" "}
           <Route path="/movie/:movieId/images/posters" element={<Posters/>} />{" "}
+          {/* TV Shows */}
+          <Route path="/tv" element={<PopularTvShows />} />{" "}
+          <Route path="/tv/airing-today" element={<AiringTodayTvShows />} />{" "}
+          <Route path="/tv/on-the-air" element={<OnTvShows />} />{" "}
+          <Route path="/tv/top-rated" element={<TopRatedTvShows />} />{" "}
           <Route path="/tv/:tvId" element={<TvShow />} />{" "}
+          <Route path="/genre/:genreId/tv" element={<TvShowsGenre />} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

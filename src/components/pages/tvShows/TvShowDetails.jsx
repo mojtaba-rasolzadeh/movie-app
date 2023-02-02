@@ -111,7 +111,17 @@ const TvShowDetails = ({
                         borderRadius: 1,
                     }}
                 >
-                    <Link href="#" underline="none">
+                    <Link
+                        to={`/tv/${id}-${original_name &&
+                            original_name
+                                .split(/[\s:,]/)
+                                .join("-")
+                                .split("--")
+                                .join("-")
+                                .toLowerCase()
+                            }`}
+                        style={{ textDecoration: "none" }}
+                    >
                         <Avatar
                             variant="rounded"
                             sx={{ width: 300, height: 450 }}
@@ -123,7 +133,7 @@ const TvShowDetails = ({
                 <CardContent sx={{ pl: { md: 5 }, zIndex: 10 }}>
                     <Box>
                         <Link
-                            to={`/movie/${id}-${original_name &&
+                            to={`/tv/${id}-${original_name &&
                                 original_name
                                     .split(/[\s:,]/)
                                     .join("-")
@@ -180,8 +190,12 @@ const TvShowDetails = ({
                                         <Link
                                             key={genre.id}
                                             to={`/genre/${genre.id}-${genre.name &&
-                                                genre.name.toLowerCase().split(" ").join("-")
-                                                }/movie`}
+                                                genre.name.split(/[\s:,&]/)
+                                                    .join("-")
+                                                    .split("--")
+                                                    .join("")
+                                                    .toLowerCase()
+                                                }/tv`}
                                             underline="none"
                                             style={{ textDecoration: "none" }}
                                         >
