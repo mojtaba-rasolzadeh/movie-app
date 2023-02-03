@@ -7,7 +7,7 @@ import { Loader } from "../../components/constant";
 import { getMovie } from "../../services/MovieService";
 import Actors from "../../components/pages/movie/Actors";
 import Crew from "../../components/pages/movie/Crew";
-import BackToMain from "../../components/pages/movie/BackToMain";
+import BackToMain from "../../components/constant/BackToMain";
 
 const CastAndCrew = () => {
   const { movieId } = useParams();

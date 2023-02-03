@@ -14,9 +14,9 @@ import { teal } from "@mui/material/colors";
 const CurrentSeason = ({ id, name, seasons }) => {
     console.log(seasons)
     return (
-        <Box sx={{my:3}}>
-            <Typography variant="h5" gutterBottom sx={{ mb:3, color: teal[500] }}>
-                Series Cast
+        <Box sx={{ my: 3 }}>
+            <Typography variant="h5" gutterBottom sx={{ mb: 3, color: teal[500] }}>
+                Current Season
             </Typography>
             {seasons && _.isEmpty(seasons) ? (
                 <Box>

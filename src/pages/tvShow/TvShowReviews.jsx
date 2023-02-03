@@ -3,25 +3,27 @@ import { useParams, Link } from "react-router-dom";
 import { Box, Paper, Typography, Avatar, Chip } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
-import { getMovie } from "../services/MovieService";
-import BackToMain from "../components/pages/movie/BackToMain";
+import { getTv } from "../../services/MovieService";
+import BackToMain from "../../components/constant/BackToMain";
 import { amber, deepOrange, lime, yellow } from "@mui/material/colors";
 import { StarRateRounded } from "@mui/icons-material";
-import MoviePagination from "../components/pages/movie/MoviePagination";
-import { Loader } from "../components";
+import TvShowPagination from "../../components/pages/tvShows/TvShowPagination";
+import { Loader } from "../../components";
 
-const Reviews = () => {
-    const { movieId } = useParams();
+const TvShowReviews = () => {
+    const { tvId } = useParams();
     const [loading, setLoading] = useState(false);
-    const [movie, setMovie] = useState([]);
+    const [tvShow, setTvShow] = useState([]);
+
+    console.log(tvShow);
 
     const fetchData = async (page) => {
         try {
             setLoading(true);
-            const { status, data } = await getMovie(parseInt(movieId), page);
+            const { status, data } = await getTv(parseInt(tvId), page);
             if (status === 200) {
                 setLoading(false);
-                setMovie(data);
+                setTvShow(data);
             }
         } catch (err) {
             setLoading(false);
@@ -36,10 +38,10 @@ const Reviews = () => {
     return (
         <>
             <Box sx={{ py: 5 }}>
-                <BackToMain movie={movie} />
+                <BackToMain media_data={tvShow} media_type="tv" searchParams={tvId} />
                 {loading ? <Loader /> :
-                    movie.reviews &&
-                    movie.reviews.results.map((review) => (
+                    tvShow.reviews &&
+                    tvShow.reviews.results.map((review) => (
                         <Paper key={review.id} variant="outlined" sx={{ p: 4, my: 5 }}>
                             <Grid key={review.id} container wrap="nowrap" spacing={3}>
                                 <Grid xs={0} sm={2.5} md={1.6} lg={1.1} xl={.8}>
@@ -148,9 +150,9 @@ const Reviews = () => {
                         </Paper>
                     ))}
             </Box>
-            <MoviePagination movieData={movie.reviews} fetchData={fetchData} />
+            <TvShowPagination tvShowData={tvShow.reviews} fetchData={fetchData}  />
         </>
     );
 }
 
-export default Reviews;
+export default TvShowReviews;

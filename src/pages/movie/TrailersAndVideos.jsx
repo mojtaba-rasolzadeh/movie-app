@@ -14,7 +14,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { grey, orange, teal, yellow } from "@mui/material/colors";
 
 import { getMovie } from '../../services/MovieService';
-import BackToMain from '../../components/pages/movie/BackToMain';
+import BackToMain from '../../components/constant/BackToMain';
 import Videos from '../../components/pages/movie/trailersAndVideos/Videos';
 import { Loader } from '../../components';
 

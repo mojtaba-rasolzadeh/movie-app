@@ -6,7 +6,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getLanguagesList, getTv } from "../../services/MovieService";
 import { Loader } from "../../components";
 import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
-import Social from "../../components/pages/movie/social/Social";
+
 import Media from "../../components/pages/movie/media/Media";
 import Recommendations from "../../components/pages/movie/Recommendations";
 import SocialLinks from "../../components/pages/movie/SocialLinks";
@@ -14,6 +14,7 @@ import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
 import SeriesCast from "../../components/pages/tvShows/SeriesCast";
 import CurrentSeason from "../../components/pages/tvShows/CurrentSeason";
+import Social from "../../components/pages/tvShows/social/Social";
 
 const TvShow = () => {
   const { tvId } = useParams();
@@ -55,8 +56,8 @@ const TvShow = () => {
               <Divider />
               <CurrentSeason {...tvShow} />
               <Divider />
-              {/* <Social {...tvShow} />
-              <Divider />
+               <Social {...tvShow} />
+              {/*<Divider />
               <Media {...tvShow} />
               <Divider />
               <Recommendations {...tvShow} /> */}

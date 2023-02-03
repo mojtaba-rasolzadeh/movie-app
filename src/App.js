@@ -22,12 +22,13 @@ import Person from "./pages/Person";
 import CastAndCrew from "./pages/movie/CastAndCrew";
 import MoviesRelatedToTheKeyword from "./pages/movie/MoviesRelatedToTheKeyword";
 import Review from "./pages/Review";
-import Reviews from "./pages/Reviews";
+import Reviews from "./pages/movie/Reviews";
 import TrailersAndVideos from "./pages/movie/TrailersAndVideos";
 import Backdrops from "./pages/movie/Backdrops";
 import Posters from "./pages/movie/Posters";
 import TvShow from "./pages/tvShow/TvShow";
 import TvShowsGenre from "./pages/tvShow/TvShowsGenre";
+import TvShowReviews from "./pages/tvShow/TvShowReviews";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -82,6 +83,7 @@ const App = () => {
           <Route path="/tv/top-rated" element={<TopRatedTvShows />} />{" "}
           <Route path="/tv/:tvId" element={<TvShow />} />{" "}
           <Route path="/genre/:genreId/tv" element={<TvShowsGenre />} />{" "}
+          <Route path="/tv/:tvId/reviews" element={<TvShowReviews />} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

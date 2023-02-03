@@ -33,7 +33,7 @@ const Review = () => {
             {
                 loading ? <Loader /> : <Box sx={{ my: 6 }}>
                     <Link
-                        to={`/movie/${review.media_id}`}
+                        to={`/${review.media_type === 'movie' ? "movie":"tv"}/${review.media_id}`}
                         style={{ textDecoration: "none" }}
                     >
                         <Typography
