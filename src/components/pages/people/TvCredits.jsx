@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import _ from "lodash";
 import {
   TableContainer,
@@ -5,7 +6,6 @@ import {
   TableBody,
   TableRow,
   TableCell,
-  Link,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -43,16 +43,18 @@ const TvCredits = ({ tvCredits }) => {
                 </TableCell>
                 <TableCell align="left">
                   <Link
-                    href={`/tv/${tv.id}`}
-                    underline="none"
-                    sx={{
+                    to={`/tv/${tv.id}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <Typography component="span" varinat="body1" sx={{
                       fontSize: "1rem",
                       fontWeight: 700,
                       color: teal[500],
                       "&:hover": { color: teal[700] },
-                    }}
-                  >
-                    {tv.name}
+                    }}>
+
+                      {tv.name}
+                    </Typography>
                   </Link>
                   {!_.isEmpty(tv.character) && (
                     <>

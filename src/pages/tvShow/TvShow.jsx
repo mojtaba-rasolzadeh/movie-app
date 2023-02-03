@@ -13,6 +13,7 @@ import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
 import SeriesCast from "../../components/pages/tvShows/SeriesCast";
+import CurrentSeason from "../../components/pages/tvShows/CurrentSeason";
 
 const TvShow = () => {
   const { tvId } = useParams();
@@ -51,6 +52,8 @@ const TvShow = () => {
           <Grid container spacing={2} sx={{ my: 3 }}>
             <Grid xs={12} sm={9}>
               <SeriesCast {...tvShow} />
+              <Divider />
+              <CurrentSeason {...tvShow} />
               <Divider />
               {/* <Social {...tvShow} />
               <Divider />

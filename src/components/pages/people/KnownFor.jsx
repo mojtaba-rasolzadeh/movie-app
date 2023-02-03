@@ -22,9 +22,9 @@ const KnownFor = ({ combined_credits }) => {
             <Card key={movie.id} sx={{ minWidth: 130, width: 130 }}>
               <CardActionArea sx={{ borderRadius: 1 }}>
                 <Link
-                  to={`/${movie.media_type === "tv" ? "tv" : "movie"}/${
-                    movie.id
-                  }`}
+                  to={`/${movie.media_type === "tv" ? "tv" : "movie"}/${movie.id
+                    }`}
+                  style={{ textDecoration: 'none' }}
                 >
                   <Avatar
                     variant="rounded"
@@ -36,9 +36,9 @@ const KnownFor = ({ combined_credits }) => {
               </CardActionArea>
               <CardContent sx={{ p: "12px", paddingBottom: "12px!important" }}>
                 <Link
-                  to={`/${movie.media_type === "tv" ? "tv" : "movie"}/${
-                    movie.id
-                  }`}
+                  to={`/${movie.media_type === "tv" ? "tv" : "movie"}/${movie.id
+                    }`}
+                  style={{ textDecoration: 'none' }}
                 >
                   <Typography
                     variant="subtitle2"

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import _ from "lodash";
 import {
   Typography,
@@ -7,7 +8,6 @@ import {
   TableRow,
   TableCell,
   IconButton,
-  Link,
 } from "@mui/material";
 import { PlagiarismRounded } from "@mui/icons-material";
 import { deepPurple, teal, lightGreen } from "@mui/material/colors";
@@ -38,8 +38,8 @@ const CombinedCredits = ({ combinedCredits }) => {
                         ? "—"
                         : movie.first_air_date.slice(0, 4)
                       : _.isEmpty(movie.release_date)
-                      ? "—"
-                      : movie.release_date.slice(0, 4)}
+                        ? "—"
+                        : movie.release_date.slice(0, 4)}
                   </TableCell>
                   <TableCell align="left" padding="none" sx={{ width: 24 }}>
                     <IconButton>
@@ -48,19 +48,19 @@ const CombinedCredits = ({ combinedCredits }) => {
                   </TableCell>
                   <TableCell align="left">
                     <Link
-                      href={`/${movie.media_type === "tv" ? "tv" : "movie"}/${
-                        movie.id
-                      }`}
-                      underline="none"
-                      sx={{
+                      to={`/${movie.media_type === "tv" ? "tv" : "movie"}/${movie.id
+                        }`}
+                      style={{ textDecoration: 'none' }}
+                    >
+                      <Typography component="span" varinat="body1" sx={{
                         fontSize: "1rem",
                         fontWeight: 700,
                         color: teal[500],
                         "&:hover": { color: teal[700] },
-                      }}
-                    >
-                      {movie.title}
-                      {movie.name}
+                      }}>
+                        {movie.title}
+                        {movie.name}
+                      </Typography>
                     </Link>
                     {!_.isEmpty(movie.character) && (
                       <>

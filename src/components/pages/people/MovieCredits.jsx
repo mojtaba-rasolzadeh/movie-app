@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
 import _ from "lodash";
 import {
   IconButton,
-  Link,
   Table,
   TableBody,
   TableCell,
@@ -41,16 +41,19 @@ const MovieCredits = ({ movieCredits }) => {
                 </TableCell>
                 <TableCell align="left">
                   <Link
-                    href={`/movie/${movie.id}`}
-                    underline="none"
-                    sx={{
+                    to={`/movie/${movie.id}`}
+                    style={{ textDecoration: 'none' }}
+
+                  >
+                    <Typography component="span" variant="body1" sx={{
                       fontSize: "1rem",
                       fontWeight: 700,
                       color: teal[500],
                       "&:hover": { color: teal[700] },
-                    }}
-                  >
-                    {movie.title}
+                    }}>
+
+                      {movie.title}
+                    </Typography>
                   </Link>
                   {!_.isEmpty(movie.character) && (
                     <>
