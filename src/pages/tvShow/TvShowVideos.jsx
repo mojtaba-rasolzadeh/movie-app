@@ -13,10 +13,10 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { grey, orange, teal, yellow } from "@mui/material/colors";
 
-import { getLanguagesList, getMovie } from '../../services/MovieService';
+import { getTv } from '../../services/MovieService';
 import BackToMain from '../../components/constant/BackToMain';
 import { Loader } from '../../components';
-import Images from '../../components/pages/movie/posters/Images';
+import Videos from '../../components/pages/tvShows/trailersAndVideos/Videos';
 
 
 function TabPanel(props) {
@@ -42,17 +42,13 @@ function tabProps(index) {
     };
 }
 
+const videoType = ["Trailer", "Teaser", "Clips", "Behind the Scenes","Opening Credits", "Blooper", "Featurette"];
 
-const Posters = () => {
-    const { movieId } = useParams();
+const TrailersAndVideos = () => {
+    const { tvId } = useParams();
     const [loading, setLoading] = useState(false);
-    const [movie, setMovie] = useState({});
-    const [images, setImages] = useState([]);
-    const [languagesList, setLanguagesList] = useState([]);
-    const [imageType] = useState(new Set());
-    const imageTypeToArray = [...imageType];
-
-    if (images) images.map((image) => imageType.add(image.iso_639_1))
+    const [tvShow, setTvShow] = useState({});
+    const [videos, setVideos] = useState([]);
 
     const [value, setValue] = useState(0);
 
@@ -61,32 +57,20 @@ const Posters = () => {
     };
 
     const displayLengthItem = (item) => {
-        let results = images.filter(image => image.iso_639_1 === item);
+        let results = videos.filter(video => video.type === item);
         return results.length;
     };
 
-    const displayLanguage = (imageLanguage) => {
-        let result;
-        if (typeof imageLanguage !== 'string') {
-            result = 'No Language';
-        } else {
-            result = languagesList.find(item => item.iso_639_1 === imageLanguage);
-            result = result && result.english_name;
-        }
-        return <Typography key={result} variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>{result}</Typography>
-    }
-
     useEffect(() => {
+        
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const { status, data } = await getMovie(parseInt(movieId));
-                const { data: languageData } = await getLanguagesList();
+                const { status, data } = await getTv(parseInt(tvId))
                 if (status === 200) {
                     setLoading(false);
-                    setMovie(data);
-                    setImages(data.images.posters);
-                    setLanguagesList(languageData);
+                    setTvShow(data);
+                    setVideos(data.videos.results);
                 }
             } catch (err) {
                 setLoading(false);
@@ -94,34 +78,31 @@ const Posters = () => {
             }
         }
         fetchData();
-
     }, []);
     return (
         <>
             {
                 loading ? <Loader /> :
                     <Box sx={{ py: 5 }}>
-                        <BackToMain media_data={movie} media_type="movie" searchParams={movieId} />
+                        <BackToMain media_data={tvShow} media_type="tv" searchParams={tvId} />
                         <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5 }}>
                             <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
-                                <Card sx={{
-                                    maxWidth: 258
-                                    // , height: 385 
-                                }}>
+                                <Card sx={{ maxWidth: 258 }}>
                                     <CardHeader
-                                        title="Posters"
+                                        title="Videos"
                                         sx={{ backgroundColor: teal[500], textAlign: 'center' }}
                                     />
                                     <CardContent>
                                         <Tabs
                                             orientation="vertical"
+                                            // variant="scrollable"
                                             value={value}
                                             onChange={handleChange}
                                             aria-label="vertical tabs example"
                                             sx={{
                                                 borderRight: 1,
                                                 borderColor: "divider",
-                                                minHeight: 288,
+                                                // height: 288,
                                                 ".Mui-selected": {
                                                     backgroundColor: grey[800],
                                                     color: "#ffeb3b!important",
@@ -132,7 +113,7 @@ const Posters = () => {
                                             }}
                                         >
                                             {
-                                                imageTypeToArray.map((image, index) => (
+                                                videoType.sort().map((type, index) => (
                                                     <Tab
                                                         key={index}
                                                         label={
@@ -144,9 +125,7 @@ const Posters = () => {
                                                                     alignItems: "center",
                                                                 }}
                                                             >
-                                                                {
-                                                                    displayLanguage(image)
-                                                                }
+                                                                <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>{type}</Typography>
                                                                 <Chip
                                                                     label={
                                                                         <Typography
@@ -156,7 +135,7 @@ const Posters = () => {
                                                                                 ".Mui-selected": { color: yellow[500] },
                                                                             }}
                                                                         >
-                                                                            {displayLengthItem(image)}
+                                                                            {displayLengthItem(type)}
                                                                         </Typography>
                                                                     }
                                                                     size="small"
@@ -180,9 +159,9 @@ const Posters = () => {
                             </Grid>
                             <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
                                 {
-                                    imageTypeToArray.map((image, index) => (
+                                    videoType.map((type, index) => (
                                         <TabPanel key={index} value={value} index={index}>
-                                            <Images allImages={images} imageType={image} moiveTitle={movie} />
+                                            <Videos allVideos={videos} videoType={type} tvTitle={tvShow} />
                                         </TabPanel>
                                     ))
                                 }
@@ -194,4 +173,7 @@ const Posters = () => {
     );
 }
 
-export default Posters;
+export default TrailersAndVideos;
+
+
+

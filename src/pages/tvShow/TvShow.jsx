@@ -7,7 +7,7 @@ import { getLanguagesList, getTv } from "../../services/MovieService";
 import { Loader } from "../../components";
 import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
 
-import Media from "../../components/pages/movie/media/Media";
+import Media from "../../components/pages/tvShows/media/Media";
 import Recommendations from "../../components/pages/movie/Recommendations";
 import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
@@ -57,9 +57,9 @@ const TvShow = () => {
               <CurrentSeason {...tvShow} />
               <Divider />
                <Social {...tvShow} />
-              {/*<Divider />
+               <Divider />
               <Media {...tvShow} />
-              <Divider />
+              {/*<Divider />
               <Recommendations {...tvShow} /> */}
             </Grid>
             {/* <Grid xs={12} sm={3}>

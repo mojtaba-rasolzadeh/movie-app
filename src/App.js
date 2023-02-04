@@ -29,6 +29,9 @@ import Posters from "./pages/movie/Posters";
 import TvShow from "./pages/tvShow/TvShow";
 import TvShowsGenre from "./pages/tvShow/TvShowsGenre";
 import TvShowReviews from "./pages/tvShow/TvShowReviews";
+import TvShowPosters from "./pages/tvShow/TvShowPosters";
+import TvShowBackdrops from "./pages/tvShow/TvShowBackdrops";
+import TvShowVideos from "./pages/tvShow/TvShowVideos";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -84,6 +87,9 @@ const App = () => {
           <Route path="/tv/:tvId" element={<TvShow />} />{" "}
           <Route path="/genre/:genreId/tv" element={<TvShowsGenre />} />{" "}
           <Route path="/tv/:tvId/reviews" element={<TvShowReviews />} />{" "}
+          <Route path="/tv/:tvId/videos" element={<TvShowVideos />} />{" "}
+          <Route path="/tv/:tvId/images/backdrops" element={<TvShowBackdrops />} />{" "}
+          <Route path="/tv/:tvId/images/posters" element={<TvShowPosters />} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}
