@@ -32,12 +32,12 @@ const BackToMain = ({ media_type, media_data, searchParams }) => {
               "&:hover": { color: lime[700] },
             }}
           >
-            {media_type === 'movie' ? media_data.title : media_data.name}
+            {media_type === 'movie' ? media_data.title : media_data.name}{" "}
             <Typography
               variant="h6"
               sx={{ display: "inline-block", color: lime[200] }}
             >
-              {" "}{` ( ${media_type === 'tv' ? (media_data.first_air_date && media_data.first_air_date.substring(0, 4)) : (media_data.release_date && media_data.release_date.substring(0, 4))} )`}{" "}
+              {" "}{` (${media_type === 'tv' ? (media_data.first_air_date && media_data.first_air_date.substring(0, 4)) : (media_data.release_date && media_data.release_date.substring(0, 4))})`}{" "}
 
             </Typography>
           </Typography>
