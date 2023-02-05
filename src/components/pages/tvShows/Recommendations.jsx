@@ -12,15 +12,15 @@ import {
 import { MediaScrollbar } from "../../constant";
 import { teal } from "@mui/material/colors";
 
-const Recommendations = ({ title, recommendations }) => {
-  return (
+const Recommendations = ({ name, recommendations }) => {
+    return (
     <Box sx={{ my: 4 }}>
       <Typography variant="h5" gutterBottom sx={{ color: teal[500] }}>
         Recommendations
       </Typography>
       {_.isEmpty(recommendations && recommendations.results) ? (
         <Typography sx={{ fontSize: ".89rem", color: "text.secondary" }}>
-          {`We don't have enough data to suggest any movies based on ${title}. You can help by rating movies you've seen.`}
+          {`We don't have enough data to suggest any tvShows based on ${name}. You can help by rating movies you've seen.`}
         </Typography>
       ) : (
         <MediaScrollbar gap={2}>
@@ -29,7 +29,7 @@ const Recommendations = ({ title, recommendations }) => {
               <Card key={item.id} sx={{ minWidth: 250, width: 250, mt: 3 }}>
                 <CardActionArea sx={{ borderRadius: 1 }}>
                   <Link
-                    href={`/movie/${item.id}`}
+                    href={`/tv/${item.id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <Avatar
@@ -41,7 +41,7 @@ const Recommendations = ({ title, recommendations }) => {
                 </CardActionArea>
                 <CardContent sx={{ p: 1.5, pb: "12px!important" }}>
                   <Link
-                    href={`/movie/${item.id}`}
+                    href={`/tv/${item.id}`}
                     style={{ textDecoration: "none" }}
                   >
                     <Typography
@@ -51,9 +51,9 @@ const Recommendations = ({ title, recommendations }) => {
                         "&:hover": { color: "text.secondary" },
                       }}
                     >
-                      {item.title.length > 25
-                        ? `${item.title.slice(0, 25)}... `
-                        : item.title}
+                      {item.name.length > 25
+                        ? `${item.name.slice(0, 25)}... `
+                        : item.name}
                     </Typography>
                   </Link>
                 </CardContent>

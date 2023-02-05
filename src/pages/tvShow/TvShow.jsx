@@ -8,7 +8,7 @@ import { Loader } from "../../components";
 import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
 
 import Media from "../../components/pages/tvShows/media/Media";
-import Recommendations from "../../components/pages/movie/Recommendations";
+import Recommendations from "../../components/pages/tvShows/Recommendations";
 import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
@@ -59,8 +59,8 @@ const TvShow = () => {
                <Social {...tvShow} />
                <Divider />
               <Media {...tvShow} />
-              {/*<Divider />
-              <Recommendations {...tvShow} /> */}
+              <Divider />
+              <Recommendations {...tvShow} /> 
             </Grid>
             {/* <Grid xs={12} sm={3}>
               <SocialLinks {...tvShow.external_ids} />
