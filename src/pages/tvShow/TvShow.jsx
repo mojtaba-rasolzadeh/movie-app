@@ -10,7 +10,7 @@ import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
 import Media from "../../components/pages/tvShows/media/Media";
 import Recommendations from "../../components/pages/tvShows/Recommendations";
 import SocialLinks from "../../components/pages/tvShows/SocialLinks";
-import MovieFacts from "../../components/pages/movie/MovieFacts";
+import TvShowFacts from "../../components/pages/tvShows/TvShowFacts";
 import Keywords from "../../components/pages/movie/Keywords";
 import SeriesCast from "../../components/pages/tvShows/SeriesCast";
 import CurrentSeason from "../../components/pages/tvShows/CurrentSeason";
@@ -63,9 +63,9 @@ const TvShow = () => {
               <Recommendations {...tvShow} /> 
             </Grid>
             <Grid xs={12} sm={3}>
-              <SocialLinks {...tvShow} />
-              {/* <MovieFacts languagesList={languagesList} {...tvShow} />
-              <Keywords keywords={tvShow.keywords} /> */}
+              <SocialLinks  external_ids={ tvShow.external_ids} homepage={tvShow.homepage} />
+              <TvShowFacts languagesList={languagesList} {...tvShow} />
+              {/* <Keywords keywords={tvShow.keywords} /> */}
             </Grid>
           </Grid>
         </>
