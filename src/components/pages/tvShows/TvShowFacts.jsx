@@ -1,6 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import { lime } from "@mui/material/colors";
 import { Link } from "react-router-dom";
+import Keywords from "./Keywords";
 
 const TvShowFacts = ({
     status,
@@ -9,7 +10,7 @@ const TvShowFacts = ({
     original_language,
     languagesList,
     original_name,
-
+    keywords
 }) => {
     return (
         <Box
@@ -89,6 +90,7 @@ const TvShowFacts = ({
                         )
                 )}
             </div>
+            <Keywords keywords={keywords} />
         </Box>
     );
 };
