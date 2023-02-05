@@ -44,11 +44,11 @@ const SocialLinks = ({ facebook_id, twitter_id, instagram_id, homepage }) => {
           </IconButton>
         </Tooltip>
       )}
-      <Tooltip title="Visit JustWatch" placement="top">
+      {/* <Tooltip title="Visit JustWatch" placement="top">
         <IconButton color="success">
           <SlowMotionVideo />
         </IconButton>
-      </Tooltip>
+      </Tooltip> */}
       {homepage && (
         <Tooltip title="Visit Homepage" placement="top">
           <IconButton color="warning" href={homepage} target="_blank">

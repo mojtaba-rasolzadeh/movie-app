@@ -9,7 +9,7 @@ import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
 
 import Media from "../../components/pages/tvShows/media/Media";
 import Recommendations from "../../components/pages/tvShows/Recommendations";
-import SocialLinks from "../../components/pages/movie/SocialLinks";
+import SocialLinks from "../../components/pages/tvShows/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
 import SeriesCast from "../../components/pages/tvShows/SeriesCast";
@@ -62,11 +62,11 @@ const TvShow = () => {
               <Divider />
               <Recommendations {...tvShow} /> 
             </Grid>
-            {/* <Grid xs={12} sm={3}>
-              <SocialLinks {...tvShow.external_ids} />
-              <MovieFacts languagesList={languagesList} {...tvShow} />
-              <Keywords keywords={tvShow.keywords} />
-            </Grid> */}
+            <Grid xs={12} sm={3}>
+              <SocialLinks {...tvShow} />
+              {/* <MovieFacts languagesList={languagesList} {...tvShow} />
+              <Keywords keywords={tvShow.keywords} /> */}
+            </Grid>
           </Grid>
         </>
       )}
