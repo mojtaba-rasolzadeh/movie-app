@@ -16,8 +16,6 @@ const CastAndCrew = () => {
   const [movie, setMovie] = useState([]);
   const [castAndCrew, setCastAndCrew] = useState([]);
 
-  console.log(loading)
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,7 +40,7 @@ const CastAndCrew = () => {
         <Loader />
       ) : (
         <>
-          <BackToMain movie={movie} />
+          <BackToMain media_data={movie} media_type="movie" searchParams={movieId} />
           <Grid container spacing={3} sx={{ my: 2 }}>
             <Grid xs={6}>
               <Actors castAndCrew={castAndCrew} />
