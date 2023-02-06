@@ -93,7 +93,7 @@ export const getMovie = (movieId, reviewsPage = 1) => {
 // tvShows
 export const getTv = (tvId, reviewsPage = 1) => {
     return axios.get(
-        `${url}/tv/${tvId}?api_key=${API_KEY}&append_to_response=videos,images,keywords,credits,external_ids,recommendations,reviews&page=${reviewsPage}`
+        `${url}/tv/${tvId}?api_key=${API_KEY}&append_to_response=videos,images,keywords,credits,aggregate_credits,external_ids,recommendations,reviews&page=${reviewsPage}`
     );
 };
 

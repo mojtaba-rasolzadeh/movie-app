@@ -32,6 +32,7 @@ import TvShowReviews from "./pages/tvShow/TvShowReviews";
 import TvShowPosters from "./pages/tvShow/TvShowPosters";
 import TvShowBackdrops from "./pages/tvShow/TvShowBackdrops";
 import TvShowVideos from "./pages/tvShow/TvShowVideos";
+import TvShowCastAndCrew from "./pages/tvShow/TvShowCastAndCrew";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -90,6 +91,7 @@ const App = () => {
           <Route path="/tv/:tvId/videos" element={<TvShowVideos />} />{" "}
           <Route path="/tv/:tvId/images/backdrops" element={<TvShowBackdrops />} />{" "}
           <Route path="/tv/:tvId/images/posters" element={<TvShowPosters />} />{" "}
+          <Route path="/tv/:tvId/cast" element={<TvShowCastAndCrew />} />{" "}
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}

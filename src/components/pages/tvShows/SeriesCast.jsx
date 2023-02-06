@@ -12,13 +12,13 @@ import {
 import { MediaScrollbar, ViewMoreButton } from "../../../components/constant";
 import { teal } from "@mui/material/colors";
 
-const SeriesCast = ({ id, name, credits }) => {
+const SeriesCast = ({ id, name, aggregate_credits }) => {
   return (
     <>
       <Typography variant="h5" gutterBottom sx={{ color: teal[500] }}>
         Series Cast
       </Typography>
-      {credits && _.isEmpty(credits.cast) ? (
+      {aggregate_credits && _.isEmpty(aggregate_credits.cast) ? (
         <Box>
           <Typography color="text.secondary">
             We don't have any cast added to this tv. You can help by adding
@@ -47,10 +47,10 @@ const SeriesCast = ({ id, name, credits }) => {
         <>
           <MediaScrollbar
             gap={2}
-            width={credits && [...credits.cast, ...credits.crew].length < 9 && 1232}
+            width={aggregate_credits && aggregate_credits.cast.length < 9 && 1232}
           >
-            {credits !== undefined &&
-              [...credits.cast, ...credits.crew].slice(0, 9).map((item) => (
+            {aggregate_credits !== undefined &&
+              aggregate_credits.cast.slice(0, 9).map((item) => (
                 <Card key={item.id} sx={{ maxWidth: 138, mt: 3 }}>
                   <CardActionArea sx={{ width: 138, borderRadius: 1 }}>
                     <Link
@@ -100,7 +100,7 @@ const SeriesCast = ({ id, name, credits }) => {
                   </CardContent>
                 </Card>
               ))}
-            {credits !== undefined && [...credits.cast, ...credits.crew].length > 9 && (
+            {aggregate_credits !== undefined && aggregate_credits.cast.length > 9 && (
               <ViewMoreButton
                 link={`/tv/${id}-${name &&
                   name
