@@ -11,8 +11,10 @@ import {
 
 import { teal } from "@mui/material/colors";
 
-const CurrentSeason = ({ id, name, seasons }) => {
-    console.log(seasons)
+const CurrentSeason = ({ id, name, number_of_seasons, seasons }) => {
+
+    const season = seasons && seasons.find(season => season.season_number === number_of_seasons);
+
     return (
         <Box sx={{ my: 3 }}>
             <Typography variant="h5" gutterBottom sx={{ mb: 3, color: teal[500] }}>
@@ -45,86 +47,78 @@ const CurrentSeason = ({ id, name, seasons }) => {
                 </Box>
             ) : (
                 <>
-                    {
-                        seasons && seasons.map((season) => (
-                            <Card key={season.id} sx={{ display: 'flex' }}>
-                                <CardActionArea sx={{ width: 130, borderRadius: 1 }}>
-                                    <Link
-                                        to={`/tv/${id}-${name &&
-                                            name
-                                                .split(/[\s:,]/)
-                                                .join("-")
-                                                .split("--")
-                                                .join("-")
-                                                .toLowerCase()
-                                            }/season/${season.season_number}`}
-                                        style={{ textDecoration: "none" }}
-                                    >
-                                        <Avatar
-                                            variant="rounded"
-                                            sx={{ width: 130, height: 195 }}
-                                            src={`https://www.themoviedb.org/t/p/w130_and_h195_bestv2${season.poster_path}`}
-                                        />
-                                    </Link>
-                                </CardActionArea>
-                                <CardContent
+                    <Card key={season && season.id} sx={{ display: 'flex' }}>
+                        <CardActionArea sx={{ width: 130, borderRadius: 1 }}>
+                            <Link
+                                to={`/tv/${id}-${name &&
+                                    name
+                                        .split(/[\s:,]/)
+                                        .join("-")
+                                        .split("--")
+                                        .join("-")
+                                        .toLowerCase()
+                                    }/season/${season && season.season_number}`}
+                                style={{ textDecoration: "none" }}
+                            >
+                                <Avatar
+                                    variant="rounded"
+                                    sx={{ width: 130, height: 195 }}
+                                    src={`https://www.themoviedb.org/t/p/w130_and_h195_bestv2${season && season.poster_path}`}
+                                />
+                            </Link>
+                        </CardActionArea>
+                        <CardContent
+                            sx={{
+                                p: 1.5,
+                                "&:last-child": {
+                                    paddingBottom: 1.5,
+                                },
+                            }}
+                        >
+                            <Link
+                                to={`/tv/${id}-${name &&
+                                    name
+                                        .split(/[\s:,]/)
+                                        .join("-")
+                                        .split("--")
+                                        .join("-")
+                                        .toLowerCase()
+                                    }/season/${season && season.season_number}`}
+                                style={{ textDecoration: "none" }}
+                            >
+                                <Typography
+                                    variant="h6"
                                     sx={{
-                                        p: 1.5,
-                                        "&:last-child": {
-                                            paddingBottom: 1.5,
-                                        },
+                                        letterSpacing: 1,
+                                        color: "#fff",
+                                        "&:hover": { color: "text.secondary" },
                                     }}
+                                    gutterBottom
                                 >
-                                    <Link
-                                        to={`/tv/${id}-${name &&
-                                            name
-                                                .split(/[\s:,]/)
-                                                .join("-")
-                                                .split("--")
-                                                .join("-")
-                                                .toLowerCase()
-                                            }/season/${season.season_number}`}
-                                        style={{ textDecoration: "none" }}
-                                    >
-                                        <Typography
-                                            variant="h6"
-                                            sx={{
-                                                letterSpacing: 1,
-                                                color: "#fff",
-                                                "&:hover": { color: "text.secondary" },
-                                            }}
-                                            gutterBottom
-                                        >
-                                            {season.name}
-                                        </Typography>
-                                    </Link>
-                                    <Typography
-                                        variant="caption"
-                                        sx={{
-                                            letterSpacing: 1,
-                                        }}
-                                    >
-                                        {`${season.air_date.substring(0, 4)} | ${season.episode_count} Episodes`}
-                                    </Typography>
-                                    <Typography
-                                        variant="subtitle2"
-                                        color="text.secondary"
-                                        sx={{
-                                            letterSpacing: 1,
-                                            mt: 3
-                                        }}
-                                    >
-                                        {`${season.name} of The Last of Us premiered on ${new Date(season.air_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        ))
-                    }
-                    <Box
-                        sx={{
-                            my: 3,
-                        }}
-                    >
+                                    {season && season.name}
+                                </Typography>
+                            </Link>
+                            <Typography
+                                variant="caption"
+                                sx={{
+                                    letterSpacing: 1,
+                                }}
+                            >
+                                {`${season && season.air_date.substring(0, 4)} | ${season && season.episode_count} Episodes`}
+                            </Typography>
+                            <Typography
+                                variant="subtitle2"
+                                color="text.secondary"
+                                sx={{
+                                    letterSpacing: 1,
+                                    mt: 3
+                                }}
+                            >
+                                {`${season && season.name} of ${name} premiered on ${new Date(season && season.air_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                    <Box sx={{ my: 3 }}>
                         <Link
                             to={`/tv/${id}-${name &&
                                 name

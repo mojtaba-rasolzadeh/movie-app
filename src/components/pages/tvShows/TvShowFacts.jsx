@@ -55,10 +55,10 @@ const TvShowFacts = ({
                 >
                     Network
                 </Typography>
-                <Box>
+                <Box sx={{display:'flex'}}>
                     {networks && networks.map((network) => (
                         <Link key={network.id} to={`/network/${network.id}`} style={{ textDecoration: 'none' }}>
-                            <Avatar variant="square" sx={{ width: 73, height: 30 }} src={`https://www.themoviedb.org/t/p/h30${network.logo_path}`} alt={network.name} />
+                            <Avatar variant="square" sx={{ maxWidth:260,width:1, maxHeight: 30 }} src={`https://www.themoviedb.org/t/p/h30${network.logo_path}`} alt={network.name} />
                         </Link>
                     ))}
                 </Box>
