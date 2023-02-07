@@ -28,7 +28,7 @@ const Keywords = ({ keywords }) => {
                                     .split("--")
                                     .join("-")
                                     .toLowerCase()
-                                }/movie`}
+                                }/tv`}
                             style={{ textDecoration: "none" }}
                         >
                             <Chip

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { Avatar, Box, Typography } from "@mui/material";
 import { KeyboardBackspace } from "@mui/icons-material";
-import { lime, teal } from "@mui/material/colors";
+import { lime, blueGrey } from "@mui/material/colors";
 
 const BackToMain = ({ media_type, media_data, searchParams }) => {
 
   return (
-    <Box sx={{ my: 4, display: "flex", gap: 2 ,bgcolor:teal[900],p:2,borderRadius:1 }}>
+    <Box sx={{ my: 4, display: "flex", gap: 2 ,bgcolor:blueGrey[900],p:2,borderRadius:1 }}>
       <Link
         to={`/${media_type}/${searchParams}`}
         style={{ textDecoration: "none" }}
