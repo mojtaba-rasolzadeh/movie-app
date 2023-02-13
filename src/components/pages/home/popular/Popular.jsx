@@ -8,7 +8,8 @@ import {
   getMoviesForRent,
   getListOfMoviesInTheatres,
 } from "../../../../services/MovieService";
-import { OnTv, ForRent, InTheaters } from "./";
+import { OnTv, Movie } from "./";
+import { Loader } from "../../../constant";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,6 +39,8 @@ const Popular = () => {
   const [onTvItems, setOnTvItems] = useState({});
   const [forRentItems, setForRentItems] = useState({});
   const [inTheaters, setInTheaters] = useState({});
+
+  const tabsTitle = ["On TV", "For Rent", "In Theaters"];
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -70,82 +73,69 @@ const Popular = () => {
   }, []);
 
   return (
-    <Box sx={{ width: "100%", my: 10 }}>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
-        <Typography
-          variant="h5"
-          sx={{
-            fontSize: { xs: "1.25rem", md: "1.5rem" },
-            color: amber[500],
-            letterSpacing: 1,
-          }}
-        >
-          Popular
-        </Typography>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs"
-          sx={{
-            ".MuiTabs-indicator": {
-              display: "none",
-            },
-            ".MuiTab-root.Mui-selected": {
-              color: "#000",
-              backgroundColor: amber[700],
-              //   borderRadius:10,
-            },
-            borderRadius: 10,
-            border: `1px solid ${amber[700]}`,
-          }}
-        >
-          <Tab
-            label={
+    <>
+      {
+        loading ? <Loader /> :
+          <Box sx={{ width: "100%", my: 10 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
               <Typography
-                variant="body2"
-                sx={{ fontWeight: "700", letterSpacing: 1 }}
+                variant="h5"
+                sx={{
+                  fontSize: { xs: "1.25rem", md: "1.5rem" },
+                  color: amber[500],
+                  letterSpacing: 1,
+                }}
               >
-                On TV
+                Popular
               </Typography>
-            }
-            {...tabProps(0)}
-          />
-          <Tab
-            label={
-              <Typography
-                variant="body2"
-                sx={{ fontWeight: "700", letterSpacing: 1 }}
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs"
+                sx={{
+                  ".MuiTabs-indicator": {
+                    display: "none",
+                  },
+                  ".MuiTab-root.Mui-selected": {
+                    color: "#000",
+                    backgroundColor: amber[700],
+                  },
+                  borderRadius: 10,
+                  border: `1px solid ${amber[700]}`,
+                }}
               >
-                For Rent
-              </Typography>
-            }
-            {...tabProps(1)}
-          />
-          <Tab
-            label={
-              <Typography
-                variant="body2"
-                sx={{ fontWeight: "700", letterSpacing: 1 }}
-              >
-                In Theaters
-              </Typography>
-            }
-            {...tabProps(2)}
-          />
-        </Tabs>
-      </Box>
-      <SwipeableViews axis="x" index={value} onChangeIndex={handleChangeIndex}>
-        <TabPanel value={value} index={0}>
-          <OnTv onTvItems={onTvItems} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <ForRent forRentItems={forRentItems} />
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <InTheaters inTheaters={inTheaters} />
-        </TabPanel>
-      </SwipeableViews>
-    </Box>
+                {
+                  tabsTitle.map((tab, index) => (
+                    <Tab
+                      key={index}
+                      label={
+                        <Typography
+                          variant="body2"
+                          sx={{ fontWeight: "700", letterSpacing: 1 }}
+                        >
+                          {tab}
+                        </Typography>
+                      }
+                      {...tabProps(index)}
+                    />
+                  ))
+                }
+              </Tabs>
+            </Box>
+            <SwipeableViews axis="x" index={value} onChangeIndex={handleChangeIndex}>
+              <TabPanel value={value} index={0}>
+                <OnTv onTvItems={onTvItems} />
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                <Movie movieData={forRentItems} />
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+                <Movie movieData={inTheaters} />
+              </TabPanel>
+            </SwipeableViews>
+          </Box>
+      }
+    </>
   );
 };
 export default Popular;

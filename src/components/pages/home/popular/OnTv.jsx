@@ -54,7 +54,7 @@ const OnTv = ({ onTvItems }) => {
                   <UserScore
                     vote_average={item.vote_average}
                     size={32}
-                    fSize=".75rem"
+                    fSize="12"
                     sx={{ mx: 1 }}
                   />
                 </Box>
