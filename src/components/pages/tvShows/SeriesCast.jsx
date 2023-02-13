@@ -77,8 +77,9 @@ const SeriesCast = ({ id, name, aggregate_credits }) => {
                       style={{ textDecoration: "none" }}
                     >
                       <Typography
-                        variant="body2"
+                        variant="body1"
                         sx={{
+                          fontWeight:'700',
                           letterSpacing: 1,
                           color: "#fff",
                           "&:hover": { color: "text.secondary" },
@@ -88,15 +89,23 @@ const SeriesCast = ({ id, name, aggregate_credits }) => {
                         {item.name}
                       </Typography>
                     </Link>
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      sx={{
-                        letterSpacing: 1,
-                      }}
-                    >
-                      {item.character}
-                    </Typography>
+                    {
+                      item && item.roles.map((cast, index) => (
+                        <>
+                          <Typography
+                            key={index}
+                            variant="body2"
+                            sx={{ fontWeight: "300", letterSpacing: 1 }}
+                          >
+                            {cast.character}
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary" sx={{ fontWeight: '300', letterSpacing: 1 }}>
+                            {cast.episode_count} Episodes
+                          </Typography>
+                        </>
+                      ))
+                    }
+
                   </CardContent>
                 </Card>
               ))}

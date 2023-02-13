@@ -35,6 +35,7 @@ import TvShowVideos from "./pages/tvShow/TvShowVideos";
 import TvShowCastAndCrew from "./pages/tvShow/TvShowCastAndCrew";
 import AllSeasons from "./pages/tvShow/AllSeasons";
 import TvShowKeyword from "./pages/tvShow/TvShowKeyword";
+import TvShowSeason from "./pages/tvShow/TvShowSeason";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -96,6 +97,7 @@ const App = () => {
           <Route path="/tv/:tvId/cast" element={<TvShowCastAndCrew />} />{" "}
           <Route path="/tv/:tvId/seasons" element={<AllSeasons />} />{" "}
           <Route path="/keyword/:keywordId/tv" element={<TvShowKeyword />} />
+          <Route path="/tv/:tvId/season/:seasonId" element={<TvShowSeason />} />
         </Routes>{" "}
         {/* <Footer /> */}{" "}
       </MainLayout>{" "}
