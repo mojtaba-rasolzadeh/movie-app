@@ -47,70 +47,66 @@ const TopBilledCast = ({ id, title, credits }) => {
         <>
           <MediaScrollbar
             gap={2}
-            width={credits && credits.cast.length < 9 && 1232}
+            width={credits?.cast.length < 9 && 1232}
           >
-            {credits !== undefined &&
-              credits.cast.slice(0, 9).map((item) => (
-                <Card key={item.id} sx={{ maxWidth: 138, mt: 3 }}>
-                  <CardActionArea sx={{ width: 138, borderRadius: 1 }}>
-                    <Link
-                      to={`/person/${item.id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Avatar
-                        variant="rounded"
-                        sx={{ width: 138, height: 175 }}
-                        src={`https://www.themoviedb.org/t/p/w138_and_h175_face${item.profile_path}`}
-                      />
-                    </Link>
-                  </CardActionArea>
-                  <CardContent
-                    sx={{
-                      p: 1.5,
-                      "&:last-child": {
-                        paddingBottom: 1.5,
-                      },
-                    }}
+            {credits?.cast.slice(0, 9).map((item) => (
+              <Card key={item.id} sx={{ maxWidth: 138, mt: 3 }}>
+                <CardActionArea sx={{ width: 138, borderRadius: 1 }}>
+                  <Link
+                    to={`/person/${item.id}`}
+                    style={{ textDecoration: "none" }}
                   >
-                    <Link
-                      to={`/person/${item.id}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          letterSpacing: 1,
-                          color: "#fff",
-                          "&:hover": { color: "text.secondary" },
-                        }}
-                        gutterBottom
-                      >
-                        {item.name}
-                      </Typography>
-                    </Link>
+                    <Avatar
+                      variant="rounded"
+                      sx={{ width: 138, height: 175 }}
+                      src={`https://www.themoviedb.org/t/p/w138_and_h175_face${item.profile_path}`}
+                    />
+                  </Link>
+                </CardActionArea>
+                <CardContent
+                  sx={{
+                    p: 1.5,
+                    "&:last-child": {
+                      paddingBottom: 1.5,
+                    },
+                  }}
+                >
+                  <Link
+                    to={`/person/${item.id}`}
+                    style={{ textDecoration: "none" }}
+                  >
                     <Typography
-                      variant="caption"
-                      color="text.secondary"
+                      variant="body2"
                       sx={{
                         letterSpacing: 1,
+                        color: "#fff",
+                        "&:hover": { color: "text.secondary" },
                       }}
+                      gutterBottom
                     >
-                      {item.character}
+                      {item.name}
                     </Typography>
-                  </CardContent>
-                </Card>
-              ))}
-            {credits !== undefined && credits.cast.length > 9 && (
+                  </Link>
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{
+                      letterSpacing: 1,
+                    }}
+                  >
+                    {item.character}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+            {credits?.cast.length > 9 && (
               <ViewMoreButton
-                link={`/movie/${id}-${
-                  title &&
-                  title
-                    .split(/[\s:,]/)
-                    .join("-")
-                    .split("--")
-                    .join("-")
-                    .toLowerCase()
-                }/cast`}
+                link={`/movie/${id}-${title?.split(/[\s:,]/)
+                  .join("-")
+                  .split("--")
+                  .join("-")
+                  .toLowerCase()
+                  }/cast`}
               />
             )}
           </MediaScrollbar>
@@ -120,15 +116,12 @@ const TopBilledCast = ({ id, title, credits }) => {
             }}
           >
             <Link
-              to={`/movie/${id}-${
-                title &&
-                title
-                  .split(/[\s:,]/)
-                  .join("-")
-                  .split("--")
-                  .join("-")
-                  .toLowerCase()
-              }/cast`}
+              to={`/movie/${id}-${title?.split(/[\s:,]/)
+                .join("-")
+                .split("--")
+                .join("-")
+                .toLowerCase()
+                }/cast`}
               style={{ textDecoration: "none" }}
             >
               <Typography

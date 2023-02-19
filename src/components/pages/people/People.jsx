@@ -10,8 +10,7 @@ import {
 const People = ({ personData }) => {
   return (
     <>
-      {personData.results !== undefined &&
-        personData.results.map((person) => (
+      {personData.results?.map((person) => (
           <Card key={person.id} sx={{ maxWidth: 235 }}>
             <CardActionArea sx={{ maxWidth: 235 }}>
               <Link

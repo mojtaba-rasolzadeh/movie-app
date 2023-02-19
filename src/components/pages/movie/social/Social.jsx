@@ -35,7 +35,7 @@ const Social = ({ id, title, reviews }) => {
                 color="text.secondary"
                 sx={{ fontWeight: "700" }}
               >
-                {reviews && reviews.results.length}
+                {reviews?.results.length}
               </Typography>
             }
             color="error"
@@ -44,7 +44,7 @@ const Social = ({ id, title, reviews }) => {
           />
         </Box>
       </Box>
-      {reviews && _.isEmpty(reviews.results) ? (
+      {_.isEmpty(reviews?.results) ? (
         <Typography
           color="text.secondary"
           sx={{ fontWeight: "300", letterSpacing: 1 }}

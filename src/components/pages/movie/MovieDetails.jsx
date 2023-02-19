@@ -59,7 +59,7 @@ const MovieDetails = ({
   };
 
   let playTrialer;
-  if ((videos && videos.results.length > 0) || (videos && videos.length > 0)) {
+  if ((videos?.results.length > 0) || (videos?.length > 0)) {
     playTrialer = (
       <Button
         variant="text"
@@ -124,13 +124,11 @@ const MovieDetails = ({
         <CardContent sx={{ pl: { md: 5 }, zIndex: 10 }}>
           <Box>
             <Link
-              to={`/movie/${id}-${original_title &&
-                original_title
-                  .split(/[\s:,]/)
-                  .join("-")
-                  .split("--")
-                  .join("-")
-                  .toLowerCase()
+              to={`/movie/${id}-${original_title?.split(/[\s:,]/)
+                .join("-")
+                .split("--")
+                .join("-")
+                .toLowerCase()
                 }`}
               style={{ textDecoration: "none" }}
             >
@@ -150,7 +148,7 @@ const MovieDetails = ({
                   sx={{ fontWeight: "400", color: lime[200] }}
                   color="text.secondary"
                 >
-                  {`(${release_date && release_date.slice(0, 4)})`}
+                  {`(${release_date?.slice(0, 4)})`}
                 </Typography>
               </Typography>
             </Link>
@@ -180,8 +178,7 @@ const MovieDetails = ({
                   {genres.map((genre, index) => (
                     <Link
                       key={genre.id}
-                      to={`/genre/${genre.id}-${genre.name &&
-                        genre.name.toLowerCase().split(" ").join("-")
+                      to={`/genre/${genre.id}-${genre.name?.toLowerCase().split(" ").join("-")
                         }/movie`}
                       underline="none"
                       style={{ textDecoration: "none" }}
@@ -208,7 +205,7 @@ const MovieDetails = ({
               )}
             </Box>
           </Box>
-          <Box sx={{ display: "flex",flexWrap:'wrap', alignItems: "center", gap: 4, my: 3 }}>
+          <Box sx={{ display: "flex", flexWrap: 'wrap', alignItems: "center", gap: 4, my: 3 }}>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <Box
                 sx={{
@@ -236,7 +233,7 @@ const MovieDetails = ({
             <Typography variant="h6" sx={{ fontWeight: "700", my: 1 }}>
               Overview
             </Typography>
-            {overview && overview.length === 0 ? (
+            {overview?.length === 0 ? (
               <>
                 <Typography variant="body2" sx={{ color: orange[50] }}>
                   We don't have an overview translated in English. Help us

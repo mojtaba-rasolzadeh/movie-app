@@ -17,11 +17,11 @@ const MainLayout = ({ children }) => {
         </Helmet>
         <Box sx={{ height: "100vh" }}>
           <Toolbar />
-          {location.pathname === "/" && <Header />}
+          {/* {location.pathname === "/" && <Header />} */}
           <Box
             sx={{
               // height: "100vh",
-              maxWidth: { xs: "auto", sm: 564, md: 864, lg: 1164, xl: 1500 },
+              // maxWidth: { xs: "auto", sm: 564, md: 864, lg: 1164, xl: 1500 },
               // maxWidth: { xs: "auto", sm: 890, md: 1170, lg: 1360, xl: 1500 },
               px: { xs: 5, sm: 4 },
               mx: "auto",
@@ -29,7 +29,7 @@ const MainLayout = ({ children }) => {
           >
             {children}
           </Box>
-          {location.pathname === "/" && <Footer />}
+          {/* {location.pathname === "/" && <Footer />} */}
         </Box>
       </HelmetProvider>
     </ThemeProvider>

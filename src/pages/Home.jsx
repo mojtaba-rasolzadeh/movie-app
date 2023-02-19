@@ -6,10 +6,10 @@ import FreeToWatch from "../components/pages/home/watch/FreeToWatch";
 const Home = () => {
   return (
     <div>
-      <Trailers />
+      {/* <Trailers />
       <Popular />
       <FreeToWatch />
-      <Trending />
+      <Trending /> */}
     </div>
   );
 };

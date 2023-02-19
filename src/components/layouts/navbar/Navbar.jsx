@@ -1,14 +1,33 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { Box, AppBar, Toolbar, IconButton, Typography } from "@mui/material";
+import { useState, cloneElement } from "react";
+import { Box, AppBar, Toolbar, IconButton } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { MenuRounded } from "@mui/icons-material";
+import PropTypes from 'prop-types';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 import { Sidebar } from "../../";
-import { MovieMenu, TvShowsMenu, PeopleMenu } from "./";
-import SearchButton from "./SearchButton";
+import SearchInput from "./SearchInput";
+import NavLinks from "./NavLinks";
+function ElevationScroll(props) {
+  const { children, window } = props;
 
-const Navbar = () => {
+  const trigger = useScrollTrigger({
+    disableHysteresis: true,
+    threshold: 0,
+    target: window ? window() : undefined,
+  });
+
+  return cloneElement(children, {
+    elevation: trigger ? 4 : 0,
+  });
+}
+
+ElevationScroll.propTypes = {
+  children: PropTypes.element.isRequired,
+  window: PropTypes.func,
+};
+
+const Navbar = (props) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -17,63 +36,41 @@ const Navbar = () => {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <AppBar component="nav">
-        <Toolbar
-          sx={{
-            width: { xs: "auto", sm: 564, md: 864, lg: 1164, xl: 1500 },
-            mx: "auto",
-          }}
-        >
-          <Box
+      <ElevationScroll {...props}>
+        <AppBar component="nav">
+          <Toolbar
             sx={{
-              display: "flex",
-              width: "100%",
-              justifyContent: "space-around",
-              alignItems: "center",
-              gap: 2,
+              width: { xs: "auto", sm: 564, md: 864, lg: 1164, xl: 1500 },
+              mx: "auto",
             }}
           >
-            <Link to="/" style={{ textDecoration: "none" }}>
-              <Typography
-                sx={{
-                  display: { xs: "block", sm: "none", md: "block" },
-                  fontSize: { xs: "18px", md: "24px" },
-                  fontWeight: "900",
-                  color: purple[600],
-                }}
-              >
-                MovieApp
-              </Typography>
-            </Link>
-
             <Box
               sx={{
-                display: { xs: "none", sm: "flex" },
-                gap: { sm: 0, md: 2 },
+                display: "flex",
+                width: "100%",
+                justifyContent: "space-between",
                 alignItems: "center",
+                gap: 2,
               }}
             >
-              <MovieMenu />
-              <TvShowsMenu />
-              <PeopleMenu />
+              <NavLinks />
+              <SearchInput />
+              <IconButton
+                aria-label="menu"
+                sx={{ display: { sm: "none" }, color: purple[600] }}
+                onClick={handleDrawerToggle}
+              >
+                <MenuRounded sx={{ fontSize: "2rem" }} />
+              </IconButton>
             </Box>
-
-            <SearchButton />
-            <IconButton
-              aria-label="menu"
-              sx={{ display: { sm: "none" }, color: purple[600] }}
-              onClick={handleDrawerToggle}
-            >
-              <MenuRounded sx={{ fontSize: "2rem" }} />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
+          </Toolbar>
+        </AppBar>
+      </ElevationScroll>
       <Sidebar
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       />
-    </Box>
+    </Box >
   );
 };
 export default Navbar;
