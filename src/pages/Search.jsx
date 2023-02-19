@@ -29,22 +29,7 @@ import Collections from "../components/pages/search/collections/Collections";
 import Companies from "../components/pages/search/companies/Companies";
 import Keywords from "../components/pages/search/keywords/Keywords";
 import { SearchInputStandard } from "../components/constant/SearchInputs";
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box>{children}</Box>}
-    </div>
-  );
-}
+import TabPanel from "../components/constant/TabPanel";
 
 function tabProps(index) {
   return {
@@ -66,16 +51,40 @@ const Search = () => {
   const [value, setValue] = useState(0);
   const query = searchParams.get("query");
 
+  const tabsTitle = ["movies", "tvShows", "people", "collections", "companies", "keywords"];
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   const displayLengthItem = (item) => {
-    return (
-      item.total_results !== undefined && item.total_results.toLocaleString()
-    );
+    let result;
+    switch (item) {
+      case 'movies':
+        result = movies.total_results?.toLocaleString();
+        break;
+      case 'tvShows':
+        result = tvShows.total_results?.toLocaleString();
+        break;
+      case 'people':
+        result = people.total_results?.toLocaleString();
+        break;
+      case 'collections':
+        result = collections.total_results?.toLocaleString();
+        break;
+      case 'companies':
+        result = companies.total_results?.toLocaleString();
+        break;
+      case 'keywords':
+        result = keywords.total_results?.toLocaleString();
+        break;
+      default:
+        return
+    }
+    return result;
   };
 
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -140,218 +149,48 @@ const Search = () => {
                       },
                     }}
                   >
-                    <Tab
-                      label={
-                        <Box
-                          sx={{
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Typography variant="subtitle2">Movies</Typography>
-                          <Chip
-                            label={
-                              <Typography
-                                variant="caption"
-                                color="text.primary"
+                    {
+                      tabsTitle.map((text, index) => (
+                        <Tab
+                          key={index}
+                          label={
+                            <Box
+                              sx={{
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>{text}</Typography>
+                              <Chip
+                                label={
+                                  <Typography
+                                    variant="caption"
+                                    color="text.primary"
+                                    sx={{
+                                      ".Mui-selected": { color: yellow[500] },
+                                    }}
+                                  >
+                                    {displayLengthItem(text)}
+                                    {/* {movies.total_results !== undefined && (movies.total_results).toLocaleString()} */}
+                                  </Typography>
+                                }
+                                size="small"
                                 sx={{
-                                  ".Mui-selected": { color: yellow[500] },
+                                  backgroundColor: orange[500],
                                 }}
-                              >
-                                {displayLengthItem(movies)}
-                                {/* {movies.total_results !== undefined && (movies.total_results).toLocaleString()} */}
-                              </Typography>
-                            }
-                            size="small"
-                            sx={{
-                              backgroundColor: orange[500],
-                            }}
-                          />
-                        </Box>
-                      }
-                      {...tabProps(0)}
-                      sx={{
-                        borderRadius: 1,
-                        mr: 1,
-                      }}
-                    />
-                    <Tab
-                      label={
-                        <Box
+                              />
+                            </Box>
+                          }
+                          {...tabProps(index)}
                           sx={{
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
+                            borderRadius: 1,
+                            mr: 1,
                           }}
-                        >
-                          <Typography variant="subtitle2">TV Shows</Typography>
-                          <Chip
-                            label={
-                              <Typography
-                                variant="caption"
-                                color="text.primary"
-                                sx={{
-                                  ".Mui-selected": { color: yellow[500] },
-                                }}
-                              >
-                                {displayLengthItem(tvShows)}
-                              </Typography>
-                            }
-                            size="small"
-                            sx={{ backgroundColor: orange[500] }}
-                          />
-                        </Box>
-                      }
-                      {...tabProps(1)}
-                      sx={{
-                        borderRadius: 1,
-                        mr: 1,
-                      }}
-                    />
-                    <Tab
-                      label={
-                        <Box
-                          sx={{
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Typography variant="subtitle2">People</Typography>
-                          <Chip
-                            label={
-                              <Typography
-                                variant="caption"
-                                color="text.primary"
-                                sx={{
-                                  ".Mui-selected": { color: yellow[500] },
-                                }}
-                              >
-                                {displayLengthItem(people)}
-                              </Typography>
-                            }
-                            size="small"
-                            sx={{ backgroundColor: orange[500] }}
-                            //   sx={{ backgroundColor: value === 1 && orange[500] }}
-                          />
-                        </Box>
-                      }
-                      {...tabProps(2)}
-                      sx={{
-                        borderRadius: 1,
-                        mr: 1,
-                      }}
-                    />
-                    <Tab
-                      label={
-                        <Box
-                          sx={{
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Typography variant="subtitle2">
-                            Collections
-                          </Typography>
-                          <Chip
-                            label={
-                              <Typography
-                                variant="caption"
-                                color="text.primary"
-                                sx={{
-                                  ".Mui-selected": { color: yellow[500] },
-                                }}
-                              >
-                                {displayLengthItem(collections)}
-                              </Typography>
-                            }
-                            size="small"
-                            sx={{ backgroundColor: orange[500] }}
-                          />
-                        </Box>
-                      }
-                      {...tabProps(3)}
-                      sx={{
-                        borderRadius: 1,
-                        mr: 1,
-                      }}
-                    />
-                    <Tab
-                      label={
-                        <Box
-                          sx={{
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Typography variant="subtitle2">Companies</Typography>
-                          <Chip
-                            label={
-                              <Typography
-                                variant="caption"
-                                color="text.primary"
-                                sx={{
-                                  ".Mui-selected": {
-                                    backgroundColor: yellow[500],
-                                  },
-                                }}
-                              >
-                                {displayLengthItem(companies)}
-                              </Typography>
-                            }
-                            size="small"
-                            sx={{ backgroundColor: orange[500] }}
-                          />
-                        </Box>
-                      }
-                      {...tabProps(4)}
-                      sx={{
-                        borderRadius: 1,
-                        mr: 1,
-                      }}
-                    />
-                    <Tab
-                      label={
-                        <Box
-                          sx={{
-                            width: "100%",
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Typography variant="subtitle2">Keywords</Typography>
-                          <Chip
-                            label={
-                              <Typography
-                                variant="caption"
-                                color="text.primary"
-                                sx={{
-                                  ".Mui-selected": { color: yellow[500] },
-                                }}
-                              >
-                                {displayLengthItem(keywords)}
-                              </Typography>
-                            }
-                            size="small"
-                            sx={{ backgroundColor: orange[500] }}
-                          />
-                        </Box>
-                      }
-                      {...tabProps(5)}
-                      sx={{
-                        borderRadius: 1,
-                        mr: 1,
-                      }}
-                    />
+                        />
+                      ))
+                    }
                   </Tabs>
                 </CardContent>
               </Card>

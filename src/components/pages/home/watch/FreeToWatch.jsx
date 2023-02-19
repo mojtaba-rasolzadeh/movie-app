@@ -5,22 +5,7 @@ import { amber } from "@mui/material/colors";
 
 import { getFreeToWatch } from "../../../../services/MovieService";
 import { Movies, Tv } from "./";
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box>{children}</Box>}
-    </div>
-  );
-}
+import TabPanel from "../../../constant/TabPanel";
 
 function tabProps(index) {
   return {
