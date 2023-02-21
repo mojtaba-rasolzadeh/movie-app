@@ -40,8 +40,10 @@ const Navbar = (props) => {
         <AppBar component="nav">
           <Toolbar
             sx={{
-              width: { xs: "auto", sm: 564, md: 864, lg: 1164, xl: 1500 },
+              // width: { xs: "auto", sm: 564, md: 864, lg: 1164, xl: 1500 },
+              width: 1,
               mx: "auto",
+              px: { xs: 5, sm: 4 },
             }}
           >
             <Box

@@ -90,6 +90,11 @@ export const getMovie = (movieId, reviewsPage = 1) => {
     );
 };
 
+// trending
+export const getTrending = (mediaType = "movie", time = "week") => {
+    return axios.get(`${url}/trending/${mediaType}/${time}?api_key=${API_KEY}`);
+};
+
 // tvShows
 export const getTv = (tvId, reviewsPage = 1) => {
     return axios.get(

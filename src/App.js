@@ -36,6 +36,7 @@ import TvShowCastAndCrew from "./pages/tvShow/TvShowCastAndCrew";
 import AllSeasons from "./pages/tvShow/AllSeasons";
 import TvShowKeyword from "./pages/tvShow/TvShowKeyword";
 import TvShowSeason from "./pages/tvShow/TvShowSeason";
+import Movies from "./components/pages/movie/Movies";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -65,7 +66,8 @@ const App = () => {
           <Route path="/" element={<Home />} />{" "}
           {/* Movies */}
           <Route path="/search" element={<Search />} />{" "}
-          <Route path="/movie" element={<PopularMovies />} />{" "}
+          <Route path="/movie" element={<Movies />} />{" "}
+          <Route path="/movie/popular" element={<PopularMovies />} />{" "}
           <Route path="/movie/now_playing" element={<NowPlayingMovies />} />{" "}
           <Route path="/movie/top_rated" element={<TopRatedMovies />} />{" "}
           <Route path="/movie/upcoming" element={<UpcomingMovies />} />{" "}

@@ -45,19 +45,21 @@
     transform: scale(1.07);
 }
 
-@media screen and (min-width: 899px) {
+.slick-dots li button:before {
+    color: #ffeb3b !important;
+}
+
+
+/* @media screen and (min-width: 899px) {
     .slick-dots li button:before {
         font-size: 12px !important;
     }
 }
 
-.slick-dots li button:before {
-    color: #ffeb3b !important;
-}
 
 .slick-dots li.slick-active button:before {
     color: #ff9800 !important;
-}
+} */
 
 .arrow {
     font-size: 0;
