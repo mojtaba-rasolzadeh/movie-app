@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Avatar, Box, Button, Chip, Typography } from '@mui/material';
-import { grey, orange } from '@mui/material/colors';
+import { grey, orange,yellow } from '@mui/material/colors';
 import { GradeRounded, KeyboardArrowRight } from '@mui/icons-material';
 import Slider from 'react-slick';
 
@@ -76,7 +76,7 @@ const TrendingMovies = ({ trendingMovies }) => {
                             <Box sx={{ width: 1, position: 'absolute', bottom: 10, p: 3, display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', sm: 'flex-end' } }}>
                                 <Box sx={{ maxWidth: 200 }}>
                                     <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
-                                        <Chip sx={{ backgroundColor: grey[900] }} icon={<GradeRounded fontSize='small' sx={{ color: `${orange[700]} !important` }} />} label={
+                                        <Chip sx={{ backgroundColor: grey[900] }} icon={<GradeRounded fontSize='small' sx={{ color: `${yellow['A700']} !important` }} />} label={
                                             <Typography variant='body2'>{movie.vote_average.toFixed(1)}</Typography>
                                         } />
                                         <Chip sx={{ backgroundColor: grey[900] }} label={movie.release_date.slice(0, 4)} />
