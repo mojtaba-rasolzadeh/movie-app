@@ -11,6 +11,7 @@ import TrendingMovies from '../../components/pages/movie/TrandingMovies';
 import TopRated from '../../components/pages/movie/TopRated';
 import PopularMovies from '../../components/pages/movie/PopularMovies';
 import NowPlayingMovies from '../../components/pages/movie/NowPlayingMovies';
+import UpcomingMovies from '../../components/pages/movie/UpcomingMovies';
 
 const Movies = () => {
     const [loading, setLoading] = useState(false);
@@ -18,6 +19,7 @@ const Movies = () => {
     const [topRatedMovies, setTopRatedMovies] = useState({});
     const [popularMovies, setPopularMovies] = useState({});
     const [nowPlayingMovies, setNowPlayingMovies] = useState({});
+    const [upcomingMovies, setUpcomingMovies] = useState({});
 
     const settings = {
         dots: false,
@@ -64,12 +66,14 @@ const Movies = () => {
                 const { data: topRatedMoviesData } = await getMovies('top_rated');
                 const { data: popularMoviesData } = await getMovies('popular');
                 const { data: nowPlayingMoviesData } = await getMovies('now_playing');
+                const { data: upcomingMoviesData } = await getMovies('upcoming');
                 if (status === 200) {
                     setLoading(false);
                     setTrendingMovies(trendingMoviesData);
                     setTopRatedMovies(topRatedMoviesData);
                     setPopularMovies(popularMoviesData);
                     setNowPlayingMovies(nowPlayingMoviesData);
+                    setUpcomingMovies(upcomingMoviesData);
                 }
             } catch (err) {
                 setLoading(false);
@@ -85,6 +89,7 @@ const Movies = () => {
                 <TrendingMovies trendingMovies={trendingMovies} />
                 <TopRated topRatedMovies={topRatedMovies} />
                 <NowPlayingMovies nowPlayingMovies={nowPlayingMovies} />
+                <UpcomingMovies upcomingMovies={upcomingMovies} />
             </Grid>
             <Grid xs={12} sm={3}>
                 <PopularMovies popularMovies={popularMovies} />

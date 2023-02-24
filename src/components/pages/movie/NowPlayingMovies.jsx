@@ -62,8 +62,9 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
                         <Card key={movie.id} sx={{
                             display: 'flex!important',
                             //  width: '450px!important',
-                            widht: 1,
-                            height: 250, p: 1.5, borderRadius: '20px'
+                            flexDirection:{xs:'column',sm:'row  '},
+                            width: 1,
+                            height: {xs:'auto',sm:250}, p: 1.5, borderRadius: '20px'
                         }}>
                             <CardActionArea sx={{ width: 150, borderRadius: '20px' }}>
                                 <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>

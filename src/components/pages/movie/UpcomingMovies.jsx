@@ -4,8 +4,7 @@ import { grey, orange, yellow } from '@mui/material/colors';
 import { KeyboardArrowRight, GradeRounded } from '@mui/icons-material';
 import Slider from 'react-slick';
 
-const TopRate = ({ topRatedMovies }) => {
-    console.log(topRatedMovies);
+const UpcomingMovies = ({ upcomingMovies }) => {
     const settings = {
         dots: true,
         arrows: false,
@@ -78,11 +77,10 @@ const TopRate = ({ topRatedMovies }) => {
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="h5" sx={{ fontSize: { xs: '1rem', sm: '1.5rem' }, letterSpacing: 1 }}>Top rated</Typography>
-                    <GradeRounded sx={{ color: `${yellow['A700']} !important` }} />
+                    <Typography variant="h5" sx={{ fontSize: { xs: '1rem', sm: '1.5rem' }, letterSpacing: 1 }}>Upcoming Movies</Typography>
                 </Box>
                 <Link to={`/movie/top_rated`} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-                    <Typography variant="body2" sx={{ fontWeight:'700',color: grey[600], '&:hover': { color: grey[300] }, letterSpacing: 1 }}>
+                    <Typography variant="body2" sx={{ fontWeight: '700', color: grey[600], '&:hover': { color: grey[300] }, letterSpacing: 1 }}>
                         See all
                     </Typography>
                     <KeyboardArrowRight sx={{ color: grey[600] }} />
@@ -91,7 +89,7 @@ const TopRate = ({ topRatedMovies }) => {
             {/* <Box sx={{ display: 'flex', width: 1, overflowX: 'auto', gap: 2 }}> */}
             <Slider {...settings}>
                 {
-                    topRatedMovies.results?.slice(0, 8).map((movie) => (
+                    upcomingMovies.results?.slice(0, 8).map((movie) => (
                         <Box key={movie.id} sx={{
                             position: 'relative',
                             //  width: 150
@@ -122,7 +120,7 @@ const TopRate = ({ topRatedMovies }) => {
                                     </Link>
                                 </Box>
                                 {/* <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
-                                    <Typography sx={{ fontSize:'.9rem',textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: '.25rem 1rem', mt: 2 }}>
+                                    <Typography sx={{ fontSize: '.9rem', textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: '.25rem 1rem', mt: 2 }}>
                                         Watch Now
                                     </Typography>
                                 </Link> */}
@@ -139,4 +137,4 @@ const TopRate = ({ topRatedMovies }) => {
     );
 }
 
-export default TopRate;
+export default UpcomingMovies;
