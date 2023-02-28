@@ -60,19 +60,16 @@ const Movies = () => {
 
 export default Movies;
 
-// const [popularTvShows, setPopularTvShows] = useState({});
 // const [airingTodayTvShows, setAiringTodayTvShows] = useState({});
 // const [upcomingTvShows, setOnTvShows] = useState({});
 
 //--------------
 
-// const { data: popularTvShowsData } = await getTvShows('popular');
 // const { data: airingTodayTvShowsData } = await getTvShows('airing_today');
 // const { data: onTvShowsData } = await getTvShows('on_the_air');
 
 //----------
 
-// setPopularTvShows(popularTvShowsData);
 // setAiringTodayTvShows(airingTodayTvShowsData);
 // setOnTvShows(onTvShowsData);
 
@@ -83,6 +80,3 @@ export default Movies;
 <UpcomingMovies upcomingMovies={upcomingMovies} /> 
 */}
 
-//-------
-
-{/* <PopularMovies popularMovies={popularMovies} /> */}
