@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Avatar, Box, Button, Chip, Typography } from '@mui/material';
-import { grey, orange, yellow } from '@mui/material/colors';
+import { Avatar, Box, Chip, Typography } from '@mui/material';
+import { grey, yellow } from '@mui/material/colors';
 import { KeyboardArrowRight, GradeRounded } from '@mui/icons-material';
 import Slider from 'react-slick';
 
