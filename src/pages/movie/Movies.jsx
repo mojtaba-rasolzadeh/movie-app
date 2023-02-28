@@ -60,23 +60,20 @@ const Movies = () => {
 
 export default Movies;
 
-// const [airingTodayTvShows, setAiringTodayTvShows] = useState({});
 // const [upcomingTvShows, setOnTvShows] = useState({});
 
 //--------------
 
-// const { data: airingTodayTvShowsData } = await getTvShows('airing_today');
 // const { data: onTvShowsData } = await getTvShows('on_the_air');
 
 //----------
 
-// setAiringTodayTvShows(airingTodayTvShowsData);
 // setOnTvShows(onTvShowsData);
 
 //------------
 
 {/* 
-<NowPlayingMovies nowPlayingMovies={nowPlayingMovies} />
+
 <UpcomingMovies upcomingMovies={upcomingMovies} /> 
 */}
 
