@@ -4,7 +4,7 @@ import { grey, yellow } from '@mui/material/colors';
 import { GradeRounded, KeyboardArrowRight } from '@mui/icons-material';
 import Slider from 'react-slick';
 
-const TrendingTvShows = ({ trendingTvShows }) => {
+const Trending = ({ trending }) => {
     const settings = {
         dots: true,
         arrows: false,
@@ -54,7 +54,7 @@ const TrendingTvShows = ({ trendingTvShows }) => {
             </Box>
             <Slider {...settings}>
                 {
-                    trendingTvShows.results?.slice(0, 8).map((tv) => (
+                    trending.results?.slice(0, 8).map((tv) => (
                         <Box key={tv.id} sx={{ position: 'relative', width: 1 }}>
                             <Avatar variant="rounded" sx={{ width: 1, height: 300 }} src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${tv.backdrop_path}`} />
                             <Box sx={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, backgroundColor: 'rgba(31.5, 31.5, 32, 0.70)' }} />
@@ -84,4 +84,4 @@ const TrendingTvShows = ({ trendingTvShows }) => {
     );
 }
 
-export default TrendingTvShows;
+export default Trending;

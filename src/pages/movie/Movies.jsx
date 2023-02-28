@@ -60,30 +60,28 @@ const Movies = () => {
 
 export default Movies;
 
-// const [topRatedTvShows, setTopRatedTvShows] = useState({});
 // const [popularTvShows, setPopularTvShows] = useState({});
 // const [airingTodayTvShows, setAiringTodayTvShows] = useState({});
 // const [upcomingTvShows, setOnTvShows] = useState({});
 
 //--------------
 
-// const { data: topRatedTvShowsData } = await getTvShows('top_rated');
 // const { data: popularTvShowsData } = await getTvShows('popular');
 // const { data: airingTodayTvShowsData } = await getTvShows('airing_today');
 // const { data: onTvShowsData } = await getTvShows('on_the_air');
 
 //----------
 
-// setTopRatedTvShows(topRatedTvShowsData);
 // setPopularTvShows(popularTvShowsData);
 // setAiringTodayTvShows(airingTodayTvShowsData);
 // setOnTvShows(onTvShowsData);
 
 //------------
 
-{/* <TopRated topRatedMovies={topRatedMovies} />
+{/* 
 <NowPlayingMovies nowPlayingMovies={nowPlayingMovies} />
-<UpcomingMovies upcomingMovies={upcomingMovies} /> */}
+<UpcomingMovies upcomingMovies={upcomingMovies} /> 
+*/}
 
 //-------
 

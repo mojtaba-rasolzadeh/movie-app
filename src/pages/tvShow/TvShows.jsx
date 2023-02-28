@@ -3,24 +3,25 @@ import Grid from '@mui/material/Unstable_Grid2';
 
 import Loader from '../../components/constant/Loader'
 import { getTvShows, getTrending } from '../../services/MovieService';
-import { TrendingMovies, TopRated, PopularMovies, NowPlayingMovies, UpcomingMovies } from '../../components/pages/movie';
-import TrendingTvShows from '../../components/pages/tvShows/TrendingTvShows';
+import { Trending, TopRated } from '../../components/pages/tvShows';
 
 const TvShows = () => {
     const [loading, setLoading] = useState(false);
-    const [trendingTvShows, setTrendingTvShows] = useState({});
+    const [trending, setTrending] = useState({});
+    const [topRated, setTopRated] = useState({});
 
-    console.log(trendingTvShows);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const { status, data: trendingTvShowsData } = await getTrending('tv', 'week');
+                const { status, data: trendingData } = await getTrending('tv', 'week');
+                const { data: topRatedData } = await getTvShows('top_rated');
 
                 if (status === 200) {
                     setLoading(false);
-                    setTrendingTvShows(trendingTvShowsData);
+                    setTrending(trendingData);
+                    setTopRated(topRatedData);
 
                 }
             } catch (err) {
@@ -37,7 +38,8 @@ const TvShows = () => {
                 loading ? <Loader /> :
                     <Grid container sx={{ my: 3 }} spacing={4}>
                         <Grid xs={12} sm={9}>
-                            <TrendingTvShows trendingTvShows={trendingTvShows} />
+                            <Trending trending={trending} />
+                            <TopRated topRated={topRated} />
                         </Grid>
                         <Grid xs={12} sm={3}>
                         </Grid>
