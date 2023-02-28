@@ -1,17 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Avatar, Box, Button, CardActionArea, Chip, Rating, Typography } from '@mui/material';
-import { grey, orange, pink, yellow } from '@mui/material/colors';
-import { AutoGraph, GradeRounded, Insights, KeyboardArrowRight, Moving, StackedLineChart } from '@mui/icons-material';
-import Slider from 'react-slick';
 
+import Loader from '../../components/constant/Loader'
 import { getMovies, getTrending } from '../../services/MovieService';
-import TrendingMovies from '../../components/pages/movie/TrandingMovies';
-import TopRated from '../../components/pages/movie/TopRated';
-import PopularMovies from '../../components/pages/movie/PopularMovies';
-import NowPlayingMovies from '../../components/pages/movie/NowPlayingMovies';
-import UpcomingMovies from '../../components/pages/movie/UpcomingMovies';
+import { TrendingMovies, TopRated, PopularMovies, NowPlayingMovies, UpcomingMovies } from '../../components/pages/movie';
 
 const Movies = () => {
     const [loading, setLoading] = useState(false);
@@ -20,43 +12,6 @@ const Movies = () => {
     const [popularMovies, setPopularMovies] = useState({});
     const [nowPlayingMovies, setNowPlayingMovies] = useState({});
     const [upcomingMovies, setUpcomingMovies] = useState({});
-
-    const settings = {
-        dots: false,
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 2500,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 1700,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    infinite: true,
-                    // dots: false
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 1262,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1
-                }
-            },
-        ]
-    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -82,19 +37,24 @@ const Movies = () => {
         }
         fetchData();
     }, [])
-    console.log(popularMovies);
+
     return (
-        <Grid container sx={{ my: 3 }} spacing={4}>
-            <Grid xs={12} sm={9}>
-                <TrendingMovies trendingMovies={trendingMovies} />
-                <TopRated topRatedMovies={topRatedMovies} />
-                <NowPlayingMovies nowPlayingMovies={nowPlayingMovies} />
-                <UpcomingMovies upcomingMovies={upcomingMovies} />
-            </Grid>
-            <Grid xs={12} sm={3}>
-                <PopularMovies popularMovies={popularMovies} />
-            </Grid>
-        </Grid >
+        <>
+            {
+                loading ? <Loader /> :
+                    <Grid container sx={{ my: 3 }} spacing={4}>
+                        <Grid xs={12} sm={9}>
+                            <TrendingMovies trendingMovies={trendingMovies} />
+                            <TopRated topRatedMovies={topRatedMovies} />
+                            <NowPlayingMovies nowPlayingMovies={nowPlayingMovies} />
+                            <UpcomingMovies upcomingMovies={upcomingMovies} />
+                        </Grid>
+                        <Grid xs={12} sm={3}>
+                            <PopularMovies popularMovies={popularMovies} />
+                        </Grid>
+                    </Grid >
+            }
+        </>
     );
 }
 
