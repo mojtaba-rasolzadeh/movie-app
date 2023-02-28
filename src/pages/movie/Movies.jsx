@@ -59,21 +59,3 @@ const Movies = () => {
 }
 
 export default Movies;
-
-// const [upcomingTvShows, setOnTvShows] = useState({});
-
-//--------------
-
-// const { data: onTvShowsData } = await getTvShows('on_the_air');
-
-//----------
-
-// setOnTvShows(onTvShowsData);
-
-//------------
-
-{/* 
-
-<UpcomingMovies upcomingMovies={upcomingMovies} /> 
-*/}
-
