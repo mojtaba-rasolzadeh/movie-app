@@ -34,6 +34,7 @@ const TrendingMovies = () => {
             <Helmet>
                 <title> Trending Movies | Movie App </title>
             </Helmet>
+            <Typography variant='h5' mt={2}>Trending Movies</Typography>
             {
                 loading ? <Loader /> :
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3, my: 5 }}>

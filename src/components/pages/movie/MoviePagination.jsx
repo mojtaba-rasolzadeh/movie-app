@@ -17,7 +17,7 @@ const MoviePagination = ({ movieData, fetchData }) => {
           onChange={handleChagePage}
           // shape="rounded"
           variant="outlined"
-          sx={{ display: "flex", justifyContent: "center", my: 3,pb:4,'.MuiPaginationItem-root.Mui-selected':{backgroundColor:'#f3001d'} }}
+          sx={{ display: "flex", justifyContent: "center", my: 3, pb: 4, '.MuiPaginationItem-root.Mui-selected': { backgroundColor: '#f3001d' }, '.MuiPaginationItem-root:hover': { backgroundColor: '#f3001d' } }}
         />
       )}
     </>

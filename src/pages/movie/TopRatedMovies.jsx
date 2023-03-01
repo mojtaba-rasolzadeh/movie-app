@@ -1,21 +1,22 @@
-import { useState, useEffect } from "react";
-import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { Avatar, Box, Chip, Typography } from '@mui/material';
+import { GradeRounded } from '@mui/icons-material';
+import { grey, yellow } from '@mui/material/colors';
 
-import Discover from "../../components/discover/Discover";
-import { getMovies } from "../../services/MovieService";
-import { Loader } from "../../components";
-import Movie from "../../components/pages/movie/Movie";
-import MoviePagination from "../../components/pages/movie/MoviePagination";
+import { Loader } from '../../components';
+import { getMovies } from '../../services/MovieService';
+import MoviePagination from '../../components/pages/movie/MoviePagination';
 
-const TopRatedMovies = () => {
+const TrendingMovies = () => {
   const [loading, setLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState({});
 
   const fetchData = async (page) => {
     try {
       setLoading(true);
-      const { status, data } = await getMovies("top_rated", page);
+      const { status, data } = await getMovies('top_rated', page);
       if (status === 200) {
         setLoading(false);
         setMovies(data);
@@ -24,31 +25,102 @@ const TopRatedMovies = () => {
       setLoading(false);
       console.log(err.message);
     }
-  };
-
+  }
   useEffect(() => {
     fetchData();
-  }, []);
-
+  }, [])
   return (
-    <Box sx={{ py: 3.75 }}>
-      <Typography variant="h5">Top Rated Movies</Typography>
-      <Grid container sx={{ mt: 3 }} spacing={2}>
-        <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
-          <Discover />
-        </Grid>
-        <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
-          {loading ? (
-            <Loader />
-          ) : (
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-              <Movie movieData={movies} />
-            </Box>
-          )}
-          <MoviePagination movieData={movies} fetchData={fetchData} />
-        </Grid>
-      </Grid>
-    </Box>
+    <>
+      <Helmet>
+        <title> Top Rated Movies | Movie App </title>
+      </Helmet>
+      <Typography variant='h5' mt={2}>Top Rated Movies</Typography>
+      {
+        loading ? <Loader /> :
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3, my: 5 }}>
+            {
+              movies.results?.map((movie) => (
+                <Box key={movie.id} sx={{ position: 'relative', width: 220, borderRadius: '20px' }}>
+                  <Avatar variant="rounded" sx={{ width: 1, height: 330, borderRadius: '20px' }} src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`} />
+                  <Box sx={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: 1, backgroundImage: 'linear-gradient(to top, rgb(32 32 32 / 94%) 90px, rgb(12 11 2 / 0%) 100%)', borderRadius: '17px' }} />
+                  <Box sx={{ width: 1, position: 'absolute', bottom: 10, p: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                    <Box sx={{ maxWidth: 200 }}>
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: 1, mb: 1 }}>
+                        <Chip size='small' sx={{ backgroundColor: grey[900] }} icon={<GradeRounded fontSize='small' sx={{ color: `${yellow['A700']} !important` }} />} label={
+                          <Typography variant='caption'>{movie.vote_average.toFixed(1)}</Typography>
+                        } />
+                        <Chip size='small' sx={{ backgroundColor: grey[900] }} label={
+                          <Typography variant='caption'>{movie.release_date.slice(0, 4)}</Typography>
+                        } />
+                      </Box>
+                      <Link to={`/movie/${movie.id}`} style={{ textAlign: 'center !important', textDecoration: 'none' }}>
+                        <Typography variant="body2" sx={{ textAlign: 'center', letterSpacing: 1, color: '#fff', '&:hover': { color: 'text.secondary' } }}>{movie.title}</Typography>
+                      </Link>
+                    </Box>
+                  </Box>
+                </Box>
+              ))
+            }
+          </Box>
+      }
+      <MoviePagination movieData={movies} fetchData={fetchData} />
+    </>
   );
-};
-export default TopRatedMovies;
+}
+
+export default TrendingMovies;
+
+// import { useState, useEffect } from "react";
+// import { Box, Typography } from "@mui/material";
+// import Grid from "@mui/material/Unstable_Grid2";
+
+// import Discover from "../../components/discover/Discover";
+// import { getMovies } from "../../services/MovieService";
+// import { Loader } from "../../components";
+// import Movie from "../../components/pages/movie/Movie";
+// import MoviePagination from "../../components/pages/movie/MoviePagination";
+
+// const TopRatedMovies = () => {
+//   const [loading, setLoading] = useState(false);
+//   const [movies, setMovies] = useState([]);
+
+//   const fetchData = async (page) => {
+//     try {
+//       setLoading(true);
+//       const { status, data } = await getMovies("top_rated", page);
+//       if (status === 200) {
+//         setLoading(false);
+//         setMovies(data);
+//       }
+//     } catch (err) {
+//       setLoading(false);
+//       console.log(err.message);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
+
+//   return (
+//     <Box sx={{ py: 3.75 }}>
+//       <Typography variant="h5">Top Rated Movies</Typography>
+//       <Grid container sx={{ mt: 3 }} spacing={2}>
+//         <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
+//           <Discover />
+//         </Grid>
+//         <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
+//           {loading ? (
+//             <Loader />
+//           ) : (
+//             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+//               <Movie movieData={movies} />
+//             </Box>
+//           )}
+//           <MoviePagination movieData={movies} fetchData={fetchData} />
+//         </Grid>
+//       </Grid>
+//     </Box>
+//   );
+// };
+// export default TopRatedMovies;
