@@ -38,6 +38,7 @@ import TvShowKeyword from "./pages/tvShow/TvShowKeyword";
 import TvShowSeason from "./pages/tvShow/TvShowSeason";
 import Movies from "./pages/movie/Movies";
 import TvShows from "./pages/tvShow/TvShows";
+import TrendingMovies from "./pages/movie/TrendingMovies";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -68,6 +69,7 @@ const App = () => {
           {/* Movies */}
           <Route path="/search" element={<Search />} />{" "}
           <Route path="/movie" element={<Movies />} />{" "}
+          <Route path="/movie/trending" element={<TrendingMovies />} />{" "}
           <Route path="/movie/popular" element={<PopularMovies />} />{" "}
           <Route path="/movie/now_playing" element={<NowPlayingMovies />} />{" "}
           <Route path="/movie/top_rated" element={<TopRatedMovies />} />{" "}

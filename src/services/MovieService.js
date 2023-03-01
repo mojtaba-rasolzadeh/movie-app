@@ -91,8 +91,8 @@ export const getMovie = (movieId, reviewsPage = 1) => {
 };
 
 // trending
-export const getTrending = (mediaType = "movie", time = "week") => {
-    return axios.get(`${url}/trending/${mediaType}/${time}?api_key=${API_KEY}`);
+export const getTrending = (mediaType = "movie", time = "week", page = 1) => {
+    return axios.get(`${url}/trending/${mediaType}/${time}?api_key=${API_KEY}&page=${page}`);
 };
 
 // tvShows
