@@ -1,7 +1,8 @@
 import _ from "lodash";
 import { Avatar, Typography } from "@mui/material";
-import { ViewMoreButton } from "../../../constant";
 import Slider from "react-slick";
+
+import { ViewMoreButton } from "../../../constant";
 
 const settings = {
   dots: true,
@@ -41,7 +42,7 @@ const settings = {
 };
 
 const Backdrops = ({ id, title, images }) => {
-  
+
   return (
     <>
       {_.isEmpty(images.backdrops) ? (
@@ -57,7 +58,7 @@ const Backdrops = ({ id, title, images }) => {
                 key={index}
                 variant="square"
                 sx={{
-                   width: 533,
+                  width: 533,
                   minHeight: 300
                 }}
                 src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${item.file_path}`}
