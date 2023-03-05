@@ -1,26 +1,13 @@
 import { useState } from "react";
 import { Box, Typography, Tabs, Tab, Chip } from "@mui/material";
 import { orange, teal, yellow } from "@mui/material/colors";
+
 import Videos from "./Videos";
 import Backdrops from "./Backdrops";
 import Posters from "./Posters";
+import TabPanel from '../../../constant/TabPanel';
 
 // import { Videos, Posters, Backdrops, MostPopular } from "./";
-
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && <Box>{children}</Box>}
-    </div>
-  );
-}
 
 function tabProps(index) {
   return {
@@ -32,15 +19,14 @@ function tabProps(index) {
 const Media = ({ id, title, videos, images }) => {
   const [value, setValue] = useState(0);
 
-  console.log(images)
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <Box sx={{ width: "100%", my: 4 }}>
       <Box sx={{ display: "flex", alignItems: "center", gap: 4, my: 3 }}>
-        <Typography variant="h5" sx={{ color: teal[500] }}>
+        <Typography variant="h5">
           Media
         </Typography>
         <Tabs
@@ -58,7 +44,7 @@ const Media = ({ id, title, videos, images }) => {
           <Tab
             label={
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700],textTransform:'capitalize',letterSpacing:1 }}>Videos </Typography>
+                <Typography sx={{ color: yellow[700], textTransform: 'capitalize', letterSpacing: 1 }}>Videos </Typography>
                 <Chip
                   label={
                     <Typography
@@ -67,7 +53,7 @@ const Media = ({ id, title, videos, images }) => {
                       color="text.secondary"
                       sx={{ fontWeight: "700" }}
                     >
-                      {videos && videos.results.length}
+                      {videos?.results.length}
                     </Typography>
                   }
                   color="error"
@@ -81,7 +67,7 @@ const Media = ({ id, title, videos, images }) => {
           <Tab
             label={
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700],textTransform:'capitalize',letterSpacing:1 }}>Backdrops </Typography>
+                <Typography sx={{ color: yellow[700], textTransform: 'capitalize', letterSpacing: 1 }}>Backdrops </Typography>
                 <Chip
                   label={
                     <Typography
@@ -90,7 +76,7 @@ const Media = ({ id, title, videos, images }) => {
                       color="text.secondary"
                       sx={{ fontWeight: "700" }}
                     >
-                      {images && images.backdrops.length}
+                      {images?.backdrops.length}
                     </Typography>
                   }
                   color="error"
@@ -104,7 +90,7 @@ const Media = ({ id, title, videos, images }) => {
           <Tab
             label={
               <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700] ,textTransform:'capitalize',letterSpacing:1}}>Posters </Typography>
+                <Typography sx={{ color: yellow[700], textTransform: 'capitalize', letterSpacing: 1 }}>Posters </Typography>
                 <Chip
                   label={
                     <Typography
@@ -113,7 +99,7 @@ const Media = ({ id, title, videos, images }) => {
                       color="text.secondary"
                       sx={{ fontWeight: "700" }}
                     >
-                      {images && images.posters.length}
+                      {images?.posters.length}
                     </Typography>
                   }
                   color="error"
@@ -126,7 +112,6 @@ const Media = ({ id, title, videos, images }) => {
           />
         </Tabs>
       </Box>
-
       <TabPanel value={value} index={0}>
         <Videos id={id} title={title} videos={videos} images={images} />
       </TabPanel>

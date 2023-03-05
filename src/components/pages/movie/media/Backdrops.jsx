@@ -1,17 +1,47 @@
 import _ from "lodash";
 import { Avatar, Typography } from "@mui/material";
-import { MediaScrollbar, ViewMoreButton } from "../../../constant";
+import { ViewMoreButton } from "../../../constant";
+import Slider from "react-slick";
+
+const settings = {
+  dots: true,
+  arrows: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 2500,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      }
+    },
+    {
+      breakpoint: 1860,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        infinite: false,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 1000,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+        dots: false
+      }
+    },
+  ]
+};
 
 const Backdrops = ({ id, title, images }) => {
-  let width;
-
-  if (images.backdrops && images.backdrops.length <= 1) {
-    width = 610;
-  } else if (images.backdrops && images.backdrops.length < 6) {
-    width = 1100;
-  } else {
-    width = 1343;
-  }
+  
   return (
     <>
       {_.isEmpty(images.backdrops) ? (
@@ -19,32 +49,32 @@ const Backdrops = ({ id, title, images }) => {
           {`No backdrops have been added to ${title}.`}
         </Typography>
       ) : (
-        <MediaScrollbar width={width}>
-          {images &&
-            images.backdrops
-              .slice(0, 6)
-              .map((item, index) => (
-                <Avatar
-                  key={index}
-                  variant="square"
-                  sx={{ width: 533, height: 300 }}
-                  src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${item.file_path}`}
-                />
-              ))}
-          {images && images.backdrops.length > 6 && (
+        <Slider {...settings}>
+          {images?.backdrops
+            .slice(0, 6)
+            .map((item, index) => (
+              <Avatar
+                key={index}
+                variant="square"
+                sx={{
+                   width: 533,
+                  minHeight: 300
+                }}
+                src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${item.file_path}`}
+              />
+            ))}
+          {images?.backdrops.length > 6 && (
             <ViewMoreButton
-              link={`/movie/${id}-${
-                title &&
-                title
-                  .split(/[\W]/)
-                  .join("-")
-                  .split("--")
-                  .join("-")
-                  .toLowerCase()
-              }/images/backdrops`}
+              link={`/movie/${id}-${title
+                .split(/[\W]/)
+                .join("-")
+                .split("--")
+                .join("-")
+                .toLowerCase()
+                }/images/backdrops`}
             />
           )}
-        </MediaScrollbar>
+        </Slider>
       )}
     </>
   );

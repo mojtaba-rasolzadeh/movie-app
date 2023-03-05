@@ -23,75 +23,74 @@ const Videos = ({ id, title, videos }) => {
 
   return (
     <Box>
-      {_.isEmpty(videos && videos.results) ? (
+      {_.isEmpty(videos?.results) ? (
         <Typography sx={{ color: "text.secondary", fontWeight: 300 }}>
           {`No videos have been added to ${title}.`}
         </Typography>
       ) : (
         <MediaScrollbar
-          width={videos && videos.results.length < 2 ? 610 : 1083}
+          width={videos?.results.length < 2 ? 610 : 1083}
         >
-          {videos &&
-            videos.results.slice(0, 6).map((item) => (
-              <Box key={item.id} sx={{ position: "relative" }}>
-                <Avatar
-                  variant="square"
-                  sx={{ width: 533, height: 300 }}
-                  src={`https://i.ytimg.com/vi/${item.key}/hqdefault.jpg`}
-                />
-                <IconButton
+          {videos?.results.slice(0, 6).map((item) => (
+            <Box key={item.id} sx={{ position: "relative" }}>
+              <Avatar
+                variant="square"
+                sx={{ width: 533, height: 300 }}
+                src={`https://i.ytimg.com/vi/${item.key}/hqdefault.jpg`}
+              />
+              <IconButton
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%,-50%)",
+                  color: "#fff",
+                  ":hover": { color: orange[500] },
+                }}
+                onClick={handleToggle}
+              >
+                <PlayArrowRounded
                   sx={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    transform: "translate(-50%,-50%)",
-                    color: "#fff",
-                    ":hover": { color: orange[500] },
+                    fontSize: "60px",
                   }}
-                  onClick={handleToggle}
-                >
-                  <PlayArrowRounded
-                    sx={{
-                      fontSize: "60px",
-                    }}
-                  />{" "}
-                </IconButton>{" "}
-                <Backdrop
-                  sx={{
-                    color: "#fff",
-                    zIndex: (theme) => theme.zIndex.drawer + 1,
-                  }}
-                  open={open}
-                  onClick={handleClose}
-                >
-                  {play && (
-                    <Box sx={{ position: "relative" }}>
-                      <IconButton
-                        sx={{
-                          position: "absolute",
-                          top: "-40px",
-                          right: "0",
-                        }}
-                      >
-                        <Close />
-                      </IconButton>
-                      <Youtube
-                        videoId={item.key}
-                        title={"hello mojooo"}
-                        opts={{
-                          width: "640",
-                          height: "390",
-                          playerVars: {
-                            controls: 1,
-                          },
-                        }}
-                      />
-                    </Box>
-                  )}
-                </Backdrop>{" "}
-              </Box>
-            ))}
-          {videos && videos.results.length > 6 && (
+                />{" "}
+              </IconButton>{" "}
+              <Backdrop
+                sx={{
+                  color: "#fff",
+                  zIndex: (theme) => theme.zIndex.drawer + 1,
+                }}
+                open={open}
+                onClick={handleClose}
+              >
+                {play && (
+                  <Box sx={{ position: "relative" }}>
+                    <IconButton
+                      sx={{
+                        position: "absolute",
+                        top: "-40px",
+                        right: "0",
+                      }}
+                    >
+                      <Close />
+                    </IconButton>
+                    <Youtube
+                      videoId={item.key}
+                      // title={"hello mojooo"}
+                      opts={{
+                        width: "640",
+                        height: "390",
+                        playerVars: {
+                          controls: 1,
+                        },
+                      }}
+                    />
+                  </Box>
+                )}
+              </Backdrop>{" "}
+            </Box>
+          ))}
+          {videos.results.length > 6 && (
             <ViewMoreButton
               link={`/movie/${id}-${title
                 .split(/[\W]/)

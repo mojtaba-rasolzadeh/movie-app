@@ -90,7 +90,7 @@
     left: -25px;
 }
 
-.card:hover .card-content {
-    /* transform: translateY(0%) */
-    top: 0;
+.slick-track {
+    display: flex !important;
+    align-items: center !important;
 }
