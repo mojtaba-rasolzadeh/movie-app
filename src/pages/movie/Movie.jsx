@@ -9,7 +9,7 @@ import MovieDetails from "../../components/pages/movie/MovieDetails";
 import TopBilledCast from "../../components/pages/movie/TopBilledCast";
 import Social from "../../components/pages/movie/social/Social";
 import Media from "../../components/pages/movie/media/Media";
-import Recommendations from "../../components/pages/movie/Recommendations";
+import Recommendations from "../../components/pages/movie/recommendations/Recommendations";
 import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
@@ -19,7 +19,7 @@ const Movie = () => {
   const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState([]);
   const [languagesList, setLanguagesList] = useState([]);
-  console.log(movie)
+
   useEffect(() => {
     const fetchData = async () => {
       try {

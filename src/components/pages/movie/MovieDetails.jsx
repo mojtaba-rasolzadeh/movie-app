@@ -88,6 +88,7 @@ const MovieDetails = ({
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           borderRadius: 0,
+          // borderRadius: '20px'
         }}
       >
         <Box
@@ -109,13 +110,13 @@ const MovieDetails = ({
             display: { xs: "none", md: "inline-block" },
             width: 300,
             height: 450,
-            borderRadius: 1,
+            borderRadius: '20px',
           }}
         >
           <Link href="#" underline="none">
             <Avatar
               variant="rounded"
-              sx={{ width: 300, height: 450 }}
+              sx={{ width: 300, height: 450, borderRadius: '20px' }}
               src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${poster_path}`}
               alt={title}
             />

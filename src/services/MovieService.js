@@ -68,6 +68,11 @@ export const getMovies = (moviesType = "popular", page = 1) => {
     );
 };
 
+// get recommendations 
+export const getRecommendations = (mediaType = "movie", mediaId, page = 1) => {
+    return axios.get(`${url}/${mediaType}/${mediaId}/recommendations?api_key=${API_KEY}&language=en-US&page=${page}`)
+}
+
 // tvShows start
 export const getTvShows = (tvShowsType = "popular", page = 1) => {
     return axios.get(

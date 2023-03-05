@@ -89,3 +89,8 @@
 .arrow-prev {
     left: -25px;
 }
+
+.card:hover .card-content {
+    /* transform: translateY(0%) */
+    top: 0;
+}
