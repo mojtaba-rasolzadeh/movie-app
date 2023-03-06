@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Box, Chip, Typography } from "@mui/material";
-import { teal, yellow } from "@mui/material/colors";
+import { yellow } from "@mui/material/colors";
 
 import Review from "./Review";
 
@@ -15,7 +15,7 @@ const Social = ({ id, title, reviews }) => {
           my: 3,
         }}
       >
-        <Typography variant="h5" sx={{ color: teal[500] }}>
+        <Typography variant="h5">
           Social
         </Typography>
         <Box
