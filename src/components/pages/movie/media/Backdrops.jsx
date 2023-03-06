@@ -35,7 +35,17 @@ const settings = {
         slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 1,
-        dots: false
+        dots: true
+      }
+    },
+    {
+      breakpoint: 450,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 1,
+        arrows:true,
+        dots: false,
       }
     },
   ]

@@ -85,7 +85,8 @@ const TopBilledCast = ({ id, title, credits }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-          dots: true
+          arrows:true,
+          dots: false
         }
       },
     ]
