@@ -93,7 +93,7 @@ const TopBilledCast = ({ id, title, credits }) => {
   };
   return (
     <>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom sx={{mb:4}}>
         Top Billed Cast
       </Typography>
       {_.isEmpty(credits?.cast) ? (
