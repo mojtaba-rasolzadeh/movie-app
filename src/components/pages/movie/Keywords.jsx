@@ -8,11 +8,11 @@ const Keywords = ({ keywords }) => {
     <Box sx={{ mb: 4 }}>
       <Typography
         variant="body1"
-        sx={{ letterSpacing: 2, fontWeight: "700", color: lime[500] }}
+        sx={{ letterSpacing: 2, fontWeight: "700" }}
       >
-        Keywords
+        Keywords:
       </Typography>
-      {_.isEmpty(keywords && keywords.keywords) ? (
+      {_.isEmpty(keywords?.keywords) ? (
         <Typography variant="body2" sx={{ color: lime[100] }}>
           No keywords have been added.
         </Typography>
@@ -21,24 +21,16 @@ const Keywords = ({ keywords }) => {
           {keywords.keywords.map((keyword) => (
             <Link
               key={keyword.id}
-              to={`/keyword/${keyword.id}-${
-                keyword.name &&
-                keyword.name
-                  .split(" ")
-                  .join("-")
-                  .split("--")
-                  .join("-")
-                  .toLowerCase()
-              }/movie`}
-              style={{ textDecoration: "none"}}
+              to={`/keyword/${keyword.id}-${keyword?.name
+                .split(" ")
+                .join("-")
+                .split("--")
+                .join("-")
+                .toLowerCase()
+                }/movie`}
+              style={{ textDecoration: "none" }}
             >
-              <Chip
-                // key={keyword.id}
-                label={keyword.name}
-                // component="a"
-
-                clickable
-              />
+              <Chip label={keyword.name} clickable />
             </Link>
           ))}
         </Box>
