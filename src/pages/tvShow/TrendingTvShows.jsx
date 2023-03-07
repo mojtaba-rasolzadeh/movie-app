@@ -4,20 +4,20 @@ import { Box, Typography } from '@mui/material';
 
 import { Loader } from '../../components';
 import { getTrending } from '../../services/MovieService';
-import MoviePagination from '../../components/pages/movie/MoviePagination';
-import MovieItem from '../../components/pages/movie/MovieItem';
+import TvShowPagination from '../../components/pages/tvShows/TvShowPagination';
+import TvShowItem from '../../components/pages/tvShows/TvShowItem';
 
-const TrendingMovies = () => {
+const TrendingTvShows = () => {
     const [loading, setLoading] = useState(false);
-    const [todayMovies, setTodayMovies] = useState({});
+    const [todayTvShows, setTodayTvShows] = useState({});
 
     const fetchData = async (page) => {
         try {
             setLoading(true);
-            const { status, data } = await getTrending('movie', 'day', page);
+            const { status, data } = await getTrending('tv', 'day', page);
             if (status === 200) {
                 setLoading(false);
-                setTodayMovies(data);
+                setTodayTvShows(data);
             }
         } catch (err) {
             setLoading(false);
@@ -26,22 +26,23 @@ const TrendingMovies = () => {
     }
     useEffect(() => {
         fetchData();
-    }, [])
+    }, []);
+
     return (
         <>
             <Helmet>
-                <title> Trending Movies | Movie App </title>
+                <title> Trending TvShows | Movie App </title>
             </Helmet>
             <Box sx={{ py: 4 }} >
-                <Typography variant='h5'>Trending Movies</Typography>
+                <Typography variant='h5'>Trending TvShows</Typography>
                 {
                     loading ? <Loader /> :
-                        <MovieItem movieData={todayMovies} />
+                        <TvShowItem tvShowData={todayTvShows} />
                 }
-                <MoviePagination movieData={todayMovies} fetchData={fetchData} />
+                <TvShowPagination tvShowData={todayTvShows} fetchData={fetchData} />
             </Box>
         </>
     );
 }
 
-export default TrendingMovies;
+export default TrendingTvShows;

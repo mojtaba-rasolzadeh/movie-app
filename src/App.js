@@ -39,6 +39,7 @@ import TvShowSeason from "./pages/tvShow/TvShowSeason";
 import Movies from "./pages/movie/Movies";
 import TvShows from "./pages/tvShow/TvShows";
 import TrendingMovies from "./pages/movie/TrendingMovies";
+import TrendingTvShows from "./pages/tvShow/TrendingTvShows";
 
 const App = () => {
   const [query, setQuery] = useState("");
@@ -90,6 +91,7 @@ const App = () => {
           <Route path="/movie/:movieId/images/posters" element={<Posters />} />{" "}
           {/* TV Shows */}
           <Route path="/tv" element={<TvShows />} />{" "}
+          <Route path="/tv/trending" element={<TrendingTvShows />} />{" "}
           <Route path="/tv/popular" element={<PopularTvShows />} />{" "}
           <Route path="/tv/airing-today" element={<AiringTodayTvShows />} />{" "}
           <Route path="/tv/on-the-air" element={<OnTvShows />} />{" "}

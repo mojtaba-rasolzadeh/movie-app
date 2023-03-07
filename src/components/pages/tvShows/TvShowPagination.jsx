@@ -9,14 +9,13 @@ const TvShowPagination = ({ tvShowData, fetchData }) => {
     };
     return (
         <>
-            {tvShowData && tvShowData.total_pages > 1 && (
+            {tvShowData?.total_pages > 1 && (
                 <Pagination
-                    count={tvShowData && tvShowData.total_pages > 500 ? 500 : tvShowData.total_pages}
+                    count={tvShowData?.total_pages > 500 ? 500 : tvShowData.total_pages}
                     page={page}
                     onChange={handleChagePage}
-                    shape="rounded"
                     variant="outlined"
-                    sx={{ display: "flex", justifyContent: "center", mt: 3 }}
+                    sx={{ display: "flex", justifyContent: "center", mt: 3, '.MuiPaginationItem-root.Mui-selected': { backgroundColor: '#f3001d' }, '.MuiPaginationItem-root:hover': { backgroundColor: '#f3001d' } }}
                 />
             )}
         </>
