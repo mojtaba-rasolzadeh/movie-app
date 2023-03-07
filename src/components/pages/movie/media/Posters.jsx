@@ -64,6 +64,16 @@ const settings = {
       }
     },
     {
+      breakpoint: 450,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 1,
+        arrows:true,
+        dots: false
+      }
+    },
+    {
       breakpoint: 374,
       settings: {
         slidesToShow: 1,

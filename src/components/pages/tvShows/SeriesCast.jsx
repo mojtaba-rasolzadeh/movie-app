@@ -6,6 +6,7 @@ import { ViewMoreButton } from "../../../components/constant";
 import Slider from "react-slick";
 
 const SeriesCast = ({ id, name, aggregate_credits }) => {
+
   const settings = {
     dots: true,
     arrows: false,
@@ -91,6 +92,7 @@ const SeriesCast = ({ id, name, aggregate_credits }) => {
       },
     ]
   };
+
   return (
     <>
       <Typography variant="h5" gutterBottom sx={{ mb: 4 }}>

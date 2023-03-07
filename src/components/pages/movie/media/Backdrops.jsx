@@ -67,17 +67,13 @@ const Backdrops = ({ id, title, images }) => {
               <Avatar
                 key={index}
                 variant="square"
-                sx={{
-                  width: 533,
-                  minHeight: 300
-                }}
+                sx={{height: 300}}
                 src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${item.file_path}`}
               />
             ))}
           {images?.backdrops.length > 6 && (
             <ViewMoreButton
-              link={`/movie/${id}-${title
-                .split(/[\W]/)
+              link={`/movie/${id}-${title?.split(/[\W]/)
                 .join("-")
                 .split("--")
                 .join("-")
