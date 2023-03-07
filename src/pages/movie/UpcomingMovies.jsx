@@ -32,7 +32,7 @@ const UpcomingMovies = () => {
       <Helmet>
         <title> Upcoming Movies | Movie App </title>
       </Helmet>
-      <Box sx={{ pt: 4 }} >
+      <Box sx={{ py: 4 }} >
         <Typography variant='h5' mt={2}>Upcoming Movies</Typography>
         {
           loading ? <Loader /> :

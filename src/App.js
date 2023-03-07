@@ -92,10 +92,10 @@ const App = () => {
           {/* TV Shows */}
           <Route path="/tv" element={<TvShows />} />{" "}
           <Route path="/tv/trending" element={<TrendingTvShows />} />{" "}
+          <Route path="/tv/top-rated" element={<TopRatedTvShows />} />{" "}
           <Route path="/tv/popular" element={<PopularTvShows />} />{" "}
           <Route path="/tv/airing-today" element={<AiringTodayTvShows />} />{" "}
           <Route path="/tv/on-the-air" element={<OnTvShows />} />{" "}
-          <Route path="/tv/top-rated" element={<TopRatedTvShows />} />{" "}
           <Route path="/tv/:tvId" element={<TvShow />} />{" "}
           <Route path="/genre/:genreId/tv" element={<TvShowsGenre />} />{" "}
           <Route path="/tv/:tvId/reviews" element={<TvShowReviews />} />{" "}
