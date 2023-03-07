@@ -56,8 +56,7 @@ const MovieDetails = ({
         <CardContent sx={{ pl: { md: 5 }, zIndex: 10 }}>
           <Box>
             <MovieTitle id={id} original_title={original_title} title={title} release_date={release_date} />
-            <Box
-              sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 0.75, mt: 1 }}>
+            <Box sx={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 0.75, mt: 1 }}>
               <ReleaseDateMovie release_date={release_date} />
               <GenresMovie genres={genres} />
               <RuntimeMovie runtime={runtime} />
