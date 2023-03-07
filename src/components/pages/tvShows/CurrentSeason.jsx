@@ -9,18 +9,16 @@ import {
     Typography,
 } from "@mui/material";
 
-import { teal } from "@mui/material/colors";
-
 const CurrentSeason = ({ id, name, number_of_seasons, seasons }) => {
 
-    const season = seasons && seasons.find(season => season.season_number === number_of_seasons);
+    const season = seasons?.find(season => season.season_number === number_of_seasons);
 
     return (
         <Box sx={{ my: 3 }}>
-            <Typography variant="h5" gutterBottom sx={{ mb: 3, color: teal[500] }}>
+            <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
                 Current Season
             </Typography>
-            {seasons && _.isEmpty(seasons) ? (
+            {_.isEmpty(seasons) ? (
                 <Box>
                     <Typography color="text.secondary">
                         We don't have any cast added to this tv. You can help by adding
@@ -47,23 +45,21 @@ const CurrentSeason = ({ id, name, number_of_seasons, seasons }) => {
                 </Box>
             ) : (
                 <>
-                    <Card key={season && season.id} sx={{ display: 'flex' }}>
+                    <Card key={season?.id} sx={{ display: 'flex',flexDirection:{xs:'column',sm:'row'} }}>
                         <CardActionArea sx={{ width: 130, borderRadius: 1 }}>
                             <Link
-                                to={`/tv/${id}-${name &&
-                                    name
-                                        .split(/[\s:,]/)
-                                        .join("-")
-                                        .split("--")
-                                        .join("-")
-                                        .toLowerCase()
-                                    }/season/${season && season.season_number}`}
+                                to={`/tv/${id}-${name?.split(/[\s:,]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()
+                                    }/season/${season?.season_number}`}
                                 style={{ textDecoration: "none" }}
                             >
                                 <Avatar
                                     variant="rounded"
                                     sx={{ width: 130, height: 195 }}
-                                    src={`https://www.themoviedb.org/t/p/w130_and_h195_bestv2${season && season.poster_path}`}
+                                    src={`https://www.themoviedb.org/t/p/w130_and_h195_bestv2${season?.poster_path}`}
                                 />
                             </Link>
                         </CardActionArea>
@@ -76,14 +72,12 @@ const CurrentSeason = ({ id, name, number_of_seasons, seasons }) => {
                             }}
                         >
                             <Link
-                                to={`/tv/${id}-${name &&
-                                    name
-                                        .split(/[\s:,]/)
-                                        .join("-")
-                                        .split("--")
-                                        .join("-")
-                                        .toLowerCase()
-                                    }/season/${season && season.season_number}`}
+                                to={`/tv/${id}-${name?.split(/[\s:,]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()
+                                    }/season/${season?.season_number}`}
                                 style={{ textDecoration: "none" }}
                             >
                                 <Typography
@@ -95,7 +89,7 @@ const CurrentSeason = ({ id, name, number_of_seasons, seasons }) => {
                                     }}
                                     gutterBottom
                                 >
-                                    {season && season.name}
+                                    {season?.name}
                                 </Typography>
                             </Link>
                             <Typography
@@ -104,7 +98,7 @@ const CurrentSeason = ({ id, name, number_of_seasons, seasons }) => {
                                     letterSpacing: 1,
                                 }}
                             >
-                                {`${season && season.air_date.substring(0, 4)} | ${season && season.episode_count} Episodes`}
+                                {`${season?.air_date.substring(0, 4)} | ${season?.episode_count} Episodes`}
                             </Typography>
                             <Typography
                                 variant="subtitle2"
@@ -114,19 +108,17 @@ const CurrentSeason = ({ id, name, number_of_seasons, seasons }) => {
                                     mt: 3
                                 }}
                             >
-                                {`${season && season.name} of ${name} premiered on ${new Date(season && season.air_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`}
+                                {`${season?.name} of ${name} premiered on ${new Date(season?.air_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}.`}
                             </Typography>
                         </CardContent>
                     </Card>
                     <Box sx={{ my: 3 }}>
                         <Link
-                            to={`/tv/${id}-${name &&
-                                name
-                                    .split(/[\s:,]/)
-                                    .join("-")
-                                    .split("--")
-                                    .join("-")
-                                    .toLowerCase()
+                            to={`/tv/${id}-${name?.split(/[\s:,]/)
+                                .join("-")
+                                .split("--")
+                                .join("-")
+                                .toLowerCase()
                                 }/seasons`}
                             style={{ textDecoration: "none" }}
                         >
