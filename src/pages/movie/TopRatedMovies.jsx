@@ -32,7 +32,7 @@ const TrendingMovies = () => {
       <Helmet>
         <title> Top Rated Movies | Movie App </title>
       </Helmet>
-      <Box sx={{ pt: 4 }} >
+      <Box sx={{ py: 4 }} >
         <Typography variant='h5' mt={2}>Top Rated Movies</Typography>
         {
           loading ? <Loader /> :
