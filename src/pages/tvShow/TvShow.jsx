@@ -6,7 +6,6 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getLanguagesList, getTv } from "../../services/MovieService";
 import { Loader } from "../../components";
 import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
-
 import Media from "../../components/pages/tvShows/media/Media";
 import Recommendations from "../../components/pages/tvShows/Recommendations";
 import SocialLinks from "../../components/pages/tvShows/SocialLinks";
@@ -21,8 +20,6 @@ const TvShow = () => {
   const [tvShow, setTvShow] = useState([]);
   const [languagesList, setLanguagesList] = useState([]);
 
-  console.log(tvShow)
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -55,16 +52,15 @@ const TvShow = () => {
               <Divider />
               <CurrentSeason {...tvShow} />
               <Divider />
-               <Social {...tvShow} />
-               <Divider />
+              <Social {...tvShow} />
+              <Divider />
               <Media {...tvShow} />
               <Divider />
-              <Recommendations {...tvShow} /> 
+              <Recommendations {...tvShow} />
             </Grid>
             <Grid xs={12} sm={3}>
-              <SocialLinks  external_ids={ tvShow.external_ids} homepage={tvShow.homepage} />
+              <SocialLinks external_ids={tvShow.external_ids} homepage={tvShow.homepage} />
               <TvShowFacts languagesList={languagesList} {...tvShow} />
-              
             </Grid>
           </Grid>
         </>
