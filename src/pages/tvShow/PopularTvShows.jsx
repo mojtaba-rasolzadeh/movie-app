@@ -32,10 +32,10 @@ const PopularTvShows = () => {
   return (
     <>
       <Helmet>
-        <title> Popular TvShows | Movie App </title>
+        <title> Popular Tv Shows | Movie App </title>
       </Helmet>
       <Box sx={{ py: 4 }} >
-        <Typography variant='h5' mt={2}>Popular TvShows</Typography>
+        <Typography variant='h5' mt={2}>Popular Tv Shows</Typography>
         {
           loading ? <Loader /> :
             <TvShowItem tvShowData={tvShows} />

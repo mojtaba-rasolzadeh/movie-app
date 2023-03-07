@@ -31,10 +31,10 @@ const TrendingTvShows = () => {
     return (
         <>
             <Helmet>
-                <title> Trending TvShows | Movie App </title>
+                <title> Trending Tv Shows | Movie App </title>
             </Helmet>
             <Box sx={{ py: 4 }} >
-                <Typography variant='h5'>Trending TvShows</Typography>
+                <Typography variant='h5'>Trending Tv Shows</Typography>
                 {
                     loading ? <Loader /> :
                         <TvShowItem tvShowData={todayTvShows} />

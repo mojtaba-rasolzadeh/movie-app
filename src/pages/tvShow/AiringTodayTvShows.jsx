@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
+import { Helmet } from 'react-helmet-async';
 import { Box, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 
 import { getTvShows } from "../../services/MovieService";
-import Discover from "../../components/discover/Discover";
-import TvShows from "../../components/pages/tvShows/TvShows";
-import TvshowsPagination from "../../components/pages/tvShows/TvShowsPagination";
 import { Loader } from "../../components";
+import TvShowPagination from "../../components/pages/tvShows/TvShowPagination";
+import TvShowItem from "../../components/pages/tvShows/TvShowItem";
 
 const AiringTodayTvShows = () => {
   const [loading, setLoading] = useState(false);
@@ -15,7 +14,7 @@ const AiringTodayTvShows = () => {
   const fetchData = async (page) => {
     try {
       setLoading(true);
-      const { status, data } = await getTvShows("airing_today",page);
+      const { status, data } = await getTvShows("airing_today", page);
       if (status === 200) {
         setLoading(false);
         setTvShows(data);
@@ -31,24 +30,19 @@ const AiringTodayTvShows = () => {
   }, []);
 
   return (
-    <Box sx={{ py: 3.75 }}>
-      <Typography variant="h5">TV Shows Airing Today</Typography>
-      <Grid container sx={{ mt: 3 }} spacing={2}>
-        <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
-          <Discover />
-        </Grid>
-        <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
-          {loading ? (
-            <Loader />
-          ) : (
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
-              <TvShows tvShowsData={tvShows} />
-            </Box>
-          )}
-          <TvshowsPagination tvShowsData={tvShows} fetchData={fetchData} />
-        </Grid>
-      </Grid>
-    </Box>
+    <>
+      <Helmet>
+        <title> Airing Today Tv Shows | Movie App </title>
+      </Helmet>
+      <Box sx={{ py: 4 }} >
+        <Typography variant='h5'>Airing Today Tv Shows</Typography>
+        {
+          loading ? <Loader /> :
+            <TvShowItem tvShowData={tvShows} />
+        }
+        <TvShowPagination tvShowData={tvShows} fetchData={fetchData} />
+      </Box>
+    </>
   );
 };
 export default AiringTodayTvShows;
