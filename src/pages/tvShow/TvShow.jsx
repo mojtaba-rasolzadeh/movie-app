@@ -7,7 +7,7 @@ import { getLanguagesList, getTv } from "../../services/MovieService";
 import { Loader } from "../../components";
 import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
 import Media from "../../components/pages/tvShows/media/Media";
-import Recommendations from "../../components/pages/tvShows/Recommendations";
+import Recommendations from "../../components/pages/tvShows/recommendations/Recommendations";
 import SocialLinks from "../../components/pages/tvShows/SocialLinks";
 import TvShowFacts from "../../components/pages/tvShows/TvShowFacts";
 import SeriesCast from "../../components/pages/tvShows/SeriesCast";
