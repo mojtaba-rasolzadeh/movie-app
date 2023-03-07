@@ -1,6 +1,6 @@
 import { Avatar, Box, Typography } from "@mui/material";
-import { lime } from "@mui/material/colors";
 import { Link } from "react-router-dom";
+
 import Keywords from "./Keywords";
 
 const TvShowFacts = ({
@@ -19,7 +19,7 @@ const TvShowFacts = ({
                 flexDirection: { xs: "row", md: "column" },
                 justifyContent: "space-between",
                 flexWrap: "wrap",
-                gap: 5,
+                gap: 3,
                 my: 4,
             }}
         >
@@ -28,11 +28,11 @@ const TvShowFacts = ({
                 <div>
                     <Typography
                         variant="body1"
-                        sx={{ letterSpacing: 2, fontWeight: "700", color: lime[500] }}
+                        sx={{ letterSpacing: 2, fontWeight: "700" }}
                     >
-                        Original Title
+                        Original Title:
                     </Typography>
-                    <Typography variant="body2" sx={{ color: lime[100] }}>
+                    <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1 }}>
                         {original_name}
                     </Typography>
                 </div>
@@ -40,25 +40,25 @@ const TvShowFacts = ({
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700", color: lime[500] }}
+                    sx={{ letterSpacing: 2, fontWeight: "700" }}
                 >
-                    Status
+                    Status:
                 </Typography>
-                <Typography variant="body2" sx={{ color: lime[100] }}>
+                <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1 }}>
                     {status}
                 </Typography>
             </div>
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700", color: lime[500] }}
+                    sx={{ letterSpacing: 2, fontWeight: "700" }}
                 >
-                    Network
+                    Network:
                 </Typography>
-                <Box sx={{display:'flex'}}>
+                <Box sx={{ display: 'flex',pl:1 }}>
                     {networks && networks.map((network) => (
                         <Link key={network.id} to={`/network/${network.id}`} style={{ textDecoration: 'none' }}>
-                            <Avatar variant="square" sx={{ maxWidth:260,width:1, maxHeight: 30 }} src={`https://www.themoviedb.org/t/p/h30${network.logo_path}`} alt={network.name} />
+                            <Avatar variant="square" sx={{ maxWidth: 260, width: 1, maxHeight: 30 }} src={`https://www.themoviedb.org/t/p/h30${network.logo_path}`} alt={network.name} />
                         </Link>
                     ))}
                 </Box>
@@ -66,25 +66,25 @@ const TvShowFacts = ({
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700", color: lime[500] }}
+                    sx={{ letterSpacing: 2, fontWeight: "700" }}
                 >
-                    Type
+                    Type:
                 </Typography>
-                <Typography variant="body2" sx={{ color: lime[100] }}>
+                <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1 }}>
                     {type}
                 </Typography>
             </div>
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700", color: lime[500] }}
+                    sx={{ letterSpacing: 2, fontWeight: "700" }}
                 >
-                    Original Language
+                    Original Language:
                 </Typography>
                 {languagesList.map(
                     (language, index) =>
                         language.iso_639_1 === original_language && (
-                            <Typography key={index} variant="body2" sx={{ color: lime[100] }}>
+                            <Typography key={index} variant="body2" sx={{ pl: 1, letterSpacing: 1 }}>
                                 {language.english_name}
                             </Typography>
                         )
