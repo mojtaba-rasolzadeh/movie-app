@@ -8,7 +8,7 @@ const AiringToday = ({ airingToday }) => {
     const settings = {
         dots: true,
         arrows: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 4,
@@ -35,7 +35,17 @@ const AiringToday = ({ airingToday }) => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     initialSlide: 1,
-                    dots: false
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 533,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 1,
+                    dots: false,
+                    arrows: true
                 }
             },
         ]
@@ -57,7 +67,7 @@ const AiringToday = ({ airingToday }) => {
             <Slider {...settings}>
                 {
                     airingToday.results?.slice(0, 8).map((tv) => (
-                        <Card key={tv.id} sx={{ display: 'flex!important', flexDirection: { xs: 'column', sm: 'row  ' }, width: 1, height: { xs: 'auto', sm: 250 }, p: 1.5, borderRadius: '20px' }}>
+                        <Card key={tv.id} sx={{ display: 'flex!important', flexDirection: { xs: 'column', sm: 'row  ' },alignItems:'center', width: 1, height: { xs: 'auto', sm: 250 }, p: 1.5, borderRadius: '20px' }}>
                             <CardActionArea sx={{ width: 150, borderRadius: '20px' }}>
                                 <Link to={`/tv/${tv.id}`} style={{ textDecoration: 'none' }}>
                                     <Avatar variant="rounded" sx={{ width: 150, height: 1, borderRadius: '20px' }} src={`https://www.themoviedb.org/t/p/w220_and_h330_face${tv.poster_path}`} />
@@ -77,7 +87,7 @@ const AiringToday = ({ airingToday }) => {
                                 <Typography variant="caption" sx={{ mt: 1, color: 'text.secondary', letterSpacing: 1, display: '-webkit-box', textOverflow: 'ellipsis', overflow: 'hidden', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }} >{tv.overview}</Typography>
                                 <Link to={`/tv/${tv.id}`} style={{ textDecoration: 'none' }}>
                                     <Typography sx={{ fontSize: '.9rem', textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundColor: grey[800], '&:hover': { backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)' }, color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: '.5rem .5rem', mt: 1 }}>
-                                        Watch Now
+                                        view more
                                     </Typography>
                                 </Link>
                             </CardContent>

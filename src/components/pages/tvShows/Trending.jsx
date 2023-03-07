@@ -8,7 +8,7 @@ const Trending = ({ trending }) => {
     const settings = {
         dots: true,
         arrows: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 3,
         slidesToScroll: 3,
@@ -36,7 +36,17 @@ const Trending = ({ trending }) => {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     initialSlide: 1,
-                    dots: false
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 533,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    initialSlide: 1,
+                    dots: false,
+                    arrows: true
                 }
             },
         ]
@@ -72,7 +82,7 @@ const Trending = ({ trending }) => {
                                 </Box>
                                 <Link to={`/tv/${tv.id}`} style={{ textDecoration: 'none' }}>
                                     <Typography sx={{ textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: { xs: '.15rem .75rem', sm: '.25rem 1rem', md: '.5rem 2rem' }, mt: { xs: 1, sm: 0 } }}>
-                                        Watch Now
+                                        view more
                                     </Typography>
                                 </Link>
                             </Box>

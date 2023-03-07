@@ -1,4 +1,4 @@
-export { default as TrendingMovies } from './TrandingMovies';
+export { default as TrendingMovies } from './TrendingMovies';
 export { default as TopRated } from './TopRated';
 export { default as PopularMovies } from './PopularMovies';
 export { default as NowPlayingMovies } from './NowPlayingMovies';

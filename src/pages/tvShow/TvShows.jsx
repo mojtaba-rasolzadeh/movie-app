@@ -13,7 +13,6 @@ const TvShows = () => {
     const [airingToday, setAiringToday] = useState({});
     const [onTvShows, setOnTvShows] = useState({});
 
-
     useEffect(() => {
         const fetchData = async () => {
             try {

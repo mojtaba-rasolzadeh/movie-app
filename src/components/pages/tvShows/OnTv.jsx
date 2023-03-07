@@ -8,7 +8,7 @@ const OnTv = ({ onTvShows }) => {
     const settings = {
         dots: true,
         arrows: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 7,
         slidesToScroll: 7,
@@ -33,8 +33,6 @@ const OnTv = ({ onTvShows }) => {
                 settings: {
                     slidesToShow: 5,
                     slidesToScroll: 5,
-                    infinite: true,
-                    // dots: false
                     dots: true
                 }
             },
@@ -65,10 +63,21 @@ const OnTv = ({ onTvShows }) => {
             {
                 breakpoint: 533,
                 settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 1,
+                    dots: false,
+                    arrows: true
+                }
+            },
+            {
+                breakpoint: 450,
+                settings: {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                     initialSlide: 1,
-                    dots: false
+                    dots: false,
+                    arrows: true
                 }
             },
         ]

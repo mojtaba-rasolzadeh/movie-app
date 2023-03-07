@@ -33,8 +33,6 @@ const UpcomingMovies = ({ upcomingMovies }) => {
                 settings: {
                     slidesToShow: 5,
                     slidesToScroll: 5,
-                    infinite: true,
-                    // dots: false
                     dots: true
                 }
             },
