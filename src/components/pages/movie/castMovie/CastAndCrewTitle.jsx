@@ -7,11 +7,11 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                 selectedIndex === 0 ? (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                         <Typography variant='h5' sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>actors</Typography>
-                        <Typography variant='body2' color='text.secondary' mt={1}>{castAndCrew.cast?.length}</Typography>
+                        <Typography variant='body2' color='text.secondary' sx={{ mt: '6px' }}>{castAndCrew.cast?.length}</Typography>
                     </Box>) : (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                         <Typography variant='h5' sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>crews</Typography>
-                        <Typography variant='body2' color='text.secondary' mt={1}>{castAndCrew.crew?.length}</Typography>
+                        <Typography variant='body2' color='text.secondary' sx={{ mt: '6px' }}>{castAndCrew.crew?.length}</Typography>
                     </Box>
                 )
             }
