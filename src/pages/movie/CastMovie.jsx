@@ -1,16 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Divider } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Box, Divider } from '@mui/material';
 
 import { Loader } from "../../components/constant";
 import { getMovie } from "../../services/MovieService";
-import Actors from "../../components/pages/movie/Actors";
-import Crew from "../../components/pages/movie/Crew";
+import Actors from "../../components/pages/movie/castMovie/Actors";
+import Crews from "../../components/pages/movie/castMovie/Crews";
 import BackToMain from "../../components/constant/BackToMain";
+import CastAndCrewMenu from "../../components/pages/movie/castMovie/CastAndCrewMenu";
+import CastAndCrewTitle from "../../components/pages/movie/castMovie/CastAndCrewTitle";
 
-const CastAndCrew = () => {
+
+const CastMovie = () => {
+
   const { movieId } = useParams();
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState([]);
@@ -41,18 +46,16 @@ const CastAndCrew = () => {
       ) : (
         <>
           <BackToMain media_data={movie} media_type="movie" searchParams={movieId} />
-          <Grid container spacing={3} sx={{ my: 2 }}>
-            <Grid xs={6}>
-              <Actors castAndCrew={castAndCrew} />
-            </Grid>
-            <Grid xs={6}>
-              <Crew castAndCrew={castAndCrew} />
-            </Grid>
-          </Grid>
+          <Box style={{ display: 'flex',flexWrap:'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+            <CastAndCrewTitle selectedIndex={selectedIndex} castAndCrew={castAndCrew} />
+            <CastAndCrewMenu selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+          </Box>
+          <Divider />
+          {selectedIndex === 0 ? <Actors castAndCrew={castAndCrew} /> : <Crews castAndCrew={castAndCrew} />}
         </>
       )}
     </>
   );
 };
 
-export default CastAndCrew;
+export default CastMovie;

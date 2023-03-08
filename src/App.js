@@ -19,7 +19,7 @@ import PopularPeople from "./pages/people/PopularPeople";
 import Movie from "./pages/movie/Movie";
 import MoviesGenre from "./pages/movie/MoviesGenre";
 import Person from "./pages/Person";
-import CastAndCrew from "./pages/movie/CastAndCrew";
+import CastMovie from "./pages/movie/CastMovie";
 import MoviesRelatedToTheKeyword from "./pages/movie/MoviesRelatedToTheKeyword";
 import Review from "./pages/Review";
 import Reviews from "./pages/movie/Reviews";
@@ -79,7 +79,7 @@ const App = () => {
           <Route path="/movie/:movieId" element={<Movie />} />{" "}
           <Route path="/genre/:genreId/movie" element={<MoviesGenre />} />{" "}
           <Route path="/person/:personId" element={<Person />} />{" "}
-          <Route path="/movie/:movieId/cast" element={<CastAndCrew />} />{" "}
+          <Route path="/movie/:movieId/cast" element={<CastMovie />} />{" "}
           <Route
             path="/keyword/:keywordId/movie"
             element={<MoviesRelatedToTheKeyword />}
