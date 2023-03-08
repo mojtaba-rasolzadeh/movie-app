@@ -129,8 +129,8 @@ const Review = ({ movieId, movieTitle, reviews }) => {
         <Typography
           sx={{
             display: "inline-block",
-            color: yellow[700],
-            "&:hover": { color: yellow[600] },
+            color: '#fff',
+            "&:hover": { color:'text.secondary' },
             fontWeight: "700",
             mt: 6.25,
           }}
