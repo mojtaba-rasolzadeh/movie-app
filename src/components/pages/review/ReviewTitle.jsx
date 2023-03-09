@@ -1,12 +1,16 @@
 import { Box, Chip, Typography } from '@mui/material';
 import { StarRateRounded } from "@mui/icons-material";
 
-import { yellow } from '@mui/material/colors';
-
 const ReviewTitle = ({ review }) => {
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 3 }}>
-            <Typography component="p" variant="h6" sx={{ letterSpacing: 1 }}>
+            <Typography component="p" variant="h6" sx={{
+                fontWeight: 700,
+                background: 'linear-gradient(to right,#ED4700,#E76F00)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                letterSpacing: 1,
+            }}>
                 Written by
                 <Typography component="span" variant="body1" sx={{ textDecoration: "none", color: 'text.secondary' }}>
                     {" "}{review.author_details?.name ? review.author_details.name : review.author_details?.username}{" "}
@@ -16,10 +20,10 @@ const ReviewTitle = ({ review }) => {
             </Typography>
             {review.author_details?.rating !== null && (
                 <Chip
-                    icon={<StarRateRounded fontSize="small" sx={{ color: yellow['A700'] }} />}
+                    icon={<StarRateRounded fontSize="small" />}
                     label={`${review.author_details?.rating}.0`}
                     size="small"
-                    sx={{ gap: "0.25rem", padding: ".9rem .4rem" }}
+                    sx={{ gap: "0.25rem", padding: ".9rem .4rem" ,background: 'linear-gradient(to right,#ED4700,#E76F00)'}}
                 />
             )}
         </Box>

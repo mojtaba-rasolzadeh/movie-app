@@ -15,13 +15,14 @@ const BackToMedia = ({ review }) => {
                     flexWrap: 'wrap',
                     alignItems: 'center',
                     gap: 3,
-                    letterSpacing: 1,
                     fontWeight: 700,
-                    color: '#fff',
-                    "&:hover": { color: 'text.secondary' },
+                    background: 'linear-gradient(to right,#ED4700,#E76F00)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    letterSpacing: 1,
                 }}
             >
-                <KeyboardBackspace fontSize="large" />
+                <KeyboardBackspace fontSize="large" sx={{color:'#fff'}} />
                 {review.media_title}
             </Typography>
         </Link>
