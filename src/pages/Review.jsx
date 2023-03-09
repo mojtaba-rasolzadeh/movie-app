@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 import { getDetailsOfMovieOrTvShowReview } from '../services/MovieService';
 import { Loader } from '../components';
-import { BackToMedia, ReviewTitle, ReviewContent, AuthorAvatar } from '../components/pages/review';
+import { BackToMedia, AuthorDetails, ReviewContent, AuthorAvatar } from '../components/pages/review';
 
 const Review = () => {
     const { reviewId } = useParams();
@@ -37,7 +37,7 @@ const Review = () => {
                         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3, py: 5 }}>
                             <AuthorAvatar review={review} />
                             <Box>
-                                <ReviewTitle review={review} />
+                                <AuthorDetails review={review} />
                                 <ReviewContent review={review} />
                             </Box>
                         </Box>
