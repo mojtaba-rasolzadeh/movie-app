@@ -6,6 +6,8 @@ import { orange } from "@mui/material/colors";
 import Youtube from "react-youtube";
 
 import { MediaScrollbar, ViewMoreButton } from "../../../constant";
+import { Link } from "react-router-dom";
+import ViewAllMedia from "./ViewAllMedia";
 
 const Videos = ({ id, title, videos }) => {
   const [open, setOpen] = useState(false);
@@ -76,7 +78,6 @@ const Videos = ({ id, title, videos }) => {
                     </IconButton>
                     <Youtube
                       videoId={item.key}
-                      // title={"hello mojooo"}
                       opts={{
                         width: "640",
                         height: "390",
@@ -92,8 +93,7 @@ const Videos = ({ id, title, videos }) => {
           ))}
           {videos.results.length > 6 && (
             <ViewMoreButton
-              link={`/movie/${id}-${title
-                .split(/[\W]/)
+              link={`/movie/${id}-${title?.split(/[\W]/)
                 .join("-")
                 .split("--")
                 .join("-")
@@ -102,6 +102,7 @@ const Videos = ({ id, title, videos }) => {
           )}
         </MediaScrollbar>
       )}
+      <ViewAllMedia movieId={id} movieTitle={title} link="videos" text="View All Videos" />
     </Box>
   );
 };
