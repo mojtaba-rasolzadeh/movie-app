@@ -10,7 +10,7 @@ const BackToMain = ({ media_type, media_data, searchParams }) => {
         <Avatar
           variant="rounded"
           sx={{ width: 58, height: 87 }}
-          src={`https://www.themoviedb.org/t/p/w58_and_h87_face${media_data.poster_path}`}
+          src={`https://www.themoviedb.org/t/p/w58_and_h87_face${media_data?.poster_path}`}
         />
       </Link>
       <Box>
@@ -23,7 +23,7 @@ const BackToMain = ({ media_type, media_data, searchParams }) => {
               "&:hover": { color: 'text.secondary' },
             }}
           >
-            {media_type === 'movie' ? media_data.title : media_data.name}{" "}
+            {media_type === 'movie' ? media_data?.title : media_data?.name}{" "}
             <Typography variant="h6" sx={{ display: "inline-block" }}>
               {" "}{` (${media_type === 'tv' ? (media_data.first_air_date?.substring(0, 4)) : (media_data.release_date?.substring(0, 4))})`}{" "}
             </Typography>
