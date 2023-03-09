@@ -3,6 +3,7 @@ import { Avatar, Typography } from "@mui/material";
 import Slider from "react-slick";
 
 import { ViewMoreButton } from "../../../constant";
+import ViewAllMedia from "./ViewAllMedia";
 
 const settings = {
   dots: true,
@@ -44,7 +45,7 @@ const settings = {
         slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 1,
-        arrows:true,
+        arrows: true,
         dots: false,
       }
     },
@@ -67,7 +68,7 @@ const Backdrops = ({ id, title, images }) => {
               <Avatar
                 key={index}
                 variant="square"
-                sx={{height: 300}}
+                sx={{ height: 300 }}
                 src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${item.file_path}`}
               />
             ))}
@@ -83,6 +84,7 @@ const Backdrops = ({ id, title, images }) => {
           )}
         </Slider>
       )}
+      <ViewAllMedia movieId={id} movieTitle={title} link="images/backdrops" text="View All Backdrops" />
     </>
   );
 };
