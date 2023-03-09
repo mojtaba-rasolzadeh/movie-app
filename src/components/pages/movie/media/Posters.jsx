@@ -3,6 +3,8 @@ import { Avatar, Typography } from "@mui/material";
 import Slider from "react-slick";
 
 import { ViewMoreButton } from "../../../constant";
+import { Link } from "react-router-dom";
+import ViewAllMedia from "./ViewAllMedia";
 
 const settings = {
   dots: true,
@@ -69,7 +71,7 @@ const settings = {
         slidesToShow: 2,
         slidesToScroll: 2,
         initialSlide: 1,
-        arrows:true,
+        arrows: true,
         dots: false
       }
     },
@@ -79,7 +81,7 @@ const settings = {
         slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 1,
-        arrows:true,
+        arrows: true,
         dots: false
       }
     },
@@ -108,8 +110,7 @@ const Posters = ({ id, title, images }) => {
             ))}
           {images?.posters.length > 6 && (
             <ViewMoreButton
-              link={`/movie/${id}-${title
-                .split(/[\W]/)
+              link={`/movie/${id}-${title?.split(/[\W]/)
                 .join("-")
                 .split("--")
                 .join("-")
@@ -119,6 +120,7 @@ const Posters = ({ id, title, images }) => {
           )}
         </Slider>
       )}
+      <ViewAllMedia movieId={id} movieTitle={title} link="images/posters" text="View All Posters" />
     </>
   );
 };
