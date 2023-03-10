@@ -35,16 +35,25 @@ const MoviesGenre = () => {
 
   return (
     <Box sx={{ py: 4 }}>
-      <Box sx={{ display: "flex",flexWrap:'wrap', justifyContent: "space-between", alignItems: "center", mb: 3 }}>
-        <Typography sx={{ fontSize: "2rem", fontWeight: 700, letterSpacing: 2 }}>
+      <Box sx={{ display: "flex", flexWrap: 'wrap', justifyContent: "space-between", alignItems: "center", mb: 3 }}>
+        <Typography sx={{ fontSize: "2rem", fontWeight: 700, letterSpacing: 2,
+        background: 'linear-gradient(to right,#ED4700,#E76F00)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        // letterSpacing: 1,
+      
+      }}>
           {genre.name}
         </Typography>
         {movies.total_results && (
-          <Chip label={
-            <Typography variant="body1">
-              {movies?.total_results.toLocaleString()}{" "}movies
-            </Typography>
-          } />
+          <Chip
+            label={
+              <Typography variant="body1">
+                {movies?.total_results.toLocaleString()}{" "}movies
+              </Typography>
+            }
+            sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
+          />
         )}
       </Box>
       <Divider />
