@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Box, Typography, Divider, Chip } from "@mui/material";
 
 import { getDiscoverMovieWithGenres, getGenresMovieList } from "../../services/MovieService";
@@ -36,13 +37,14 @@ const MoviesGenre = () => {
   return (
     <Box sx={{ py: 4 }}>
       <Box sx={{ display: "flex", flexWrap: 'wrap', justifyContent: "space-between", alignItems: "center", mb: 3 }}>
-        <Typography sx={{ fontSize: "2rem", fontWeight: 700, letterSpacing: 2,
-        background: 'linear-gradient(to right,#ED4700,#E76F00)',
-        WebkitBackgroundClip: 'text',
-        WebkitTextFillColor: 'transparent',
-        // letterSpacing: 1,
-      
-      }}>
+        <Typography sx={{
+          fontSize: "2rem", fontWeight: 700, letterSpacing: 2,
+          background: 'linear-gradient(to right,#ED4700,#E76F00)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          // letterSpacing: 1,
+
+        }}>
           {genre.name}
         </Typography>
         {movies.total_results && (
@@ -57,7 +59,14 @@ const MoviesGenre = () => {
         )}
       </Box>
       <Divider />
-      {loading ? (<Loader />) : (<MovieItem movieData={movies} />)}
+      {loading ? (<Loader />) : (
+        <>
+          <Helmet>
+            <title>{`${genre.name}`} Movies | Movie App</title>
+          </Helmet>
+          <MovieItem movieData={movies} />
+        </>
+      )}
       <MoviePagination fetchData={fetchData} movieData={movies} />
     </Box>
   );

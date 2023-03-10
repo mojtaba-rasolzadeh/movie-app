@@ -13,6 +13,7 @@ import Recommendations from "../../components/pages/movie/recommendations/Recomm
 import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
+import { Helmet } from "react-helmet-async";
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -45,6 +46,9 @@ const Movie = () => {
         <Loader />
       ) : (
         <>
+          <Helmet>
+            <title>{`${movie.title} (${movie.release_date?.slice(0, 4)})`} | Movie App</title>
+          </Helmet>
           <MovieDetails {...movie} />
           <Grid container spacing={2} sx={{ my: 3 }}>
             <Grid xs={12} sm={9}>
