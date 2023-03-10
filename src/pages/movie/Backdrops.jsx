@@ -17,23 +17,7 @@ import { getLanguagesList, getMovie } from '../../services/MovieService';
 import BackToMain from '../../components/constant/BackToMain';
 import { Loader } from '../../components';
 import Images from '../../components/pages/movie/backdrops/Images';
-
-
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            {...other}
-        >
-            {value === index && <Box>{children}</Box>}
-        </div>
-    );
-}
+import TabPanel from '../../components/constant/TabPanel';
 
 function tabProps(index) {
     return {
@@ -41,7 +25,6 @@ function tabProps(index) {
         "aria-controls": `vertical-tabpanel-${index}`,
     };
 }
-
 
 const Backdrops = () => {
     const { movieId } = useParams();
@@ -102,7 +85,7 @@ const Backdrops = () => {
             {
                 loading ? <Loader /> :
                     <Box sx={{ py: 5 }}>
-                        <BackToMain movie={movie} />
+                        <BackToMain media_type="movie" media_data={movie} searchParams={movieId}  />
                         <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5 }}>
                             <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
                                 <Card sx={{ maxWidth: 258 }}>
