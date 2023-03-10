@@ -3,7 +3,6 @@ import { Avatar, Typography } from "@mui/material";
 import Slider from "react-slick";
 
 import { ViewMoreButton } from "../../../constant";
-import { Link } from "react-router-dom";
 import ViewAllMedia from "./ViewAllMedia";
 
 const settings = {
