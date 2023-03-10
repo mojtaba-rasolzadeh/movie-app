@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Box, Typography, Divider, Chip, } from "@mui/material";
 
 import { getDiscoverTvShowWithGenres, getGenresTvShowList } from "../../services/MovieService";
 import TvShowPagination from "../../components/pages/tvShows/TvShowPagination";
 import { Loader } from "../../components";
 import TvShowItem from "../../components/pages/tvShows/TvShowItem";
-import { Helmet } from "react-helmet-async";
 
 const TvShowsGenre = () => {
     const { genreId } = useParams();

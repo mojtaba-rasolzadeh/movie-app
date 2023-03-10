@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -45,6 +46,9 @@ const TvShow = () => {
         <Loader />
       ) : (
         <>
+          <Helmet>
+            <title>{`${tvShow.name} (TV Series ${tvShow.first_air_date?.slice(0, 4)})`} | Movie App</title>
+          </Helmet>
           <TvShowDetails {...tvShow} />
           <Grid container spacing={2} sx={{ my: 3 }}>
             <Grid xs={12} sm={9}>
