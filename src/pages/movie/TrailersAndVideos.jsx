@@ -13,11 +13,11 @@ import VideosPanel from '../../components/pages/movie/trailersAndVideos/VideosPa
 const videoType = ["Trailer", "Teaser", "Clip", "Behind the Scenes", "Blooper", "Featurette"];
 
 const TrailersAndVideos = () => {
+    
     const { movieId } = useParams();
     const [loading, setLoading] = useState(false);
     const [movie, setMovie] = useState({});
     const [videos, setVideos] = useState([]);
-
     const [value, setValue] = useState(0);
 
     useEffect(() => {
