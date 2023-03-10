@@ -11,7 +11,12 @@ const BackdropLanguagesLength = ({ image, displayLanguage, displayLengthItem }) 
                 justifyContent: "space-between",
                 alignItems: "center",
             }}>
-            {displayLanguage(image)}
+            <Typography
+                variant="subtitle2"
+                sx={{
+                    textTransform: 'capitalize',
+                    letterSpacing: 1
+                }}>{displayLanguage(image)}</Typography>
             <Chip
                 label={
                     <Typography

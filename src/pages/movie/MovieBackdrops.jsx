@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { getLanguagesList, getMovie } from '../../services/MovieService';
@@ -27,25 +27,17 @@ const MovieBackdrops = () => {
     };
 
     const displayLengthItem = (item) => {
-        let results = images.filter(image => image.iso_639_1 === item);
-        return results.length;
+        return images
+            .filter(image => image.iso_639_1 === item)?.length;
     };
 
     const displayLanguage = (imageLanguage) => {
-        let result;
         if (typeof imageLanguage !== 'string') {
-            result = 'No Language';
+            return 'No Language';
         } else {
-            result = languagesList
+            return languagesList
                 .find(item => item.iso_639_1 === imageLanguage)?.english_name;
         }
-        return <Typography
-            key={result}
-            variant="subtitle2"
-            sx={{
-                textTransform: 'capitalize',
-                letterSpacing: 1
-            }}>{result}</Typography>
     }
 
     useEffect(() => {
@@ -67,7 +59,7 @@ const MovieBackdrops = () => {
         }
         fetchData();
     }, []);
-    
+
     return (
         <>
             {
