@@ -25,7 +25,7 @@ import Review from "./pages/Review";
 import MovieReviews from "./pages/movie/MovieReviews";
 import TrailersAndVideos from "./pages/movie/TrailersAndVideos";
 import MovieBackdrops from "./pages/movie/MovieBackdrops";
-import Posters from "./pages/movie/Posters";
+import MoviePosters from "./pages/movie/MoviePosters";
 import TvShow from "./pages/tvShow/TvShow";
 import TvShowsGenre from "./pages/tvShow/TvShowsGenre";
 import TvShowReviews from "./pages/tvShow/TvShowReviews";
@@ -88,7 +88,7 @@ const App = () => {
           <Route path="/movie/:movieId/reviews" element={<MovieReviews />} />{" "}
           <Route path="/movie/:movieId/videos" element={<TrailersAndVideos />} />{" "}
           <Route path="/movie/:movieId/images/backdrops" element={<MovieBackdrops />} />{" "}
-          <Route path="/movie/:movieId/images/posters" element={<Posters />} />{" "}
+          <Route path="/movie/:movieId/images/posters" element={<MoviePosters />} />{" "}
           {/* TV Shows */}
           <Route path="/tv" element={<TvShows />} />{" "}
           <Route path="/tv/trending" element={<TrendingTvShows />} />{" "}
