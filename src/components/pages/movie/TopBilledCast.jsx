@@ -85,7 +85,7 @@ const TopBilledCast = ({ id, title, credits }) => {
           slidesToShow: 1,
           slidesToScroll: 1,
           initialSlide: 1,
-          arrows:true,
+          arrows: true,
           dots: false
         }
       },
@@ -93,7 +93,7 @@ const TopBilledCast = ({ id, title, credits }) => {
   };
   return (
     <>
-      <Typography variant="h5" gutterBottom sx={{mb:4}}>
+      <Typography variant="h5" gutterBottom sx={{ mb: 4 }}>
         Top Billed Cast
       </Typography>
       {_.isEmpty(credits?.cast) ? (
@@ -174,11 +174,7 @@ const TopBilledCast = ({ id, title, credits }) => {
               )
             }
           </Slider >
-          <Box
-            sx={{
-              my: 3,
-            }}
-          >
+          <Box sx={{ my: 3 }}>
             <Link
               to={`/movie/${id}-${title?.split(/[\s:,]/)
                 .join("-")
