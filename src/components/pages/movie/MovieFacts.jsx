@@ -24,7 +24,12 @@ const MovieFacts = ({
         <div>
           <Typography
             variant="body1"
-            sx={{ letterSpacing: 2, fontWeight: "700" }}
+            sx={{
+              letterSpacing: 2, fontWeight: "700",
+              background: 'linear-gradient(to right,#ED4700,#E76F00)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
           >
             Original Title:
           </Typography>
@@ -36,7 +41,12 @@ const MovieFacts = ({
       <div>
         <Typography
           variant="body1"
-          sx={{ letterSpacing: 2, fontWeight: "700" }}
+          sx={{
+            letterSpacing: 2, fontWeight: "700",
+            background: 'linear-gradient(to right,#ED4700,#E76F00)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
         >
           Status:
         </Typography>
@@ -47,7 +57,12 @@ const MovieFacts = ({
       <div>
         <Typography
           variant="body1"
-          sx={{ letterSpacing: 2, fontWeight: "700" }}
+          sx={{
+            letterSpacing: 2, fontWeight: "700",
+            background: 'linear-gradient(to right,#ED4700,#E76F00)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
         >
           Original Language:
         </Typography>
@@ -63,7 +78,12 @@ const MovieFacts = ({
       <div>
         <Typography
           variant="body1"
-          sx={{ letterSpacing: 2, fontWeight: "700" }}
+          sx={{
+            letterSpacing: 2, fontWeight: "700",
+            background: 'linear-gradient(to right,#ED4700,#E76F00)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
         >
           Budget:
         </Typography>
@@ -74,7 +94,12 @@ const MovieFacts = ({
       <div>
         <Typography
           variant="body1"
-          sx={{ letterSpacing: 2, fontWeight: "700" }}
+          sx={{
+            letterSpacing: 2, fontWeight: "700",
+            background: 'linear-gradient(to right,#ED4700,#E76F00)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+          }}
         >
           Revenue:
         </Typography>

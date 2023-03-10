@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import { Box, Typography, Chip } from "@mui/material";
-import { lime } from "@mui/material/colors";
 
 const Keywords = ({ keywords }) => {
   return (
     <Box sx={{ mb: 4 }}>
       <Typography
         variant="body1"
-        sx={{ letterSpacing: 2, fontWeight: "700" }}
+        sx={{
+          letterSpacing: 2,
+          fontWeight: "700",
+          background: 'linear-gradient(to right,#ED4700,#E76F00)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
       >
         Keywords:
       </Typography>
       {_.isEmpty(keywords?.keywords) ? (
-        <Typography variant="body2" sx={{ pl:1}}>
+        <Typography variant="body2" sx={{ pl: 1 }}>
           No keywords have been added.
         </Typography>
       ) : (
