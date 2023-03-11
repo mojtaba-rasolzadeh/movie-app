@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Grid from "@mui/material/Unstable_Grid2";
+import { Helmet } from "react-helmet-async";
+import { Box, Divider } from "@mui/material";
 
 import { Loader } from "../../components/constant";
 import { getTv } from "../../services/MovieService";
-import Actors from "../../components/pages/tvShows/Actors";
-import Crew from "../../components/pages/tvShows/Crew";
+import Actors from "../../components/pages/tvShows/castAndCrew/Actors";
 import BackToMain from "../../components/constant/BackToMain";
+import CastAndCrewMenu from "../../components/pages/tvShows/castAndCrew/CastAndCrewMenu";
+import CastAndCrewTitle from "../../components/pages/tvShows/castAndCrew/CastAndCrewTitle";
+import Crews from "../../components/pages/tvShows/castAndCrew/Crews";
 
 const TvShowCastAndCrew = () => {
     const { tvId } = useParams();
+    const [selectedIndex, setSelectedIndex] = useState(0);
     const [loading, setLoading] = useState(false);
     const [tvShow, setTvshow] = useState([]);
     const [castAndCrew, setCastAndCrew] = useState([]);
@@ -40,15 +44,16 @@ const TvShowCastAndCrew = () => {
                 <Loader />
             ) : (
                 <>
+                    <Helmet>
+                        <title>{`${tvShow.name} (TV Series ${tvShow.first_air_date?.slice(0, 4)}) - Cast & Crew`} | Movie App</title>
+                    </Helmet>
                     <BackToMain media_data={tvShow} media_type="tv" searchParams={tvId} />
-                    <Grid container spacing={3} sx={{ my: 2 }}>
-                        <Grid xs={6}>
-                            <Actors castAndCrew={castAndCrew} />
-                        </Grid>
-                        <Grid xs={6}>
-                            <Crew castAndCrew={castAndCrew} />
-                        </Grid>
-                    </Grid>
+                    <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <CastAndCrewTitle selectedIndex={selectedIndex} castAndCrew={castAndCrew} />
+                        <CastAndCrewMenu selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                    </Box>
+                    <Divider />
+                    {selectedIndex === 0 ? <Actors castAndCrew={castAndCrew} /> : <Crews castAndCrew={castAndCrew} />}
                 </>
             )}
         </>

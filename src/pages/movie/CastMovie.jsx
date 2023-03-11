@@ -14,9 +14,7 @@ import CastAndCrewTitle from "../../components/pages/movie/castMovie/CastAndCrew
 const CastMovie = () => {
 
   const { movieId } = useParams();
-
   const [selectedIndex, setSelectedIndex] = useState(0);
-
   const [loading, setLoading] = useState(false);
   const [movie, setMovie] = useState([]);
   const [castAndCrew, setCastAndCrew] = useState([]);

@@ -13,7 +13,7 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                             background: 'linear-gradient(to right,#ED4700,#E76F00)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                        }}>actors</Typography>
+                        }}>series actors</Typography>
                         <Chip
                             label={
                                 <Typography variant="body2">
@@ -32,7 +32,7 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                             background: 'linear-gradient(to right,#ED4700,#E76F00)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                        }}>crews</Typography>
+                        }}>series crews</Typography>
                         <Chip
                             label={
                                 <Typography variant="body2">
