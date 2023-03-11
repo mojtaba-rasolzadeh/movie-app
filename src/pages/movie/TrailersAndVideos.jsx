@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -13,7 +14,7 @@ import VideosPanel from '../../components/pages/movie/trailersAndVideos/VideosPa
 const videoType = ["Trailer", "Teaser", "Clip", "Behind the Scenes", "Blooper", "Featurette"];
 
 const TrailersAndVideos = () => {
-    
+
     const { movieId } = useParams();
     const [loading, setLoading] = useState(false);
     const [movie, setMovie] = useState({});
@@ -41,28 +42,33 @@ const TrailersAndVideos = () => {
         <>
             {
                 loading ? <Loader /> :
-                    <Box sx={{ py: 5 }}>
-                        <BackToMain media_type="movie" media_data={movie} searchParams={movieId} />
-                        <Grid container spacing={{ xs: 3, sm: 1 }} sx={{ width: "100%", my: 5 }}>
-                            <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
-                                <VideosPanel
-                                    videos={videos}
-                                    videoType={videoType}
-                                    value={value}
-                                    setValue={setValue}
-                                />
+                    <>
+                        <Helmet>
+                            <title>{`${movie.title} (${movie.release_date?.slice(0, 4)}) - Trailers & Videos`} | Movie App</title>
+                        </Helmet>
+                        <Box sx={{ py: 5 }}>
+                            <BackToMain media_type="movie" media_data={movie} searchParams={movieId} />
+                            <Grid container spacing={{ xs: 3, sm: 1 }} sx={{ width: "100%", my: 5 }}>
+                                <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
+                                    <VideosPanel
+                                        videos={videos}
+                                        videoType={videoType}
+                                        value={value}
+                                        setValue={setValue}
+                                    />
+                                </Grid>
+                                <Grid xs={12} sm={6} md={8} lg={8} xl={10}>
+                                    {
+                                        videoType.map((type, index) => (
+                                            <TabPanel key={index} value={value} index={index}>
+                                                <Videos allVideos={videos} videoType={type} moiveTitle={movie} />
+                                            </TabPanel>
+                                        ))
+                                    }
+                                </Grid>
                             </Grid>
-                            <Grid xs={12} sm={6} md={8} lg={8} xl={10}>
-                                {
-                                    videoType.map((type, index) => (
-                                        <TabPanel key={index} value={value} index={index}>
-                                            <Videos allVideos={videos} videoType={type} moiveTitle={movie} />
-                                        </TabPanel>
-                                    ))
-                                }
-                            </Grid>
-                        </Grid>
-                    </Box>
+                        </Box>
+                    </>
             }
         </>
     );
