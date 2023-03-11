@@ -1,9 +1,10 @@
 import _ from "lodash";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar } from "@mui/material";
 import Slider from "react-slick";
 
 import { ViewMoreButton } from "../../../constant";
 import ViewAllMedia from "./ViewAllMedia";
+import NoMediaMessage from "./NoMediaMessage";
 
 const settings = {
   dots: true,
@@ -56,10 +57,7 @@ const Backdrops = ({ id, title, images }) => {
 
   return (
     <>
-      {_.isEmpty(images.backdrops) ? (
-        <Typography sx={{ color: "text.secondary", fontWeight: 300 }}>
-          {`No backdrops have been added to ${title}.`}
-        </Typography>
+      {_.isEmpty(images.backdrops) ? (<NoMediaMessage mediaType="backdrops" movieTitle={title} />
       ) : (
         <Slider {...settings}>
           {images?.backdrops
