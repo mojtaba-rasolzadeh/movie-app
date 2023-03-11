@@ -1,7 +1,9 @@
 import _ from "lodash";
 import { Avatar, Typography } from "@mui/material";
-import { ViewMoreButton } from "../../../constant";
 import Slider from "react-slick";
+
+import { ViewMoreButton } from "../../../constant";
+import ViewAllMedia from "./ViewAllMedia";
 
 const Backdrops = ({ id, name, images }) => {
   const settings = {
@@ -80,6 +82,7 @@ const Backdrops = ({ id, name, images }) => {
           )}
         </Slider>
       )}
+      <ViewAllMedia tvShowId={id} tvShowTitle={name} link="images/backdrops" text="View All Backdrops" />
     </>
   );
 };
