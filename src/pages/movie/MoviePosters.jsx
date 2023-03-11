@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -64,29 +65,34 @@ const MoviePosters = () => {
         <>
             {
                 loading ? <Loader /> :
-                    <Box sx={{ py: 5 }}>
-                        <BackToMain media_data={movie} media_type="movie" searchParams={movieId} />
-                        <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5 }}>
-                            <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
-                                <PostersPanel
-                                    value={value}
-                                    handleChange={handleChange}
-                                    imageLanguageArray={imageLanguageArray}
-                                    displayLanguage={displayLanguage}
-                                    displayLengthItem={displayLengthItem}
-                                />
+                    <>
+                        <Helmet>
+                            <title>{`${movie.title} (${movie.release_date?.slice(0, 4)}) - Posters`} | Movie App</title>
+                        </Helmet>
+                        <Box sx={{ py: 5 }}>
+                            <BackToMain media_data={movie} media_type="movie" searchParams={movieId} />
+                            <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5 }}>
+                                <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
+                                    <PostersPanel
+                                        value={value}
+                                        handleChange={handleChange}
+                                        imageLanguageArray={imageLanguageArray}
+                                        displayLanguage={displayLanguage}
+                                        displayLengthItem={displayLengthItem}
+                                    />
+                                </Grid>
+                                <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
+                                    {
+                                        imageLanguageArray.map((image, index) => (
+                                            <TabPanel key={index} value={value} index={index}>
+                                                <Images allImages={images} imageType={image} moiveTitle={movie} />
+                                            </TabPanel>
+                                        ))
+                                    }
+                                </Grid>
                             </Grid>
-                            <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
-                                {
-                                    imageLanguageArray.map((image, index) => (
-                                        <TabPanel key={index} value={value} index={index}>
-                                            <Images allImages={images} imageType={image} moiveTitle={movie} />
-                                        </TabPanel>
-                                    ))
-                                }
-                            </Grid>
-                        </Grid>
-                    </Box>
+                        </Box>
+                    </>
             }
         </>
     );
