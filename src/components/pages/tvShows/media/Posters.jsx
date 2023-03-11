@@ -1,7 +1,9 @@
 import _ from "lodash";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar } from "@mui/material";
 import { ViewMoreButton } from "../../../constant";
 import Slider from "react-slick";
+import ViewAllMedia from "./ViewAllMedia";
+import NoMediaMessage from "./NoMediaMessage";
 
 const Posters = ({ id, name, images }) => {
   const settings = {
@@ -87,11 +89,7 @@ const Posters = ({ id, name, images }) => {
 
   return (
     <>
-      {_.isEmpty(images.posters) ? (
-        <Typography sx={{ color: "text.secondary", fontWeight: 300 }}>
-          {`No posters have been added to ${name}.`}
-        </Typography>
-      ) : (
+      {_.isEmpty(images.posters) ? (<NoMediaMessage mediaType="posters" tvShowTitle={name} />) : (
         <Slider {...settings}>
           {images.posters?.slice(0, 6)
             .map((item, index) => (
@@ -114,6 +112,7 @@ const Posters = ({ id, name, images }) => {
           )}
         </Slider>
       )}
+      <ViewAllMedia tvShowId={id} tvShowTitle={name} link="images/posters" text="View All Posters" />
     </>
   );
 };

@@ -1,9 +1,10 @@
 import _ from "lodash";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar } from "@mui/material";
 import Slider from "react-slick";
 
 import { ViewMoreButton } from "../../../constant";
 import ViewAllMedia from "./ViewAllMedia";
+import NoMediaMessage from "./NoMediaMessage";
 
 const Backdrops = ({ id, name, images }) => {
   const settings = {
@@ -55,11 +56,7 @@ const Backdrops = ({ id, name, images }) => {
 
   return (
     <>
-      {_.isEmpty(images.backdrops) ? (
-        <Typography sx={{ color: "text.secondary", fontWeight: 300 }}>
-          {`No backdrops have been added to ${name}.`}
-        </Typography>
-      ) : (
+      {_.isEmpty(images.backdrops) ? (<NoMediaMessage mediaType="backdrops" tvShowTitle={name} />) : (
         <Slider {...settings}>
           {images?.backdrops.slice(0, 6)
             .map((item, index) => (
