@@ -1,7 +1,8 @@
 import _ from "lodash";
-import { Box, Chip, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { yellow } from "@mui/material/colors";
-import Review from "./Review";
+
+import { ReviewsLength, Review } from "./";
 
 const Social = ({ id, name, reviews }) => {
   return (
@@ -25,22 +26,8 @@ const Social = ({ id, name, reviews }) => {
             gap: 1.5,
           }}
         >
-          <Typography sx={{ color: yellow[700] }}>Reviews </Typography>
-          <Chip
-            label={
-              <Typography
-                variant="caption"
-                component="span"
-                color="text.secondary"
-                sx={{ fontWeight: "700" }}
-              >
-                {reviews?.results.length}
-              </Typography>
-            }
-            color="error"
-            size="small"
-            sx={{ px: 0.75 }}
-          />
+          <Typography sx={{ letterSpacing: 1, color: yellow[700] }}>Reviews </Typography>
+          <ReviewsLength reviews={reviews} />
         </Box>
       </Box>
       {_.isEmpty(reviews?.results) ? (
@@ -50,9 +37,7 @@ const Social = ({ id, name, reviews }) => {
         >
           {` We don't have any reviews for ${name}.`}
         </Typography>
-      ) : (
-        <Review tvShowId={id} tvShowTitle={name} reviews={reviews} />
-      )}
+      ) : (<Review tvShowId={id} tvShowTitle={name} reviews={reviews} />)}
     </Box>
   );
 };

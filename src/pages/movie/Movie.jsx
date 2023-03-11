@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
@@ -13,7 +14,6 @@ import Recommendations from "../../components/pages/movie/recommendations/Recomm
 import SocialLinks from "../../components/pages/movie/SocialLinks";
 import MovieFacts from "../../components/pages/movie/MovieFacts";
 import Keywords from "../../components/pages/movie/Keywords";
-import { Helmet } from "react-helmet-async";
 
 const Movie = () => {
   const { movieId } = useParams();
