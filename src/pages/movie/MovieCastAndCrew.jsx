@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Box, Divider } from '@mui/material';
 
 import { Loader } from "../../components/constant";
@@ -11,7 +12,7 @@ import CastAndCrewMenu from "../../components/pages/movie/castMovie/CastAndCrewM
 import CastAndCrewTitle from "../../components/pages/movie/castMovie/CastAndCrewTitle";
 
 
-const CastMovie = () => {
+const MovieCastAndCrew = () => {
 
   const { movieId } = useParams();
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -43,8 +44,11 @@ const CastMovie = () => {
         <Loader />
       ) : (
         <>
+          <Helmet>
+            <title>{`${movie.title} (${movie.release_date?.slice(0, 4)}) - Cast & Crew`} | Movie App</title>
+          </Helmet>
           <BackToMain media_data={movie} media_type="movie" searchParams={movieId} />
-          <Box style={{ display: 'flex',flexWrap:'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Box style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
             <CastAndCrewTitle selectedIndex={selectedIndex} castAndCrew={castAndCrew} />
             <CastAndCrewMenu selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
           </Box>
@@ -56,4 +60,4 @@ const CastMovie = () => {
   );
 };
 
-export default CastMovie;
+export default MovieCastAndCrew;

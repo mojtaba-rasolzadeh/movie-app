@@ -5,12 +5,7 @@ import { MovieContext } from "./context/MovieContext";
 import { MainLayout, Navbar } from "./components";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
-import {
-  PopularMovies,
-  NowPlayingMovies,
-  TopRatedMovies,
-  UpcomingMovies,
-} from "./pages/movie";
+import { PopularMovies, NowPlayingMovies, TopRatedMovies, UpcomingMovies } from "./pages/movie";
 import PopularTvShows from "./pages/tvShow/PopularTvShows";
 import AiringTodayTvShows from "./pages/tvShow/AiringTodayTvShows";
 import OnTvShows from "./pages/tvShow/OnTvShows";
@@ -19,7 +14,7 @@ import PopularPeople from "./pages/people/PopularPeople";
 import Movie from "./pages/movie/Movie";
 import MoviesGenre from "./pages/movie/MoviesGenre";
 import Person from "./pages/Person";
-import CastMovie from "./pages/movie/CastMovie";
+import MovieCastAndCrew from "./pages/movie/MovieCastAndCrew";
 import MoviesKeyword from "./pages/movie/MoviesKeyword";
 import Review from "./pages/Review";
 import MovieReviews from "./pages/movie/MovieReviews";
@@ -79,7 +74,7 @@ const App = () => {
           <Route path="/movie/:movieId" element={<Movie />} />{" "}
           <Route path="/genre/:genreId/movie" element={<MoviesGenre />} />{" "}
           <Route path="/person/:personId" element={<Person />} />{" "}
-          <Route path="/movie/:movieId/cast" element={<CastMovie />} />{" "}
+          <Route path="/movie/:movieId/cast" element={<MovieCastAndCrew />} />{" "}
           <Route
             path="/keyword/:keywordId/movie"
             element={<MoviesKeyword />}
