@@ -54,7 +54,7 @@ const TvShow = () => {
             <Grid xs={12} sm={9}>
               <SeriesCast {...tvShow} />
               <Divider />
-              <CurrentSeason {...tvShow} />
+              <CurrentSeason tvShow={tvShow} />
               <Divider />
               <Social {...tvShow} />
               <Divider />
