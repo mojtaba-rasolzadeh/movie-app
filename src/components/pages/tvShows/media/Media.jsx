@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Box, Typography, Tabs, Tab, Chip } from "@mui/material";
-import { orange, yellow } from "@mui/material/colors";
+import { Box, Typography, Tabs, Tab } from "@mui/material";
 
+import { Videos, Backdrops, Posters, MediaItemLength } from "./";
 import TabPanel from '../../../constant/TabPanel';
-import { Videos, Backdrops, Posters } from "./";
 
 function tabProps(index) {
   return {
@@ -18,6 +17,7 @@ const Media = ({ id, name, videos, images }) => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <Box sx={{ width: "100%", my: 4 }}>
       <Box sx={{ display: "flex", alignItems: "center", gap: 4, my: 3 }}>
@@ -30,81 +30,10 @@ const Media = ({ id, name, videos, images }) => {
           variant="scrollable"
           scrollButtons="auto"
           aria-label="media label"
-          sx={{
-            ".MuiTabs-indicator": {
-              backgroundColor: orange[500],
-            },
-          }}
-        >
-          <Tab
-            label={
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700], textTransform: 'capitalize', letterSpacing: 1 }}>Videos </Typography>
-                <Chip
-                  label={
-                    <Typography
-                      variant="caption"
-                      component="span"
-                      color="text.secondary"
-                      sx={{ fontWeight: "700" }}
-                    >
-                      {videos?.results.length}
-                    </Typography>
-                  }
-                  color="error"
-                  size="small"
-                  sx={{ px: 0.75 }}
-                />
-              </Box>
-            }
-            {...tabProps(0)}
-          />
-          <Tab
-            label={
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700], textTransform: 'capitalize', letterSpacing: 1 }}>Backdrops </Typography>
-                <Chip
-                  label={
-                    <Typography
-                      variant="caption"
-                      component="span"
-                      color="text.secondary"
-                      sx={{ fontWeight: "700" }}
-                    >
-                      {images?.backdrops.length}
-                    </Typography>
-                  }
-                  color="error"
-                  size="small"
-                  sx={{ px: 0.75 }}
-                />
-              </Box>
-            }
-            {...tabProps(1)}
-          />
-          <Tab
-            label={
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                <Typography sx={{ color: yellow[700], textTransform: 'capitalize', letterSpacing: 1 }}>Posters </Typography>
-                <Chip
-                  label={
-                    <Typography
-                      variant="caption"
-                      component="span"
-                      color="text.secondary"
-                      sx={{ fontWeight: "700" }}
-                    >
-                      {images?.posters.length}
-                    </Typography>
-                  }
-                  color="error"
-                  size="small"
-                  sx={{ px: 0.75 }}
-                />
-              </Box>
-            }
-            {...tabProps(2)}
-          />
+          sx={{ ".MuiTabs-indicator": { background: 'linear-gradient(to right,#ED4700,#E76F00)' } }}>
+          <Tab label={<MediaItemLength mediaTitle="videos" media={videos?.results} />} {...tabProps(0)} />
+          <Tab label={<MediaItemLength mediaTitle="backdrops" media={images?.backdrops} />} {...tabProps(1)} />
+          <Tab label={<MediaItemLength mediaTitle="posters" media={images?.posters} />} {...tabProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
