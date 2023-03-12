@@ -82,7 +82,6 @@ export const getTvShows = (tvShowsType = "popular", page = 1) => {
 
 // people start
 export const getPeople = (peopleType = "popular", page = 1) => {
-    // /person/popular?api_key=e5f34d07a7faa12dae140e0a4798d6ba&language=en-US&page=2
     return axios.get(`
     ${url}/person/${peopleType}?api_key=${API_KEY}&language=en-US&page=${page}
   `);

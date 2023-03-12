@@ -3,10 +3,12 @@ import { Pagination } from "@mui/material";
 
 const MoviePagination = ({ movieData, fetchData }) => {
   const [page, setPage] = useState(1);
+
   const handleChagePage = (event, value) => {
     setPage(value);
     fetchData(value);
   };
+
   return (
     <>
       {movieData?.total_pages > 1 && (
@@ -15,7 +17,14 @@ const MoviePagination = ({ movieData, fetchData }) => {
           page={page}
           onChange={handleChagePage}
           variant="outlined"
-          sx={{ display: "flex", justifyContent: "center", mt: 3, '.MuiPaginationItem-root.Mui-selected': { backgroundColor: '#f3001d' }, '.MuiPaginationItem-root:hover': { backgroundColor: '#f3001d' } }}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            mt: 3,
+            '.MuiPaginationItem-root.Mui-selected':
+              { backgroundColor: '#f3001d' },
+            '.MuiPaginationItem-root:hover': { backgroundColor: '#f3001d' }
+          }}
         />
       )}
     </>
