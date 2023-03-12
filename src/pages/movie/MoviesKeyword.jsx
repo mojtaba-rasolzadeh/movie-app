@@ -57,13 +57,13 @@ const MoviesKeyword = () => {
             sx={{
               fontSize: "2rem",
               fontWeight: 700,
-              letterSpacing: 2,
+              letterSpacing: 1,
               background: 'linear-gradient(to right,#ED4700,#E76F00)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
           >
-            {keyword.name}
+            {keyword?.name}
           </Typography>
         </Link>
         {movies.total_results && (

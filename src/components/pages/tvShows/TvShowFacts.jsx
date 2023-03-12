@@ -1,5 +1,6 @@
-import { Avatar, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Avatar, Box, Typography } from "@mui/material";
+import { yellow } from "@mui/material/colors";
 
 import Keywords from "./Keywords";
 
@@ -28,7 +29,7 @@ const TvShowFacts = ({
                 <div>
                     <Typography
                         variant="body1"
-                        sx={{ letterSpacing: 2, fontWeight: "700" }}
+                        sx={{ letterSpacing: 2, fontWeight: "700", color: yellow[700] }}
                     >
                         Original Title:
                     </Typography>
@@ -40,7 +41,7 @@ const TvShowFacts = ({
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700" }}
+                    sx={{ letterSpacing: 2, fontWeight: "700", color: yellow[700] }}
                 >
                     Status:
                 </Typography>
@@ -51,11 +52,11 @@ const TvShowFacts = ({
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700" }}
+                    sx={{ letterSpacing: 2, fontWeight: "700", color: yellow[700] }}
                 >
                     Network:
                 </Typography>
-                <Box sx={{ display: 'flex',pl:1 }}>
+                <Box sx={{ display: 'flex', pl: 1 }}>
                     {networks && networks.map((network) => (
                         <Link key={network.id} to={`/network/${network.id}`} style={{ textDecoration: 'none' }}>
                             <Avatar variant="square" sx={{ maxWidth: 260, width: 1, maxHeight: 30 }} src={`https://www.themoviedb.org/t/p/h30${network.logo_path}`} alt={network.name} />
@@ -66,7 +67,7 @@ const TvShowFacts = ({
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700" }}
+                    sx={{ letterSpacing: 2, fontWeight: "700", color: yellow[700] }}
                 >
                     Type:
                 </Typography>
@@ -77,7 +78,7 @@ const TvShowFacts = ({
             <div>
                 <Typography
                     variant="body1"
-                    sx={{ letterSpacing: 2, fontWeight: "700" }}
+                    sx={{ letterSpacing: 2, fontWeight: "700", color: yellow[700] }}
                 >
                     Original Language:
                 </Typography>

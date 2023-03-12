@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import { yellow } from "@mui/material/colors";
 
 const MovieFacts = ({
   languagesList,
@@ -26,9 +27,7 @@ const MovieFacts = ({
             variant="body1"
             sx={{
               letterSpacing: 2, fontWeight: "700",
-              background: 'linear-gradient(to right,#ED4700,#E76F00)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
+              color: yellow[700]
             }}
           >
             Original Title:
@@ -43,9 +42,7 @@ const MovieFacts = ({
           variant="body1"
           sx={{
             letterSpacing: 2, fontWeight: "700",
-            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: yellow[700]
           }}
         >
           Status:
@@ -59,9 +56,7 @@ const MovieFacts = ({
           variant="body1"
           sx={{
             letterSpacing: 2, fontWeight: "700",
-            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: yellow[700]
           }}
         >
           Original Language:
@@ -80,9 +75,7 @@ const MovieFacts = ({
           variant="body1"
           sx={{
             letterSpacing: 2, fontWeight: "700",
-            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: yellow[700]
           }}
         >
           Budget:
@@ -96,9 +89,7 @@ const MovieFacts = ({
           variant="body1"
           sx={{
             letterSpacing: 2, fontWeight: "700",
-            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: yellow[700]
           }}
         >
           Revenue:
