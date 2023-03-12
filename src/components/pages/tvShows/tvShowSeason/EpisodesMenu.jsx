@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem } from "@mui/material";
+import { List, ListItem, ListItemIcon, ListItemText, Menu, MenuItem, Typography } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 const EpisodesMenu = ({ episodes, selectedIndex, setSelectedIndex }) => {
@@ -32,7 +32,18 @@ const EpisodesMenu = ({ episodes, selectedIndex, setSelectedIndex }) => {
                     onClick={handleClickListItem}
                     sx={{ display: 'flex', alignItems: 'center', gap: 1, borderRadius: 1 }}
                 >
-                    <ListItemText primary="Episodes" sx={{ letterSpacing: 1 }} />
+                    <ListItemText primary={
+                        <Typography sx={{
+                            fontWeight: 700,
+                            background: 'linear-gradient(to right,#ED4700,#E76F00)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            letterSpacing: 1,
+                        }} >
+                            Episodes
+                        </Typography>
+                    }
+                    />
                     <ListItemIcon sx={{ minWidth: 0 }}>
                         {open ? <ExpandLess fontSize='small' /> : <ExpandMore fontSize='small' />}
                     </ListItemIcon>

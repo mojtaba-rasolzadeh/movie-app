@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 import { Avatar, Box, Typography } from "@mui/material";
 import { KeyboardBackspace } from "@mui/icons-material";
-import { lime, blueGrey } from "@mui/material/colors";
 
 const BackToSeasonList = ({ poster_path, air_date, name, searchParams }) => {
 
     return (
-        <Box sx={{ my: 4, display: "flex", gap: 2, bgcolor: blueGrey[900], p: 2, borderRadius: 1 }}>
+        <Box sx={{ my: 4, display: "flex", gap: 2, p: 2, borderRadius: 1 }}>
             <Link
                 to={``}
                 style={{ textDecoration: "none" }}
@@ -27,16 +26,16 @@ const BackToSeasonList = ({ poster_path, air_date, name, searchParams }) => {
                         sx={{
                             letterSpacing: 1,
                             fontWeight: "700",
-                            color: lime[500],
-                            "&:hover": { color: lime[700] },
+                            color: '#fff',
+                            "&:hover": { color: 'text.secondary' },
                         }}
                     >
                         {name}{" "}
                         <Typography
                             variant="h6"
-                            sx={{ display: "inline-block", color: lime[200] }}
+                            sx={{ display: "inline-block"}}
                         >
-                            {`( ${air_date && air_date.substring(0, 4)} )`}
+                            {`( ${air_date?.substring(0, 4)} )`}
                         </Typography>
                     </Typography>
                 </Link>

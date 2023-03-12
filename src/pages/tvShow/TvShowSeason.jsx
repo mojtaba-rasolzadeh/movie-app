@@ -1,17 +1,18 @@
-import { ExpandMore } from '@mui/icons-material';
-import { Accordion, AccordionDetails, AccordionSummary, Avatar, Box, Button, Card, CardActionArea, CardContent, Typography } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
-import BackToSeasonList from '../../components/pages/tvShows/tvShowSeason/BackToSeasonList';
+import { useParams } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
+import { Box, Divider } from '@mui/material';
 
 import { getTvSeasonDetails } from '../../services/MovieService';
+import { BackToSeasonList, EpisodesLength, Episode, GuestStarItemLength, GuestStar, Crews, CrewItemLength, EpisodesMenu } from '../../components/pages/tvShows/tvShowSeason';
+import { Loader } from '../../components';
 
 const TvShowSeason = () => {
     const { tvId, seasonId } = useParams();
     const [loading, setLoading] = useState(false);
-    const [showGuestStars, setShowGuestStars] = useState(false);
     const [season, setSeason] = useState({});
     const [episodes, setEpisodes] = useState([]);
+    const [selectedIndex, setSelectedIndex] = useState(0)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -31,50 +32,42 @@ const TvShowSeason = () => {
         fetchData();
     }, [])
     return (
-        <Box>
-            <BackToSeasonList {...season} searchParams={tvId} />
-            <Typography variant="h5" color="text.secondary" mb={2} sx={{ letterSpacing: 1 }}>{`Episodes ${episodes && episodes.length}`}</Typography>
+        <>
             {
-                episodes && episodes.map((item) => (
-                    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                        <Card key={item.id} sx={{ display: 'flex' }}>
-                            <Avatar variant="rounded" sx={{ width: 227, height: 127 }} src={`https://www.themoviedb.org/t/p/w227_and_h127_bestv2${item.still_path}`} />
-                            <CardContent>
-                                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                                    <Typography variant="body1" sx={{ letterSpacing: 1 }} gutterBottom>
-                                        {`${item.episode_number}- ${item.name}`}
-                                    </Typography>
-                                    <Typography variant='body2'>{new Date(item.air_date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</Typography>
+                loading ? <Loader /> :
+                    <>
+                        {/* <Helmet>
+                            <title>{`${tvShow.name} (TV Series ${tvShow.first_air_date?.slice(0, 4)})`} | Movie App</title>
+                            </Helmet> */}
+                        <Box>
+                            <BackToSeasonList {...season} searchParams={tvId} />
+                            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                                <EpisodesLength episodes={episodes} />
+                                <EpisodesMenu episodes={episodes} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                            </Box>
+                            <Divider />
+                            <Box sx={{ display: 'flex', flexDirection: 'column', mt: 4 }}>
+                                <Episode {...episodes[selectedIndex]} />
+                                <Box sx={{ mb: 4 }}>
+                                    <GuestStarItemLength episode={episodes[selectedIndex]} />
+                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                                        {
+                                            episodes[selectedIndex]?.guest_stars.map((user) => (
+                                                <GuestStar key={user.id} {...user} />
+                                            ))
+                                        }
+                                    </Box>
                                 </Box>
-                                <Typography variant="caption" color="text.secondary" sx={{}}>{item.overview}</Typography>
-                            </CardContent>
-                        </Card>
-                        <Button variant='outlined' sx={{mb:2}} onClick={() => setShowGuestStars(!showGuestStars)}>Guest Stars <ExpandMore /></Button>
-                        {showGuestStars && <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-bettwen', gap: 1, my: 2 }}>
-                            {
-                                item.guest_stars && item.guest_stars.map((user) => (
-                                    <Card key={user.id} sx={{ display: "flex", height: 66, mb: 1.5, width: 361 }}>
-                                        <CardActionArea sx={{ width: 66, borderRadius: 1 }}>
-                                            <Link to={`/person/${user.id}`} style={{ textDecoration: 'none' }}>
-                                                <Avatar variant='rounded' sx={{ width: 66, height: 66 }} src={`https://www.themoviedb.org/t/p/w66_and_h66_face${user.profile_path}`} />
-                                            </Link>
-                                        </CardActionArea>
-                                        <CardContent>
-                                            <Link to={`/person/${user.id}`} style={{ textDecoration: 'none' }}>
-                                                <Typography variant='body1' sx={{ color: '#fff', '&:hover': { color: 'text.secondary' } }}>{user.name}</Typography>
-                                            </Link>
-                                            <Typography variant='caption' color="text.secondary">
-                                                {user.character}
-                                            </Typography>
-                                        </CardContent>
-                                    </Card>
-                                ))
-                            }
-                        </Box>}
-                    </Box>
-                ))
+                                <Divider />
+                                <Box>
+                                    <CrewItemLength episode={episodes[selectedIndex]} />
+                                    <Crews crew={episodes[selectedIndex]?.crew} />
+                                </Box>
+                            </Box>
+                        </Box>
+                    </>
             }
-        </Box>
+        </>
     );
 }
 

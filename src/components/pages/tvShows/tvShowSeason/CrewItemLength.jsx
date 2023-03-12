@@ -11,7 +11,11 @@ const CrewItemLength = ({ episode }) => {
         }}>
             <Typography
                 variant="h6"
-                sx={{ letterSpacing: 1 }}>
+                sx={{ fontWeight: 700,
+                    background: 'linear-gradient(to right,#ED4700,#E76F00)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    letterSpacing: 1, }}>
                 Crews
             </Typography>
             <Chip
