@@ -33,39 +33,39 @@ const TvShowSeason = () => {
     }, [])
     return (
         <>
+            <Helmet>
+                <title>{`${tvId?.split(/\d/)
+                    .join("").split("-").join(' ').toUpperCase()}: ${season?.name} 
+                                (${season?.air_date?.substring(0, 4)})`} | Movie App</title>
+            </Helmet>
             {
                 loading ? <Loader /> :
-                    <>
-                        {/* <Helmet>
-                            <title>{`${tvShow.name} (TV Series ${tvShow.first_air_date?.slice(0, 4)})`} | Movie App</title>
-                            </Helmet> */}
-                        <Box>
-                            <BackToSeasonList {...season} searchParams={tvId} />
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                                <EpisodesLength episodes={episodes} />
-                                <EpisodesMenu episodes={episodes} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                    <Box>
+                        <BackToSeasonList {...season} searchParams={tvId} />
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                            <EpisodesLength episodes={episodes} />
+                            <EpisodesMenu episodes={episodes} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                        </Box>
+                        <Divider />
+                        <Box sx={{ display: 'flex', flexDirection: 'column', mt: 4 }}>
+                            <Episode {...episodes[selectedIndex]} />
+                            <Box sx={{ mb: 4 }}>
+                                <GuestStarItemLength episode={episodes[selectedIndex]} />
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+                                    {
+                                        episodes[selectedIndex]?.guest_stars.map((user) => (
+                                            <GuestStar key={user.id} {...user} />
+                                        ))
+                                    }
+                                </Box>
                             </Box>
                             <Divider />
-                            <Box sx={{ display: 'flex', flexDirection: 'column', mt: 4 }}>
-                                <Episode {...episodes[selectedIndex]} />
-                                <Box sx={{ mb: 4 }}>
-                                    <GuestStarItemLength episode={episodes[selectedIndex]} />
-                                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-                                        {
-                                            episodes[selectedIndex]?.guest_stars.map((user) => (
-                                                <GuestStar key={user.id} {...user} />
-                                            ))
-                                        }
-                                    </Box>
-                                </Box>
-                                <Divider />
-                                <Box>
-                                    <CrewItemLength episode={episodes[selectedIndex]} />
-                                    <Crews crew={episodes[selectedIndex]?.crew} />
-                                </Box>
+                            <Box>
+                                <CrewItemLength episode={episodes[selectedIndex]} />
+                                <Crews crew={episodes[selectedIndex]?.crew} />
                             </Box>
                         </Box>
-                    </>
+                    </Box>
             }
         </>
     );
