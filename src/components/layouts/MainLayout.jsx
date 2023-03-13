@@ -3,6 +3,7 @@ import { HelmetProvider, Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 import { theme } from "../../theme";
+import ScrollTop from "../constant/ScrollTop";
 import Header from "../pages/home/header/Header";
 import Footer from "./footer/Footer";
 
@@ -27,7 +28,9 @@ const MainLayout = ({ children }) => {
               mx: "auto",
             }}
           >
+            <Box id="back-to-top-anchor" />
             {children}
+            <ScrollTop />
           </Box>
           {/* {location.pathname === "/" && <Footer />} */}
         </Box>
