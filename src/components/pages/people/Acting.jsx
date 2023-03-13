@@ -5,8 +5,7 @@ import { yellow } from "@mui/material/colors";
 import { CombinedCredits, MovieCredits, TvCredits, ActingMediaMenu } from "./";
 
 const Acting = ({ combined_credits, movie_credits, tv_credits }) => {
-console.log(combined_credits);
-  
+
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   let content;
@@ -22,6 +21,7 @@ console.log(combined_credits);
       content = <TvCredits tvCredits={tv_credits.cast} />;
       break;
     default:
+      return;
   }
 
   return (
