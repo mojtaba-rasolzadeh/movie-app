@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { yellow } from "@mui/material/colors";
+import _ from "lodash";
 
 const Biography = ({ name, biography }) => {
 
@@ -19,11 +20,11 @@ const Biography = ({ name, biography }) => {
         {name}
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "column", mt: 4 }}>
-        <Typography variant="h5" sx={{ letterSpacing:1,color: yellow[700]}}>
+        <Typography variant="h5" sx={{ letterSpacing: 1, color: yellow[700] }}>
           Biography
         </Typography>
-        <Typography sx={{ mt: 1, fontWeight: 300 ,textAlign:'justify'}}>
-          {biography}
+        <Typography sx={{ mt: 1, fontWeight: 300, textAlign: 'justify' }}>
+          {_.isEmpty(biography) ? `We don't have a biography for ${name}.` : biography}
         </Typography>
       </Box>
     </Box>
