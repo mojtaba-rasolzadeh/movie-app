@@ -2,7 +2,7 @@ import { Box, Tooltip, IconButton } from "@mui/material";
 import { blue } from "@mui/material/colors";
 import { Facebook, Twitter, Instagram } from "@mui/icons-material";
 
-const SocialLinks = ({ facebook_id, twitter_id, instagram_id }) => {
+const PersonSocialMedia = ({ facebook_id, twitter_id, instagram_id }) => {
   return (
     <Box sx={{ display: "flex", my: 3 }}>
       {facebook_id !== null && (
@@ -41,4 +41,4 @@ const SocialLinks = ({ facebook_id, twitter_id, instagram_id }) => {
     </Box>
   );
 };
-export default SocialLinks;
+export default PersonSocialMedia;
