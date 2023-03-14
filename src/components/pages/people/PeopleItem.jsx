@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Typography, Avatar, Box, CardActionArea } from "@mui/material";
 
-const People = ({ peopleData }) => {
+const PeopleItem = ({ peopleData }) => {
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3, py: 3 }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3 }}>
       {peopleData.results?.map((person) => (
         <CardActionArea sx={{ width: 220, height: 330, borderRadius: '20px' }}>
           <Link to={`/person/${person.id}`} style={{ textDecoration: "none" }}>
@@ -36,8 +36,8 @@ const People = ({ peopleData }) => {
                       WebkitBoxOrient: 'vertical'
                     }}
                   >
-                    {` ${person.known_for[0].media_type === "tv" ? person.known_for[0].name :
-                      person.known_for[0].title}`}
+                    {` ${person.known_for[0]?.media_type === "tv" ? person.known_for[0]?.name :
+                      person.known_for[0]?.title}`}
                   </Typography>
                 </Box>
               </Box>
@@ -50,4 +50,4 @@ const People = ({ peopleData }) => {
   );
 };
 
-export default People;
+export default PeopleItem;

@@ -5,7 +5,7 @@ import { grey, yellow } from '@mui/material/colors';
 
 const TvShowItem = ({ tvShowData }) => {
     return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3, py: 3 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3 }}>
             {
                 tvShowData.results?.map((tv) => (
                     <CardActionArea key={tv.id} sx={{ width: 220, height: 330, borderRadius: '20px' }}>

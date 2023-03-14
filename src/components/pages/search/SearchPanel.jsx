@@ -8,7 +8,7 @@ import {
     CardContent,
     Chip,
 } from "@mui/material";
-import { grey, yellow } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
 function tabProps(index) {
     return {
@@ -22,10 +22,15 @@ const SearchPanel = ({ value, handleChange, displayLengthItem }) => {
     const tabsTitle = ["movies", "tvShows", "people", "collections", "companies", "keywords"];
 
     return (
-        <Card sx={{ maxWidth: 258, height: 385 }}>
+        <Card sx={{
+            //  maxWidth: 258,
+            width: 1,
+            minHeight: 385,
+            borderRadius: '20px'
+        }}>
             <CardHeader
                 title="Search Results"
-                sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)', textAlign: 'center' }}
+                sx={{ backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', textAlign: 'center', p: '2rem 0' }}
             />
             <CardContent>
                 <Tabs
@@ -37,13 +42,13 @@ const SearchPanel = ({ value, handleChange, displayLengthItem }) => {
                     sx={{
                         borderRight: 1,
                         borderColor: "divider",
-                        height: 288,
+                        minHeight: 288,
                         ".Mui-selected": {
                             backgroundColor: grey[800],
                             color: "#ffeb3b!important",
                         },
                         ".MuiTabs-indicator": {
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)'
+                            backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
                         },
                     }}
                 >
@@ -67,7 +72,7 @@ const SearchPanel = ({ value, handleChange, displayLengthItem }) => {
                                                     variant="caption"
                                                     color="text.primary"
                                                     sx={{
-                                                        ".Mui-selected": { color: yellow[500] },
+                                                        ".Mui-selected": { color: "yellow[500]" },
                                                     }}
                                                 >
                                                     {displayLengthItem(text)}
@@ -75,7 +80,7 @@ const SearchPanel = ({ value, handleChange, displayLengthItem }) => {
                                             }
                                             size="small"
                                             sx={{
-                                                background: 'linear-gradient(to right,#ED4700,#E76F00)'
+                                                backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
                                             }}
                                         />
                                     </Box>

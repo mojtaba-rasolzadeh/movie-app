@@ -33,9 +33,7 @@ const Collections = ({ collectionsData, query }) => {
         </Typography>
       ) : (
         <>
-          {loading ? (
-            <Loader />
-          ) : (
+          {loading ? (<Loader />) : (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3 }}>
               {
                 collections.results.map((collection) => (

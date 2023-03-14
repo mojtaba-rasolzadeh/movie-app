@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 import { getPeople } from "../../services/MovieService";
 import { Loader } from "../../components";
-import People from "../../components/pages/people/People";
+import PeopleItem from "../../components/pages/people/PeopleItem";
 import MoviePagination from "../../components/pages/movie/MoviePagination";
 
 const PopularPeople = () => {
@@ -39,7 +39,7 @@ const PopularPeople = () => {
           Popular People
         </Typography>
         {loading ? (<Loader />) : (
-          <People peopleData={people} />
+          <PeopleItem peopleData={people} />
         )}
         <MoviePagination movieData={people} fetchData={fetchData} />
       </Box>

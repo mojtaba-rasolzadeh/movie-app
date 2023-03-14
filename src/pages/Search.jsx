@@ -1,17 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import {
-  Box,
-  Tabs,
-  Tab,
-  Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  Chip,
-} from "@mui/material";
+import { Helmet } from "react-helmet-async";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { grey, orange, teal, yellow } from "@mui/material/colors";
 
 import {
   getSearchCollections,
@@ -22,21 +13,9 @@ import {
   getSearchTvShows,
 } from "../services/MovieService";
 import { Loader } from "../components/constant";
-import Movies from "../components/pages/search/movies/Movies";
-import TvShows from "../components/pages/search/tvShows/TvShows";
-import People from "../components/pages/search/people/People";
-import Collections from "../components/pages/search/collections/Collections";
-import Companies from "../components/pages/search/companies/Companies";
-import Keywords from "../components/pages/search/keywords/Keywords";
-import { SearchInputStandard } from "../components/constant/SearchInputs";
+import { Movies, TvShows, People, Collections, Companies, Keywords, SearchPanel } from "../components/pages/search";
 import TabPanel from "../components/constant/TabPanel";
-
-function tabProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
-  };
-}
+import { SearchInputStandard } from "../components/constant/SearchInputs";
 
 const Search = () => {
   const [loading, setLoading] = useState(false);
@@ -50,8 +29,6 @@ const Search = () => {
 
   const [value, setValue] = useState(0);
   const query = searchParams.get("query");
-
-  const tabsTitle = ["movies", "tvShows", "people", "collections", "companies", "keywords"];
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -84,7 +61,7 @@ const Search = () => {
     return result;
   };
 
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -118,105 +95,44 @@ const Search = () => {
       {loading ? (
         <Loader />
       ) : (
-        <Box sx={{ mb: 5 }}>
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <SearchInputStandard searchParams={searchParams} />
+        <>
+          <Helmet>
+            <title>{`${query}`} | Movie App</title>
+          </Helmet>
+          <Box sx={{ mb: 5 }}>
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <SearchInputStandard searchParams={searchParams} />
+            </Box>
+            <Grid container spacing={2}>
+              <Grid xs={12} sm={6} md={4} lg={3} xl={1.6}>
+                <SearchPanel
+                  value={value}
+                  handleChange={handleChange}
+                  displayLengthItem={displayLengthItem} />
+              </Grid>
+              <Grid xs={12} sm={6} md={8} lg={9} xl={10.4}>
+                <TabPanel value={value} index={0}>
+                  <Movies moviesData={movies} query={query} />
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                  <TvShows tvShowsData={tvShows} query={query} />
+                </TabPanel>
+                <TabPanel value={value} index={2}>
+                  <People peopleData={people} query={query} />
+                </TabPanel>
+                <TabPanel value={value} index={3}>
+                  <Collections collectionsData={collections} query={query} />
+                </TabPanel>
+                <TabPanel value={value} index={4}>
+                  <Companies companiesData={companies} query={query} />
+                </TabPanel>
+                <TabPanel value={value} index={5}>
+                  <Keywords keywordsData={keywords} query={query} />
+                </TabPanel>
+              </Grid>
+            </Grid>
           </Box>
-          <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%" }}>
-            <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
-              <Card sx={{ maxWidth: 258, height: 385 }}>
-                <CardHeader
-                  title="Search Results"
-                  sx={{ backgroundColor: teal[500] }}
-                />
-                <CardContent>
-                  <Tabs
-                    orientation="vertical"
-                    // variant="scrollable"
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="vertical tabs example"
-                    sx={{
-                      borderRight: 1,
-                      borderColor: "divider",
-                      height: 288,
-                      ".Mui-selected": {
-                        backgroundColor: grey[800],
-                        color: "#ffeb3b!important",
-                      },
-                      ".MuiTabs-indicator": {
-                        backgroundColor: yellow[500],
-                      },
-                    }}
-                  >
-                    {
-                      tabsTitle.map((text, index) => (
-                        <Tab
-                          key={index}
-                          label={
-                            <Box
-                              sx={{
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>{text}</Typography>
-                              <Chip
-                                label={
-                                  <Typography
-                                    variant="caption"
-                                    color="text.primary"
-                                    sx={{
-                                      ".Mui-selected": { color: yellow[500] },
-                                    }}
-                                  >
-                                    {displayLengthItem(text)}
-                                    {/* {movies.total_results !== undefined && (movies.total_results).toLocaleString()} */}
-                                  </Typography>
-                                }
-                                size="small"
-                                sx={{
-                                  backgroundColor: orange[500],
-                                }}
-                              />
-                            </Box>
-                          }
-                          {...tabProps(index)}
-                          sx={{
-                            borderRadius: 1,
-                            mr: 1,
-                          }}
-                        />
-                      ))
-                    }
-                  </Tabs>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
-              <TabPanel value={value} index={0}>
-                <Movies moviesData={movies} query={query} />
-              </TabPanel>
-              <TabPanel value={value} index={1}>
-                <TvShows tvShowsData={tvShows} query={query} />
-              </TabPanel>
-              <TabPanel value={value} index={2}>
-                <People peopleData={people} query={query} />
-              </TabPanel>
-              <TabPanel value={value} index={3}>
-                <Collections collectionsData={collections} query={query} />
-              </TabPanel>
-              <TabPanel value={value} index={4}>
-                <Companies companiesData={companies} query={query} />
-              </TabPanel>
-              <TabPanel value={value} index={5}>
-                <Keywords keywordsData={keywords} query={query} />
-              </TabPanel>
-            </Grid>
-          </Grid>
-        </Box>
+        </>
       )}
     </>
   );

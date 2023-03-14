@@ -5,7 +5,7 @@ import { grey, yellow } from '@mui/material/colors';
 
 const MovieItem = ({ movieData }) => {
     return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3, py: 3 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3 }}>
             {
                 movieData.results?.map((movie) => (
                     <CardActionArea key={movie.id} sx={{ width: 220, height: 330, borderRadius: '20px' }}>
