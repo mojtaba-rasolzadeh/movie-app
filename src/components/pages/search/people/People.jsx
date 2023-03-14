@@ -1,28 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import _ from "lodash";
-import {
-  Avatar,
-  Typography,
-  Card,
-  CardActionArea,
-  CardContent,
-  Stack,
-  Pagination,
-} from "@mui/material";
+import { Avatar, Typography, CardActionArea, Box } from "@mui/material";
+
 import { getSearchPeople } from "../../../../services/MovieService";
 import { Loader } from "../../../constant";
+import MoviePagination from "../../movie/MoviePagination";
 
 const People = ({ peopleData, query }) => {
   const [loading, setLoading] = useState(false);
   const [people, setPeople] = useState({ ...peopleData });
-  const [page, setPage] = useState(1);
 
-  const handleChangePage = async (event, value) => {
-    setPage(value);
+  const handleChangePage = async (page) => {
     try {
       setLoading(true);
-      const { status, data } = await getSearchPeople(query, value);
+      const { status, data } = await getSearchPeople(query, page);
       if (status === 200) {
         setLoading(false);
         setPeople(data);
@@ -40,85 +32,57 @@ const People = ({ peopleData, query }) => {
           There are no people that matched your query.
         </Typography>
       ) : (
-        <Stack>
+        <>
           {loading ? (
             <Loader />
           ) : (
-            people.results.map((person) => (
-              <Card
-                key={person.id}
-                sx={{ display: "flex", alignItems: "center", mb: 2 }}
-              >
-                <CardActionArea
-                  sx={{ maxWidth: 90, width: 90, borderRadius: 1 }}
-                >
-                  <Link
-                    to={`/person/${person.id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Avatar
-                      variant="rounded"
-                      sx={{ width: 90, height: 90 }}
-                      src={`https://www.themoviedb.org/t/p/w90_and_h90_face${person.profile_path}`}
-                    />
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 3 }}>
+              {people.results?.map((person) => (
+                <CardActionArea sx={{ width: 220, height: 330, borderRadius: '20px' }}>
+                  <Link to={`/person/${person.id}`} style={{ textDecoration: "none" }}>
+                    <Box key={person.id} sx={{ position: 'relative', width: 220, borderRadius: '20px' }}>
+                      <Avatar variant="rounded" sx={{ width: 1, height: 330, borderRadius: '20px' }} src={`https://www.themoviedb.org/t/p/w220_and_h330_face${person.profile_path}`} />
+                      <Box sx={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: 1, backgroundImage: 'linear-gradient(to top, rgb(32 32 32 / 94%) 60px, rgb(12 11 2 / 0%) 100%)', borderRadius: '17px' }} />
+                      <Box sx={{ width: 1, position: 'absolute', bottom: 10, p: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center' }}>
+                        <Box sx={{ maxWidth: 200 }}>
+                          <Link to={`/person/${person.id}`} style={{ textDecoration: "none" }}>
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                letterSpacing: 1,
+                                color: "#fff",
+                                "&:hover": { color: "text.secondary" },
+                              }}
+                              gutterBottom
+                            >
+                              {person.name}
+                            </Typography>
+                          </Link>
+                          <Typography
+                            variant="caption"
+                            color="text.secondary"
+                            sx={{
+                              display: '-webkit-box',
+                              textOverflow: 'ellipsis',
+                              overflow: 'hidden',
+                              WebkitLineClamp: 1,
+                              WebkitBoxOrient: 'vertical'
+                            }}
+                          >
+                            {` ${person.known_for[0]?.media_type === "tv" ? person.known_for[0]?.name :
+                              person.known_for[0]?.title}`}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
                   </Link>
                 </CardActionArea>
-                <CardContent>
-                  <Link
-                    to={`/person/${person.id}`}
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Typography
-                      component="div"
-                      variant="body1"
-                      color="text.primary"
-                      gutterBottom
-                    >
-                      {person.name}
-                    </Typography>
-                  </Link>
-                  <Typography variant="body2" component="span">
-                    Acting:{" "}
-                  </Typography>
-                  {!_.isEmpty(person.known_for) &&
-                    person.known_for.map((item, index) => (
-                      <Link
-                        key={item.id}
-                        to={`${
-                          item.media_type === "movie" ? "/movie" : "/tv"
-                        }/${item.id}`}
-                        style={{ textDecoration: "none" }}
-                      >
-                        <Typography
-                          component="span"
-                          variant="caption"
-                          color="text.secondary"
-                        >
-                          {`${index ? "," : ""} ${
-                            item.media_type === "movie" ? item.title : item.name
-                          }`}
-                        </Typography>
-                      </Link>
-                    ))}
-                </CardContent>
-              </Card>
-            ))
+              ))
+              }
+            </Box >
           )}
-          {people.total_pages > 1 && (
-            <Pagination
-              count={people.total_pages}
-              page={page}
-              onChange={handleChangePage}
-              variant="outlined"
-              shape="rounded"
-              sx={{
-                ".MuiPagination-ul": {
-                  justifyContent: "center",
-                },
-              }}
-            />
-          )}
-        </Stack>
+          <MoviePagination movieData={people} fetchData={handleChangePage} />
+        </>
       )}
     </>
   );
