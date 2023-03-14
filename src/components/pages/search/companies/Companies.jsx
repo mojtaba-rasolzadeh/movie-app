@@ -9,23 +9,21 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-  Pagination,
-  Stack,
   Typography,
 } from "@mui/material";
+
 import { getSearchCompanies } from "../../../../services/MovieService";
 import { Loader } from "../../../constant";
+import MoviePagination from "../../movie/MoviePagination";
 
 const Companies = ({ companiesData, query }) => {
   const [loading, setLoading] = useState(false);
   const [companies, setCompanies] = useState({ ...companiesData });
-  const [page, setPage] = useState(1);
 
-  const handleChangePage = async (event, value) => {
-    setPage(value);
+  const handleChangePage = async (page) => {
     try {
       setLoading(true);
-      const { status, data } = await getSearchCompanies(query, value);
+      const { status, data } = await getSearchCompanies(query, page);
       if (status === 200) {
         setLoading(false);
         setCompanies(data);
@@ -43,12 +41,12 @@ const Companies = ({ companiesData, query }) => {
           There are no companies that matched your query.
         </Typography>
       ) : (
-        <Stack>
+        <>
           {loading ? (
             <Loader />
           ) : (
             <List sx={{ mb: 2 }}>
-              {companies.results.map((company, index) => (
+              {companies.results.map((company) => (
                 <Box key={company.id}>
                   <Link
                     to={`/company/${company.id}`}
@@ -71,7 +69,6 @@ const Companies = ({ companiesData, query }) => {
                               {!_.isEmpty(company.origin_country) && (
                                 <Chip
                                   label={company.origin_country}
-                                  color="error"
                                   size="small"
                                 />
                               )}
@@ -86,19 +83,8 @@ const Companies = ({ companiesData, query }) => {
               ))}
             </List>
           )}
-          {companies.total_pages > 1 && (
-            <Pagination
-              count={companies.total_pages}
-              page={page}
-              onChange={handleChangePage}
-              variant="outlined"
-              shape="rounded"
-              sx={{
-                ".MuiPagination-ul": { justifyContent: "center" },
-              }}
-            />
-          )}
-        </Stack>
+          <MoviePagination movieData={companies} fetchData={handleChangePage} />
+        </>
       )}
     </>
   );
