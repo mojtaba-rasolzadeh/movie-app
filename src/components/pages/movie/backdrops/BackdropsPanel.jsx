@@ -18,13 +18,10 @@ const BackdropsPanel = ({
 }) => {
 
     return (
-        <Card sx={{ maxWidth: 258 }}>
+        <Card sx={{ width: 1, borderRadius: '20px' }}>
             <CardHeader
                 title="Backdrops"
-                sx={{
-                    background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                    textAlign: 'center'
-                }} />
+                sx={{ backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', textAlign: 'center', p: '2rem 0' }} />
             <CardContent>
                 <Tabs
                     orientation="vertical"
@@ -39,7 +36,7 @@ const BackdropsPanel = ({
                             color: "#ffeb3b!important",
                         },
                         ".MuiTabs-indicator": {
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)'
+                            backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
                         },
                     }}
                 >

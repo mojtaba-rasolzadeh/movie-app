@@ -16,16 +16,10 @@ const PostersPanel = ({
     displayLengthItem
 }) => {
     return (
-        <Card sx={{
-            maxWidth: 258
-            // , height: 385 
-        }}>
+        <Card sx={{ width: 1, borderRadius: '20px' }}>
             <CardHeader
                 title="Posters"
-                sx={{
-                    background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                    textAlign: 'center'
-                }}
+                sx={{ backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', textAlign: 'center', p: '2rem 0' }}
             />
             <CardContent>
                 <Tabs
@@ -42,7 +36,7 @@ const PostersPanel = ({
                             color: "#ffeb3b!important",
                         },
                         ".MuiTabs-indicator": {
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)'
+                            backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
                         },
                     }}
                 >

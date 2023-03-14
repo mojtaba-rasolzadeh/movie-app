@@ -1,13 +1,19 @@
 import { Link } from 'react-router-dom';
 import { Avatar, Box, CardActionArea, Rating, Typography } from '@mui/material';
-import { pink, yellow } from '@mui/material/colors';
+import { yellow } from '@mui/material/colors';
 import { AutoGraph } from '@mui/icons-material';
 
 const Popular = ({ popular }) => {
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <AutoGraph sx={{ color: yellow['A700'] }} /> <Typography variant="h6" sx={{ letterSpacing: 1 }}>Popular</Typography>
+                <AutoGraph sx={{ color: yellow['A700'] }} /> <Typography variant="h5" sx={{
+                    fontWeight: 700,
+                    backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    letterSpacing: 1
+                }}>Popular</Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, my: 4 }}>
                 {
@@ -35,7 +41,7 @@ const Popular = ({ popular }) => {
                 }
             </Box>
             <Link to="/tv/popular" style={{ textDecoration: 'none' }}>
-                <Typography sx={{ width: { sm: 1, xl: '70%' }, textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundColor: pink[500],'&:hover':{backgroundColor:pink[400]}, color: '#fff', borderRadius: '100px', padding: '.75rem 2rem', mx: 'auto', mt: { xs: 1, sm: 0 } }}>
+                <Typography sx={{ width: { sm: 1, xl: '70%' }, textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, background: '#f3001d', color: '#fff', borderRadius: '100px', padding: '.75rem 2rem', mx: 'auto', mt: { xs: 1, sm: 0 } }}>
                     see more
                 </Typography>
             </Link>

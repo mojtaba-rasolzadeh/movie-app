@@ -53,7 +53,7 @@ const TvShows = () => {
                         <Grid xs={12} sm={3}>
                             <Popular popular={popular} />
                         </Grid>
-                    </Grid >
+                    </Grid>
             }
         </>
     );

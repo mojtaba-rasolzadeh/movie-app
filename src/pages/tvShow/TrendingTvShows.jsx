@@ -34,11 +34,14 @@ const TrendingTvShows = () => {
                 <title> Trending Tv Shows | Movie App </title>
             </Helmet>
             <Box sx={{ py: 4 }} >
-                <Typography variant='h5'>Trending Tv Shows</Typography>
-                {
-                    loading ? <Loader /> :
-                        <TvShowItem tvShowData={todayTvShows} />
-                }
+                <Typography variant='h5' mb={4} sx={{
+                    fontWeight: 700,
+                    backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    letterSpacing: 1
+                }}>Trending Tv Shows</Typography>
+                {loading ? <Loader /> : <TvShowItem tvShowData={todayTvShows} />}
                 <TvShowPagination tvShowData={todayTvShows} fetchData={fetchData} />
             </Box>
         </>

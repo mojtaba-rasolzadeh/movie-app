@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Avatar, Box, Card, CardActionArea, CardContent, Rating, Typography } from '@mui/material';
-import { grey, red } from '@mui/material/colors';
+import { grey, yellow } from '@mui/material/colors';
 import { KeyboardArrowRight, PlayCircleOutline } from '@mui/icons-material';
 import Slider from 'react-slick';
 
@@ -8,8 +8,10 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
     const settings = {
         dots: true,
         arrows: false,
-        infinite: false,
-        speed: 500,
+        autoplay:true,
+        autoplaySpeed:5000,
+        infinite: true,
+        speed: 3000,
         slidesToShow: 4,
         slidesToScroll: 4,
         initialSlide: 0,
@@ -45,7 +47,7 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
                     slidesToScroll: 1,
                     initialSlide: 1,
                     dots: false,
-                    arrows:true
+                    arrows: true
                 }
             },
         ]
@@ -54,8 +56,14 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="h5" sx={{ fontSize: { xs: '1rem', sm: '1.5rem' }, letterSpacing: 1 }}>Now Playing</Typography>
-                    <PlayCircleOutline sx={{ color: `${red[500]} !important` }} />
+                    <Typography variant="h5" sx={{
+                        fontSize: { xs: '1rem', sm: '1.5rem' }, fontWeight: 700,
+                        backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        letterSpacing: 1
+                    }}>Now Playing</Typography>
+                    <PlayCircleOutline sx={{ color: `${yellow[500]} !important` }} />
                 </Box>
                 <Link to='/movie/now_playing' style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                     <Typography variant="body2" sx={{ fontWeight: '700', color: grey[600], '&:hover': { color: grey[300] }, letterSpacing: 1 }}>

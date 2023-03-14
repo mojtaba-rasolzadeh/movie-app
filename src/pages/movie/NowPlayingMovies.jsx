@@ -33,11 +33,14 @@ const NowPlayingMovies = () => {
         <title> Now Playing Movies | Movie App </title>
       </Helmet>
       <Box sx={{ py: 4 }} >
-        <Typography variant='h5' mt={2}>Now Playing Movies</Typography>
-        {
-          loading ? <Loader /> :
-            <MovieItem movieData={movies} />
-        }
+        <Typography variant='h5' mb={4} sx={{
+          fontWeight: 700,
+          backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          letterSpacing: 1
+        }}>Now Playing Movies</Typography>
+        {loading ? <Loader /> : <MovieItem movieData={movies} />}
         <MoviePagination movieData={movies} fetchData={fetchData} />
       </Box>
     </>

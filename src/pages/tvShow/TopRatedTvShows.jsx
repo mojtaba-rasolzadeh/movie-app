@@ -35,11 +35,14 @@ const TopRatedTvShows = () => {
         <title> Top Rated TvShows | Movie App </title>
       </Helmet>
       <Box sx={{ py: 4 }} >
-        <Typography variant='h5' mt={2}>Top Rated TvShows</Typography>
-        {
-          loading ? <Loader /> :
-            <TvShowItem tvShowData={tvShows} />
-        }
+        <Typography variant='h5' mb={4} sx={{
+          fontWeight: 700,
+          backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          letterSpacing: 1
+        }}>Top Rated TvShows</Typography>
+        {loading ? <Loader /> : <TvShowItem tvShowData={tvShows} />}
         <TvshowPagination tvShowData={tvShows} fetchData={fetchData} />
       </Box>
     </>

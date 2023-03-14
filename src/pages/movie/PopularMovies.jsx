@@ -33,11 +33,14 @@ const PopularMovies = () => {
         <title> Popular Movies | Movie App </title>
       </Helmet>
       <Box sx={{ py: 4 }} >
-        <Typography variant='h5' mt={2}>Popular Movies</Typography>
-        {
-          loading ? <Loader /> :
-            <MovieItem movieData={movies} />
-        }
+        <Typography variant='h5' mb={4} sx={{
+          fontWeight: 700,
+          backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          letterSpacing: 1
+        }}> Popular Movies</Typography>
+        {loading ? <Loader /> : <MovieItem movieData={movies} />}
         <MoviePagination movieData={movies} fetchData={fetchData} />
       </Box>
     </>

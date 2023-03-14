@@ -28,7 +28,7 @@ const BackdropLanguagesLength = ({ image, displayLanguage, displayLengthItem }) 
                 }
                 size="small"
                 sx={{
-                    background: 'linear-gradient(to right,#ED4700,#E76F00)'
+                    backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
                 }} />
         </Box>
     );

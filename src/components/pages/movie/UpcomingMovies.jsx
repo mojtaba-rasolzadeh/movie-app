@@ -8,8 +8,10 @@ const UpcomingMovies = ({ upcomingMovies }) => {
     const settings = {
         dots: true,
         arrows: false,
-        infinite: false,
-        speed: 500,
+        autoplay:true,
+        autoplaySpeed:6000,
+        infinite: true,
+        speed: 3000,
         slidesToShow: 7,
         slidesToScroll: 7,
         initialSlide: 0,
@@ -67,7 +69,7 @@ const UpcomingMovies = ({ upcomingMovies }) => {
                     slidesToScroll: 2,
                     initialSlide: 1,
                     dots: false,
-                    arrows:true
+                    arrows: true
                 }
             },
             {
@@ -77,7 +79,7 @@ const UpcomingMovies = ({ upcomingMovies }) => {
                     slidesToScroll: 1,
                     initialSlide: 1,
                     dots: false,
-                    arrows:true
+                    arrows: true
                 }
             },
         ]
@@ -86,7 +88,13 @@ const UpcomingMovies = ({ upcomingMovies }) => {
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
-                    <Typography variant="h5" sx={{ fontSize: { xs: '1rem', sm: '1.5rem' }, letterSpacing: 1 }}>Upcoming</Typography>
+                    <Typography variant="h5" sx={{
+                        fontSize: { xs: '1rem', sm: '1.5rem' }, fontWeight: 700,
+                        backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        letterSpacing: 1
+                    }}>Upcoming</Typography>
                 </Box>
                 <Link to="/movie/upcoming" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
                     <Typography variant="body2" sx={{ fontWeight: '700', color: grey[600], '&:hover': { color: grey[300] }, letterSpacing: 1 }}>
