@@ -1,9 +1,8 @@
 import { useState } from "react";
 import _ from "lodash";
-import { Box } from "@mui/material";
+import { Box, ImageList, ImageListItem } from "@mui/material";
 
-import { MediaScrollbar, ViewMoreButton } from "../../../constant";
-import { PlayVideo, PlayVideoButton, VideoPoster } from "../trailersAndVideos";
+import { PlayVideo, PlayVideoButton } from "../trailersAndVideos";
 import { ViewAllMedia, NoMediaMessage } from "./";
 
 const Videos = ({ id, title, videos }) => {
@@ -21,27 +20,23 @@ const Videos = ({ id, title, videos }) => {
   };
 
   return (
-    <Box>
-      {_.isEmpty(videos?.results) ? (<NoMediaMessage mediaType="videos" movieTitle={title} />) :
-        (<MediaScrollbar width={videos?.results.length < 2 ? 610 : 1083}>
-          {videos?.results.slice(0, 6).map((video) => (
-            <Box key={video.id} sx={{ position: "relative" }}>
-              <VideoPoster video={video} />
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
+      {_.isEmpty(videos?.results) ? (<NoMediaMessage mediaType="videos" movie Title={title} />) :
+        <ImageList variant="woven" cols={2} gap={8}>
+          {videos.results?.slice(0, 9).map((video) => (
+            <ImageListItem key={video.id} sx={{ position: "relative" }}>
+              <img
+                src={`https://i.ytimg.com/vi/${video.key}/hqdefault.jpg?w=161&fit=crop&auto=format`}
+                srcSet={`https://i.ytimg.com/vi/${video.key}/hqdefault.jpg?w=161&fit=crop&auto=format&dpr=2 2x`}
+                alt={video.file_path}
+                loading="lazy"
+              />
               <PlayVideoButton handleToggle={handleToggle} />
               <PlayVideo open={open} play={play} video={video} handleClose={handleClose} />
-            </Box>
+            </ImageListItem>
           ))}
-          {videos.results.length > 6 && (
-            <ViewMoreButton
-              link={`/movie/${id}-${title?.split(/[\W]/)
-                .join("-")
-                .split("--")
-                .join("-")
-                .toLowerCase()}/videos`}
-            />
-          )}
-        </MediaScrollbar>
-        )}
+        </ImageList>
+      }
       <ViewAllMedia movieId={id} movieTitle={title} link="videos" text="View All Videos" />
     </Box>
   );
