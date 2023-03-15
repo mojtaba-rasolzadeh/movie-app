@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { Avatar } from "@mui/material";
+import { Avatar, Box, ImageList, ImageListItem } from "@mui/material";
 import Slider from "react-slick";
 
 import { ViewMoreButton } from "../../../constant";
@@ -91,33 +91,23 @@ const settings = {
 const Posters = ({ id, title, images }) => {
 
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
       {_.isEmpty(images.posters) ? (<NoMediaMessage mediaType="posters" movieTitle={title} />) : (
-        <Slider {...settings}>
-          {images?.posters
-            .slice(0, 6)
-            .map((item, index) => (
-              <Avatar
-                key={index}
-                variant="square"
-                sx={{ width: 200, height: 300 }}
-                src={`https://www.themoviedb.org/t/p/w220_and_h330_face${item.file_path}`}
+        <ImageList variant="woven" cols={3} gap={8}>
+          {images.posters?.slice(0, 9).map((item) => (
+            <ImageListItem key={item.file_path}>
+              <img
+                src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${item.file_path}?w=248&fit=crop&auto=format`}
+                srcSet={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${item.file_path}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.file_path}
+                loading="lazy"
               />
-            ))}
-          {images?.posters.length > 6 && (
-            <ViewMoreButton
-              link={`/movie/${id}-${title?.split(/[\W]/)
-                .join("-")
-                .split("--")
-                .join("-")
-                .toLowerCase()
-                }/images/posters`}
-            />
-          )}
-        </Slider>
+            </ImageListItem>
+          ))}
+        </ImageList>
       )}
       <ViewAllMedia movieId={id} movieTitle={title} link="images/posters" text="View All Posters" />
-    </>
+    </Box>
   );
 };
 
