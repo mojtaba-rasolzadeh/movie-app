@@ -1,89 +1,30 @@
 import _ from "lodash";
-import { Avatar } from "@mui/material";
-import Slider from "react-slick";
+import { Box, ImageList, ImageListItem } from "@mui/material";
 
-import { ViewMoreButton } from "../../../constant";
 import ViewAllMedia from "./ViewAllMedia";
 import NoMediaMessage from "./NoMediaMessage";
-
-const settings = {
-  dots: true,
-  arrows: false,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 4,
-  initialSlide: 0,
-  responsive: [
-    {
-      breakpoint: 2500,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
-      }
-    },
-    {
-      breakpoint: 1860,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        infinite: false,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 1000,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        initialSlide: 1,
-        dots: true
-      }
-    },
-    {
-      breakpoint: 450,
-      settings: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        initialSlide: 1,
-        arrows: true,
-        dots: false,
-      }
-    },
-  ]
-};
 
 const Backdrops = ({ id, title, images }) => {
 
   return (
-    <>
+    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
       {_.isEmpty(images.backdrops) ? (<NoMediaMessage mediaType="backdrops" movieTitle={title} />
       ) : (
-        <Slider {...settings}>
-          {images?.backdrops
-            .slice(0, 6)
-            .map((item, index) => (
-              <Avatar
-                key={index}
-                variant="square"
-                sx={{ height: 300 }}
-                src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${item.file_path}`}
+        <ImageList variant="woven" cols={3} gap={8}>
+          {images.backdrops?.slice(0, 9).map((item) => (
+            <ImageListItem key={item.file_path}>
+              <img
+                src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${item.file_path}?w=248&fit=crop&auto=format`}
+                srcSet={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${item.file_path}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                alt={item.file_path}
+                loading="lazy"
               />
-            ))}
-          {images?.backdrops.length > 6 && (
-            <ViewMoreButton
-              link={`/movie/${id}-${title?.split(/[\W]/)
-                .join("-")
-                .split("--")
-                .join("-")
-                .toLowerCase()
-                }/images/backdrops`}
-            />
-          )}
-        </Slider>
+            </ImageListItem>
+          ))}
+        </ImageList>
       )}
       <ViewAllMedia movieId={id} movieTitle={title} link="images/backdrops" text="View All Backdrops" />
-    </>
+    </Box>
   );
 };
 
