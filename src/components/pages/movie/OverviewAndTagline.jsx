@@ -1,29 +1,28 @@
 import { Box, Typography } from "@mui/material";
-import { orange } from "@mui/material/colors";
 
 const OverviewAndTagline = ({ tagline, overview }) => {
 
     return (
         <Box>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="body1" color="text.secondary" gutterBottom>
                 {tagline}
             </Typography>
-            <Typography variant="h6" sx={{ fontWeight: "700", my: 1 }}>
+            <Typography variant="h6" gutterBottom>
                 Overview
             </Typography>
             {overview?.length === 0 ? (
                 <>
-                    <Typography variant="body2" sx={{ color: orange[50] }}>
+                    <Typography variant="body2" color="text.secondary">
                         We don't have an overview translated in English. Help us
                         expand our database by adding one.
                     </Typography>
-                    <Typography variant="body2" sx={{ mb: 1, color: orange[50] }}>
+                    <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
                         We don't have any crew added to this movie. You can help by
                         adding some!
                     </Typography>
                 </>
             ) : (
-                <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
                     {overview}
                 </Typography>
             )}

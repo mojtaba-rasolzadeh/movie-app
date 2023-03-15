@@ -1,14 +1,17 @@
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { EventAvailableRounded } from "@mui/icons-material";
 
-const ReleaseDateMovie = ({release_date}) => {
+const ReleaseDateMovie = ({ release_date }) => {
     return (
-        <>
-            <EventAvailableRounded color="secondary" />
-            <Typography variant="subtitle2">
-                {release_date}
+        <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 1 }}>
+            <EventAvailableRounded sx={{ color: '#ff004d' }} />
+            <Typography
+                variant="h6"
+                sx={{ fontWeight: "700" }}
+            >
+                {`${release_date?.slice(0, 4)}`}
             </Typography>
-        </>
+        </Box>
     );
 }
 

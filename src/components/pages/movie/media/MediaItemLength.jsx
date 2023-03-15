@@ -1,25 +1,10 @@
-import { Box, Chip, Typography } from "@mui/material";
-import { yellow } from "@mui/material/colors";
+import { Box, Typography } from "@mui/material";
 
 const MediaItemLength = ({ mediaTitle, media }) => {
     return (
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-            <Typography sx={{ color: yellow[700], textTransform: 'capitalize', letterSpacing: 1 }}>
-                {mediaTitle}
-            </Typography>
-            <Chip
-                label={
-                    <Typography
-                        variant="caption"
-                        component="span"
-                        color="text.secondary"
-                        sx={{ fontWeight: "700" }}>
-                        {media?.length}
-                    </Typography>
-                }
-                size="small"
-                sx={{ px: 0.75, background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
-            />
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: .5 }}>
+            <Typography sx={{ fontWeight: 700, textTransform: 'capitalize', letterSpacing: 1 }}>{mediaTitle}</Typography>
+            <Typography variant="caption">({media?.length})</Typography>
         </Box>
     );
 }
