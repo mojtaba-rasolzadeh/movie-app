@@ -12,26 +12,23 @@ const NavLinks = () => {
                 alignItems: "center",
             }}
         >
-            {/* <MovieMenu />
-              <TvShowsMenu />
-              <PeopleMenu /> */}
             <NavLink to={`/movie`} style={{ textDecoration: 'none' }}>
                 {({ isActive }) => (
-                    <Typography sx={{ pb: '1px', letterSpacing: 1, color: isActive ? grey[100] : grey[600], borderBottom: `${isActive ? `2px solid ${pink[500]}` : 'none'}`, '&:hover': { color: grey[100] } }}>
+                    <Typography sx={{ fontWeight: 700, pb: '1px', letterSpacing: 1, color: isActive ? grey[100] : grey[600], borderBottom: `${isActive ? `2px solid ${pink[500]}` : 'none'}`, '&:hover': { color: grey[100] } }}>
                         Movies
                     </Typography>
                 )}
             </NavLink>
             <NavLink to={`/tv`} style={{ textDecoration: 'none' }}>
                 {({ isActive }) => (
-                    <Typography sx={{ pb: '1px', letterSpacing: 1, color: isActive ? grey[100] : grey[600], borderBottom: `${isActive ? `2px solid ${pink[500]}` : 'none'}`, '&:hover': { color: grey[100] } }}>
+                    <Typography sx={{ fontWeight: 700, pb: '1px', letterSpacing: 1, color: isActive ? grey[100] : grey[600], borderBottom: `${isActive ? `2px solid ${pink[500]}` : 'none'}`, '&:hover': { color: grey[100] } }}>
                         Tv Shows
                     </Typography>
                 )}
             </NavLink>
             <NavLink to={`/person`} style={{ textDecoration: 'none' }}>
                 {({ isActive }) => (
-                    <Typography sx={{ pb: '1px', letterSpacing: 1, color: isActive ? grey[100] : grey[600], borderBottom: `${isActive ? `2px solid ${pink[500]}` : 'none'}`, '&:hover': { color: grey[100] } }}>
+                    <Typography sx={{ fontWeight: 700, pb: '1px', letterSpacing: 1, color: isActive ? grey[100] : grey[600], borderBottom: `${isActive ? `2px solid ${pink[500]}` : 'none'}`, '&:hover': { color: grey[100] } }}>
                         People
                     </Typography>
                 )}
