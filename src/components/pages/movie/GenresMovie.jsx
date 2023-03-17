@@ -6,7 +6,7 @@ const GenresMovie = ({ genres }) => {
     return (
         <>
             <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 1 }}>
-                <LocalMoviesRounded sx={{ color: '#ff004d' }} />
+                <LocalMoviesRounded />
                 {genres?.map((genre, index) => (
                     <Link
                         key={genre.id}

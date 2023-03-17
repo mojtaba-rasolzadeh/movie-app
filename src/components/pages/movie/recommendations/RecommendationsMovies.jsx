@@ -12,7 +12,7 @@ import { GradeRounded } from "@mui/icons-material";
 
 const RecommendationsMovies = ({ movies }) => {
     return (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, py: 3 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap',justifyContent:'center', gap: 3 }}>
             {
                 movies.results?.map((movie) => (
                     <CardActionArea key={movie.id} sx={{ width: 160, height: 240, borderRadius: '20px' }}>

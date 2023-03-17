@@ -11,7 +11,8 @@ const StyledTabs = styled((props) => (
     TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
   />
 ))({
-  justifyContent: 'center!important',
+  '& .MuiTabs-flexContainer': { justifyContent: 'center!important' },
+  marginBottom: '1rem',
   '& .MuiTabs-indicator': {
     display: 'none',
   }
@@ -42,7 +43,7 @@ const Media = ({ id, title, videos, images }) => {
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons
+        // scrollButtons
         aria-label="media label"
       >
         <StyledTab label={<MediaItemLength media={videos?.results} mediaTitle="videos" />} />

@@ -4,7 +4,7 @@ import { EventAvailableRounded } from "@mui/icons-material";
 const ReleaseDateMovie = ({ release_date }) => {
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 1 }}>
-            <EventAvailableRounded sx={{ color: '#ff004d' }} />
+            <EventAvailableRounded />
             <Typography
                 variant="h6"
                 sx={{ fontWeight: "700" }}

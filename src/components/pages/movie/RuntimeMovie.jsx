@@ -8,7 +8,7 @@ const RuntimeMovie = ({ runtime }) => {
         <>
             {runtime > 0 && (
                 <Box sx={{ display: "flex", alignItems: "center", gap: 1, mt: 2 }}>
-                    <AccessTimeFilledRounded sx={{ color: '#ff004d' }} />
+                    <AccessTimeFilledRounded />
                     <Typography variant="subtitle2">
                         {toHoursAndMinutes(runtime)}
                     </Typography>

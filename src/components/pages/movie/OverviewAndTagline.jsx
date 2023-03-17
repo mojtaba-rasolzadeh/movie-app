@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 const OverviewAndTagline = ({ tagline, overview }) => {
 
     return (
-        <Box>
-            <Typography variant="body1" color="text.secondary" gutterBottom>
+        <Box sx={{ mt: { xs: 0, sm: 2, md: 1 ,lg:6 } }}>
+            <Typography variant="body1" sx={{ fontWeight: 600, color: grey[600] }} gutterBottom>
                 {tagline}
             </Typography>
             <Typography variant="h6" gutterBottom>
@@ -22,7 +23,7 @@ const OverviewAndTagline = ({ tagline, overview }) => {
                     </Typography>
                 </>
             ) : (
-                <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 600, color: grey[600] }}>
                     {overview}
                 </Typography>
             )}

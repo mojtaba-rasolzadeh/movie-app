@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Avatar, Box, CardActionArea, Rating, Typography } from '@mui/material';
-import { pink, yellow } from '@mui/material/colors';
+import { yellow } from '@mui/material/colors';
 import { AutoGraph } from '@mui/icons-material';
 
 const PopularMovies = ({ popularMovies }) => {

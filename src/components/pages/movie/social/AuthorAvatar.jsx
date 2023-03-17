@@ -4,7 +4,7 @@ import { deepOrange } from "@mui/material/colors";
 const AuthorAvatar = ({ review }) => {
     return (
         <Avatar
-            src={`https://image.tmdb.org/t/p/w64_and_h64_face/${review?.author_details.avatar_path}`}
+            src={`https://image.tmdb.org/t/p/w64_and_h64_face${review?.author_details.avatar_path}`}
             alt={review.author}
             sx={{
                 display: { xs: "none", sm: "inline-flex" },

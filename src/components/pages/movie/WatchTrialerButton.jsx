@@ -9,7 +9,7 @@ const WatchTrialerButton = ({ videos, displayTrailer }) => {
             <Button
                 variant="text"
                 sx={{
-                    mt: 3,
+                    mt: { xs: 1, sm: 3 },
                     fontSize: '1rem',
                     textTransform: 'capitalize',
                     letterSpacing: 1,
