@@ -14,6 +14,7 @@ const WatchTrialerButton = ({ videos, displayTrailer }) => {
                     textTransform: 'capitalize',
                     letterSpacing: 1,
                     background: 'linear-gradient(to right,#f3001d,#ff004d)',
+                    '&:hover': { background: 'linear-gradient(to right,#ff1632,#ff2164)' },
                     color: '#fff',
                     transform: 'skew(-20deg)',
                     padding: '.5rem 2.5rem',

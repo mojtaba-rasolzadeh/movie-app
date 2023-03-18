@@ -4,8 +4,6 @@ import { Accordion, AccordionDetails, AccordionSummary, Avatar, Box, Card, Typog
 import { deepOrange, grey } from "@mui/material/colors";
 import { ExpandMore } from "@mui/icons-material";
 
-import { ReviewsLength, Review } from "./";
-
 const Social = ({ id, title, reviews }) => {
   const [expanded, setExpanded] = useState('panel0');
 

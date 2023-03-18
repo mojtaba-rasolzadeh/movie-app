@@ -20,12 +20,20 @@ const PopularMovies = ({ popularMovies }) => {
                     popularMovies.results?.slice(0, 5).map((movie) => (
                         <Box key={movie.id} sx={{ display: 'flex', gap: 2 }}>
                             <CardActionArea sx={{ width: 65, borderRadius: 1 }}>
-                                <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
+                                <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()}`} style={{ textDecoration: 'none' }}>
                                     <Avatar variant='rounded' sx={{ width: 65, height: 100, }} src={`https://www.themoviedb.org/t/p/w200${movie.poster_path}`} />
                                 </Link>
                             </CardActionArea>
                             <Box>
-                                <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
+                                <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()}`} style={{ textDecoration: 'none' }}>
                                     <Typography variant="body2" sx={{ letterSpacing: 1, color: '#fff', '&:hover': { color: 'text.secondary' }, display: '-webkit-box', textOverflow: 'ellipsis', overflow: 'hidden', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }} >{movie.title}</Typography>
                                 </Link>
                                 <Typography component="p" variant="caption" color="text.secondary" sx={{ letterSpacing: 1 }} gutterBottom>

@@ -8,8 +8,8 @@ const UpcomingMovies = ({ upcomingMovies }) => {
     const settings = {
         dots: true,
         arrows: false,
-        autoplay:true,
-        autoplaySpeed:6000,
+        autoplay: true,
+        autoplaySpeed: 6000,
         infinite: true,
         speed: 3000,
         slidesToShow: 7,
@@ -119,7 +119,11 @@ const UpcomingMovies = ({ upcomingMovies }) => {
                                             <Typography variant='caption'>{movie.release_date.slice(0, 4)}</Typography>
                                         } />
                                     </Box>
-                                    <Link to={`/movie/${movie.id}`} style={{ textAlign: 'center !important', textDecoration: 'none' }}>
+                                    <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
+                                        .join("-")
+                                        .split("--")
+                                        .join("-")
+                                        .toLowerCase()}`} style={{ textAlign: 'center !important', textDecoration: 'none' }}>
                                         <Typography variant="body2" sx={{ textAlign: 'center', letterSpacing: 1, color: '#fff', '&:hover': { color: 'text.secondary' } }}>{movie.title}</Typography>
                                     </Link>
                                 </Box>

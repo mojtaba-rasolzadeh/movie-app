@@ -5,90 +5,6 @@ import { grey } from "@mui/material/colors";
 
 const TopCast = ({ id, title, credits }) => {
 
-  //   dots: true,
-  //   arrows: false,
-  //   infinite: false,
-  //   speed: 500,
-  //   slidesToShow: 10,
-  //   slidesToScroll: 10,
-  //   initialSlide: 0,
-  //   responsive: [
-  //     {
-  //       breakpoint: 2900,
-  //       settings: {
-  //         slidesToShow: 9,
-  //         slidesToScroll: 9,
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 2500,
-  //       settings: {
-  //         slidesToShow: 8,
-  //         slidesToScroll: 8,
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 2300,
-  //       settings: {
-  //         slidesToShow: 7,
-  //         slidesToScroll: 7,
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 2000,
-  //       settings: {
-  //         slidesToShow: 6,
-  //         slidesToScroll: 6,
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 1860,
-  //       settings: {
-  //         slidesToShow: 5,
-  //         slidesToScroll: 5,
-  //         infinite: false,
-  //         dots: true
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 1400,
-  //       settings: {
-  //         slidesToShow: 4,
-  //         slidesToScroll: 4,
-  //         infinite: false,
-  //         dots: true
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 1185,
-  //       settings: {
-  //         slidesToShow: 3,
-  //         slidesToScroll: 3,
-  //         infinite: false,
-  //         dots: true
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 850,
-  //       settings: {
-  //         slidesToShow: 2,
-  //         slidesToScroll: 2,
-  //         initialSlide: 1,
-  //         dots: true
-  //       }
-  //     },
-  //     {
-  //       breakpoint: 460,
-  //       settings: {
-  //         slidesToShow: 1,
-  //         slidesToScroll: 1,
-  //         initialSlide: 1,
-  //         arrows: true,
-  //         dots: false
-  //       }
-  //     },
-  //   ]
-  // };
   return (
     <>
       {_.isEmpty(credits?.cast) ? (
@@ -132,9 +48,7 @@ const TopCast = ({ id, title, credits }) => {
                       to={`/person/${user.id}`}
                       style={{ textDecoration: "none" }}
                     >
-                      <Avatar sx={{
-                        width: 64, height: 64
-                      }}
+                      <Avatar sx={{ width: 64, height: 64 }}
                         src={`https://image.tmdb.org/t/p/w64_and_h64_face${user.profile_path}`} />
                     </Link>
                   </CardActionArea>

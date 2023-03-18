@@ -8,8 +8,8 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
     const settings = {
         dots: true,
         arrows: false,
-        autoplay:true,
-        autoplaySpeed:5000,
+        autoplay: true,
+        autoplaySpeed: 5000,
         infinite: true,
         speed: 3000,
         slidesToShow: 4,
@@ -77,12 +77,20 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
                     nowPlayingMovies.results?.slice(0, 8).map((movie) => (
                         <Card key={movie.id} sx={{ display: 'flex!important', flexDirection: { xs: 'column', sm: 'row  ' }, alignItems: 'center', width: 1, height: { xs: 'auto', sm: 250 }, p: 1.5, borderRadius: '20px' }}>
                             <CardActionArea sx={{ width: 150, borderRadius: '20px' }}>
-                                <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
+                                <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()}`} style={{ textDecoration: 'none' }}>
                                     <Avatar variant="rounded" sx={{ width: 150, height: 1, borderRadius: '20px' }} src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`} />
                                 </Link>
                             </CardActionArea>
                             <CardContent>
-                                <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
+                                <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()}`} style={{ textDecoration: 'none' }}>
                                     <Typography variant="body2" sx={{ letterSpacing: 1, color: '#fff', '&:hover': { color: 'text.secondary' }, display: '-webkit-box', textOverflow: 'ellipsis', overflow: 'hidden', WebkitLineClamp: 1, WebkitBoxOrient: 'vertical' }} >{movie.title}</Typography>
                                 </Link>
                                 <Typography component="p" variant="caption" color="text.secondary" sx={{ letterSpacing: 1 }} gutterBottom>
@@ -93,7 +101,11 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
                                     <Typography variant='caption'>{movie.vote_average.toFixed(1)}</Typography>
                                 </Box>
                                 <Typography variant="caption" sx={{ mt: 1, color: 'text.secondary', letterSpacing: 1, display: '-webkit-box', textOverflow: 'ellipsis', overflow: 'hidden', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }} >{movie.overview}</Typography>
-                                <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+                                <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()}`} style={{ textDecoration: 'none', cursor: 'pointer' }}>
                                     <Typography sx={{ fontSize: '.9rem', textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundColor: grey[800], '&:hover': { backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)' }, color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: '.5rem .5rem', mt: 1 }}>
                                         view more
                                     </Typography>

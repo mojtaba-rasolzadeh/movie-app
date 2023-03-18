@@ -1,14 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-const OverviewAndTagline = ({ tagline, overview }) => {
+const Overview = ({ overview }) => {
 
     return (
-        <Box sx={{ mt: { xs: 0, sm: 2, md: 1 ,lg:6 } }}>
-            <Typography variant="body1" sx={{ fontWeight: 600, color: grey[600] }} gutterBottom>
-                {tagline}
-            </Typography>
-            <Typography variant="h6" gutterBottom>
+        <Box sx={{ mt: { xs: 0, sm: 2, lg: 9 } }}>
+            <Typography variant="h6" gutterBottom mt={3}>
                 Overview
             </Typography>
             {overview?.length === 0 ? (
@@ -31,4 +28,4 @@ const OverviewAndTagline = ({ tagline, overview }) => {
     );
 }
 
-export default OverviewAndTagline;
+export default Overview;

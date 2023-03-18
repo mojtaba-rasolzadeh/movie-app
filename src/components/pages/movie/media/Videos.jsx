@@ -22,8 +22,8 @@ const Videos = ({ id, title, videos }) => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
       {_.isEmpty(videos?.results) ? (<NoMediaMessage mediaType="videos" movie Title={title} />) :
-        <ImageList variant="woven" cols={2} gap={8}>
-          {videos.results?.slice(0, 9).map((video) => (
+        <ImageList cols={2} gap={8}>
+          {videos.results?.slice(0, 6).map((video) => (
             <ImageListItem key={video.id} sx={{ position: "relative" }}>
               <img
                 src={`https://i.ytimg.com/vi/${video.key}/hqdefault.jpg?w=161&fit=crop&auto=format`}

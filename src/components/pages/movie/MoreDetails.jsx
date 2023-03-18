@@ -15,8 +15,6 @@ const MoreDetails = ({
 }) => {
 
   const showJob = (job) => {
-    // console.log(credits?.crew.filter((crew) => crew.department === job));
-    console.log(credits?.crew.find((crew) => crew.job === job)?.name);
     return credits?.crew.find((crew) => crew.job.includes(job))?.name;
   }
 

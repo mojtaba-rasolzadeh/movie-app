@@ -13,6 +13,7 @@ const ViewAllMedia = ({ movieId, movieTitle, link, text }) => {
                 textTransform: 'capitalize',
                 letterSpacing: 1,
                 background: 'linear-gradient(to right,#f3001d,#ff004d)',
+                '&:hover': { background: 'linear-gradient(to right,#ff1632,#ff2164)' },
                 color: '#fff',
                 padding: '.75rem 2.5rem',
                 borderRadius: '100px'
@@ -24,11 +25,3 @@ const ViewAllMedia = ({ movieId, movieTitle, link, text }) => {
 }
 
 export default ViewAllMedia;
-            // <Typography sx={{
-            //     display: "inline-block",
-            //     letterSpacing: 1,
-            //     fontWeight: "600",
-            //     color: "#fff",
-            //     "&:hover": { color: "text.secondary" },
-            //     mt: 3
-            // }}>

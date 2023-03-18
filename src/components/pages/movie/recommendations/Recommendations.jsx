@@ -29,7 +29,7 @@ const Recommendations = ({ id, title }) => {
   }, []);
   return (
     <Box sx={{ my: 4 }}>
-      <Typography variant="h6" gutterBottom sx={{ letterSpacing: 1,mb:2 }}>
+      <Typography variant="h6" gutterBottom sx={{ letterSpacing: 1, mb: 3 }}>
         Recommendations
       </Typography>
       {_.isEmpty(movies?.results) ? (
@@ -38,10 +38,7 @@ const Recommendations = ({ id, title }) => {
         </Typography>
       ) : (
         <>
-          {
-            loading ? <Loader /> :
-              <RecommendationsMovies movies={movies} />
-          }
+          {loading ? <Loader /> : <RecommendationsMovies movies={movies} />}
           <MoviePagination movieData={movies} fetchData={fetchData} />
         </>
       )}
