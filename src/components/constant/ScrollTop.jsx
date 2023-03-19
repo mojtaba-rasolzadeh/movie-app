@@ -1,4 +1,4 @@
-import { Box, Fab, Fade, useScrollTrigger } from "@mui/material";
+import { Box, Fab, Fade, Tooltip, useScrollTrigger } from "@mui/material";
 import { KeyboardArrowUp } from "@mui/icons-material";
 
 const ScrollTop = (props) => {
@@ -26,11 +26,16 @@ const ScrollTop = (props) => {
                 role="presentation"
                 sx={{ position: 'fixed', bottom: 16, right: 16, }}
             >
-                <Fab size="small" aria-label="scroll back to top" sx={{backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',color:"#fff"}}>
-                    <KeyboardArrowUp />
-                </Fab>
+                <Tooltip title="Scroll to top" placement="top">
+                    <Fab size="small" aria-label="scroll back to top" sx={{
+                        background: 'linear-gradient(to right,#f3001d,#ff004d)',
+                        '&:hover': { background: 'linear-gradient(to right,#ff1632,#ff2164)' }, color: "#fff"
+                    }}>
+                        <KeyboardArrowUp />
+                    </Fab>
+                </Tooltip>
             </Box>
-        </Fade>
+        </Fade >
     )
 }
 export default ScrollTop;
