@@ -89,10 +89,7 @@ const TopRate = ({ topRatedMovies }) => {
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
                     <Typography variant="h5" sx={{
-                        fontSize: { xs: '1rem', sm: '1.5rem' }, fontWeight: 700,
-                        backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
+                        fontSize: { xs: '1rem', sm: '1.5rem' },
                         letterSpacing: 1
                     }}>Top rated</Typography>
                     <GradeRounded sx={{ color: `${yellow['A700']} !important` }} />

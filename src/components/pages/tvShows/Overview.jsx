@@ -2,7 +2,6 @@ import { Box, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 const Overview = ({ overview }) => {
-
     return (
         <Box sx={{ mt: { xs: 0, sm: 2, lg: 1 } }}>
             <Typography variant="h6" gutterBottom>

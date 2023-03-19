@@ -30,19 +30,16 @@ const Recommendations = ({ id, name }) => {
 
   return (
     <Box sx={{ my: 4 }}>
-      <Typography variant="h5" gutterBottom sx={{ letterSpacing: 1 }}>
+      <Typography variant="h6" sx={{ letterSpacing: 1, mb: 3 }}>
         Recommendations
       </Typography>
       {_.isEmpty(tvShows?.results) ? (
         <Typography sx={{ fontSize: ".89rem", color: "text.secondary" }}>
-          {`We don't have enough data to suggest any tvShows based on ${name}. You can help by rating movies you've seen.`}
+          {`We don't have enough data to suggest any tvShows based on ${name}.`}
         </Typography>
       ) : (
         <>
-          {
-            loading ? <Loader /> :
-              <RecommendationsTvShows tvShows={tvShows} />
-          }
+          {loading ? <Loader /> : <RecommendationsTvShows tvShows={tvShows} />}
           <TvShowPagination tvShowData={tvShows} fetchData={fetchData} />
         </>
       )}

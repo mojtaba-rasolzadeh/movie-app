@@ -12,7 +12,6 @@ export { default as GenresMovie } from './GenresMovie';
 export { default as RatingMovie } from './RatingMovie';
 export { default as MovieScore } from './MovieScore';
 export { default as ReleaseDateMovie } from './ReleaseDateMovie';
-export { default as DarkCover } from './DarkCover';
 export { default as WatchTrialerButton } from './WatchTrialerButton';
 export { default as SocialLinks } from './SocialLinks';
 export { default as MovieDetails } from './MovieDetails';

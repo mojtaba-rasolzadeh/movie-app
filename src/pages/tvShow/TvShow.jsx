@@ -1,19 +1,26 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Divider } from "@mui/material";
+import { Box } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { getLanguagesList, getTv } from "../../services/MovieService";
 import { Loader } from "../../components";
-import TvShowDetails from "../../components/pages/tvShows/TvShowDetails";
-import Media from "../../components/pages/tvShows/media/Media";
-import Recommendations from "../../components/pages/tvShows/recommendations/Recommendations";
-import SocialLinks from "../../components/pages/tvShows/SocialLinks";
-import TvShowFacts from "../../components/pages/tvShows/TvShowFacts";
-import SeriesCast from "../../components/pages/tvShows/SeriesCast";
-import CurrentSeason from "../../components/pages/tvShows/CurrentSeason";
-import Social from "../../components/pages/tvShows/social/Social";
+import DarkCover from "../../components/constant/DarkCover";
+import {
+  TvShowPoster,
+  TvShowDetails,
+  Overview,
+  WatchTrialerButton,
+  SocialLinks,
+  SeriesCast,
+  Social,
+  MoreDetails,
+  CurrentSeason,
+  Media,
+  Recommendations,
+  TrailerShow
+} from "../../components/pages/tvShows";
 
 const TvShow = () => {
   const { tvId } = useParams();
@@ -21,11 +28,29 @@ const TvShow = () => {
   const [tvShow, setTvShow] = useState([]);
   const [languagesList, setLanguagesList] = useState([]);
 
+  const [open, setOpen] = useState(false);
+  const [play, setPlay] = useState(false);
+  const [trailer, setTrailer] = useState(null);
+
+  const handleClose = () => {
+    setOpen(false);
+    setPlay(false);
+  };
+
+  const displayTrailer = () => {
+    setOpen(!open);
+    setPlay(!play);
+    const trailer = tvShow.videos.results.find(
+      (video) => video.name === "Official Trailer"
+    );
+    setTrailer(trailer ? trailer : tvShow.videos.results[0]);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const { status, data } = await getTv(tvId);
+        const { status, data } = await getTv(parseInt(tvId));
         const { data: languageData } = await getLanguagesList();
         if (status === 200) {
           setLoading(false);
@@ -49,24 +74,54 @@ const TvShow = () => {
           <Helmet>
             <title>{`${tvShow.name} (TV Series ${tvShow.first_air_date?.slice(0, 4)})`} | Movie App</title>
           </Helmet>
-          <TvShowDetails {...tvShow} />
-          <Grid container spacing={2} sx={{ my: 3 }}>
-            <Grid xs={12} sm={9}>
-              <SeriesCast {...tvShow} />
-              <Divider />
-              <CurrentSeason tvShow={tvShow} />
-              <Divider />
-              <Social {...tvShow} />
-              <Divider />
-              <Media {...tvShow} />
-              <Divider />
-              <Recommendations {...tvShow} />
-            </Grid>
-            <Grid xs={12} sm={3}>
-              <SocialLinks external_ids={tvShow.external_ids} homepage={tvShow.homepage} />
-              <TvShowFacts languagesList={languagesList} {...tvShow} />
-            </Grid>
-          </Grid>
+          <Box
+            sx={{
+              position: "relative",
+              display: "flex",
+              width: 1,
+              height: { xs: 0, sm: 510 },
+              backgroundImage: `url(https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${tvShow.backdrop_path})`,
+              backgroundPosition: 'center',
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              borderBottomLeftRadius: '20px',
+              borderBottomRightRadius: '20px',
+            }}
+          >
+            <DarkCover />
+            <Box sx={{ position: 'absolute!important', top: { xs: 0, sm: '16rem' }, padding: { xs: '0', sm: '0 2rem' } }}>
+              <Grid container spacing={{ xs: 0, sm: 3 }}>
+                <Grid xs={12} md={5} lg={3.3} xl={2.5} xxl={1}>
+                  <TvShowPoster {...tvShow} />
+                </Grid>
+                <Grid xs={12} md={7} lg={8.7} xl={9.5} xxl={11}>
+                  <TvShowDetails {...tvShow} />
+                  <Overview {...tvShow} />
+                  <WatchTrialerButton videos={tvShow.videos} displayTrailer={displayTrailer} />
+                </Grid>
+              </Grid>
+              <Grid container spacing={{ xs: 0, sm: 3 }} sx={{ mt: { xs: 0, md: 1 } }} >
+                <Grid xs={12} md={5} lg={3.3} xl={2.5}>
+                  <SocialLinks {...tvShow.external_ids} homepage={tvShow.homepage} />
+                  <SeriesCast {...tvShow} />
+                  <Social {...tvShow} />
+                </Grid>
+                <Grid xs={12} md={7} lg={8.7} xl={9.5}>
+                  <Grid container spacing={{ xs: 0, sm: 3 }}>
+                    <Grid xs={12} md={12} lg={7} xl={7}>
+                      <MoreDetails {...tvShow} languagesList={languagesList} />
+                      <CurrentSeason tvShow={tvShow} />
+                    </Grid>
+                    <Grid xs={12} md={12} lg={5} xl={5}>
+                      <Media {...tvShow} />
+                    </Grid>
+                  </Grid>
+                  <Recommendations {...tvShow} />
+                </Grid>
+              </Grid>
+            </Box>
+            <TrailerShow open={open} handleClose={handleClose} trailer={trailer} play={play} />
+          </Box>
         </>
       )}
     </>

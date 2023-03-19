@@ -56,10 +56,7 @@ const TrendingMovies = ({ trendingMovies }) => {
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Typography variant="h5" sx={{
-                    fontSize: { xs: '1rem', sm: '1.5rem' }, fontWeight: 700,
-                    backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    fontSize: { xs: '1rem', sm: '1.5rem' },
                     letterSpacing: 1
                 }}>Trending</Typography>
                 <Link to={`/movie/trending`} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
@@ -96,7 +93,18 @@ const TrendingMovies = ({ trendingMovies }) => {
                                     .split("--")
                                     .join("-")
                                     .toLowerCase()}`} style={{ textDecoration: 'none' }}>
-                                    <Typography sx={{ textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: { xs: '.15rem .75rem', sm: '.25rem 1rem', md: '.5rem 2rem' }, mt: { xs: 1, sm: 0 } }}>
+                                    <Typography sx={{
+                                        textAlign: 'center',
+                                        textTransform: 'capitalize',
+                                        letterSpacing: 1,
+                                        background: 'linear-gradient(to right,#f3001d,#ff004d)',
+                                        '&:hover': { background: 'linear-gradient(to right,#ff1632,#ff2164)' },
+                                        color: '#fff',
+                                        transform: 'skew(-15deg)',
+                                        borderRadius: '10px',
+                                        padding: { xs: '.15rem .75rem', sm: '.25rem 1rem', md: '.5rem 2rem' },
+                                        mt: { xs: 1, sm: 0 }
+                                    }}>
                                         view more
                                     </Typography>
                                 </Link>

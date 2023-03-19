@@ -12,7 +12,7 @@ const SeasonName = ({ tvShow, season }) => {
             style={{ textDecoration: 'none' }}
         >
             <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                     letterSpacing: 1,
                     color: "#fff",

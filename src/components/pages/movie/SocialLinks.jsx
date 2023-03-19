@@ -48,7 +48,7 @@ const SocialLinks = ({ facebook_id, twitter_id, instagram_id, imdb_id, homepage 
           justifyContent: 'center',
           alignItems: 'center',
           gap: 0.5,
-          mt: { xs: 4, md: 1 },
+          mt: { xs: 4, md: 2 },
           p: 2,
           borderRadius: '20px'
         }}>

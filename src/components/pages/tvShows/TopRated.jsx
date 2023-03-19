@@ -8,8 +8,8 @@ const TopRate = ({ topRated }) => {
     const settings = {
         dots: true,
         arrows: false,
-        autoplay:true,
-        autoplaySpeed:4000,
+        autoplay: true,
+        autoplaySpeed: 4000,
         infinite: true,
         speed: 3000,
         slidesToShow: 7,
@@ -89,10 +89,7 @@ const TopRate = ({ topRated }) => {
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 1 }}>
                     <Typography variant="h5" sx={{
-                        fontSize: { xs: '1rem', sm: '1.5rem' }, fontWeight: 700,
-                        backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
+                        fontSize: { xs: '1rem', sm: '1.5rem' },
                         letterSpacing: 1
                     }}>Top rated</Typography>
                     <GradeRounded sx={{ color: `${yellow['A700']} !important` }} />
@@ -122,7 +119,12 @@ const TopRate = ({ topRated }) => {
                                             <Typography variant='caption'>{tv.first_air_date.slice(0, 4)}</Typography>
                                         } />
                                     </Box>
-                                    <Link to={`/tv/${tv.id}`} style={{ textAlign: 'center !important', textDecoration: 'none' }}>
+                                    <Link to={`/tv/${tv.id}-${tv.name?.split(/[\s:,]/)
+                                        .join("-")
+                                        .split("--")
+                                        .join("-")
+                                        .toLowerCase()
+                                        }`} style={{ textAlign: 'center !important', textDecoration: 'none' }}>
                                         <Typography variant="body2" sx={{ textAlign: 'center', letterSpacing: 1, color: '#fff', '&:hover': { color: 'text.secondary' } }}>{tv.name}</Typography>
                                     </Link>
                                 </Box>

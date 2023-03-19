@@ -7,7 +7,6 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getLanguagesList, getMovie } from "../../services/MovieService";
 import { Loader } from "../../components";
 import {
-  DarkCover,
   MoviePoster,
   Overview,
   TrailerShow,
@@ -20,6 +19,7 @@ import {
   Recommendations,
   Social
 } from "../../components/pages/movie";
+import DarkCover from "../../components/constant/DarkCover";
 
 const Movie = () => {
 
@@ -89,7 +89,7 @@ const Movie = () => {
             }}
           >
             <DarkCover />
-            <Box sx={{ position: 'absolute!important', top: { xs: 0, sm: '16rem' }, padding: { xs: '0 .5rem', sm: '0 2rem' } }}>
+            <Box sx={{ position: 'absolute!important', top: { xs: 0, sm: '16rem' }, padding: { xs: '0', sm: '0 2rem' } }}>
               <Grid container spacing={{ xs: 0, sm: 3 }}>
                 <Grid xs={12} md={5} lg={3.3} xl={2.5} xxl={1}>
                   <MoviePoster {...movie} />
@@ -100,7 +100,7 @@ const Movie = () => {
                   <WatchTrialerButton videos={movie.videos} displayTrailer={displayTrailer} />
                 </Grid>
               </Grid>
-              <Grid container spacing={{ xs: 0, sm: 3 }} >
+              <Grid container spacing={{ xs: 0, sm: 3 }} sx={{ mt: { xs: 0, md: 1 } }} >
                 <Grid xs={12} md={5} lg={3.3} xl={2.5}>
                   <SocialLinks {...movie.external_ids} homepage={movie.homepage} />
                   <TopCast {...movie} />

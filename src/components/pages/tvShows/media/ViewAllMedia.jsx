@@ -10,12 +10,13 @@ const ViewAllMedia = ({ tvShowId, tvShowTitle, link, text }) => {
             .toLowerCase()}/${link}`}
             style={{ textDecoration: 'none' }}>
             <Typography sx={{
-                display: "inline-block",
+                textTransform: 'capitalize',
                 letterSpacing: 1,
-                fontWeight: "600",
-                color: "#fff",
-                "&:hover": { color: "text.secondary" },
-                mt: 3
+                background: 'linear-gradient(to right,#f3001d,#ff004d)',
+                '&:hover': { background: 'linear-gradient(to right,#ff1632,#ff2164)' },
+                color: '#fff',
+                padding: '.75rem 2.5rem',
+                borderRadius: '100px'
             }}>
                 {text}
             </Typography>

@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import _ from "lodash";
 import { Box, Typography, Chip } from "@mui/material";
-import { yellow } from "@mui/material/colors";
 
 const Keywords = ({ keywords }) => {
     return (
         <Box sx={{ mb: 4 }}>
             <Typography
                 variant="body1"
-                sx={{ letterSpacing: 2, fontWeight: "700",color: yellow[700] }}
+                sx={{ letterSpacing: 1 }}
             >
                 Keywords:
             </Typography>

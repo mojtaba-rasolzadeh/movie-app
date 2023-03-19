@@ -7,13 +7,8 @@ const PopularMovies = ({ popularMovies }) => {
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <AutoGraph sx={{ color: yellow['A700'] }} /> <Typography variant="h5" sx={{
-                    fontWeight: 700,
-                    backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    letterSpacing: 1
-                }}>Popular</Typography>
+                <AutoGraph sx={{ color: yellow['A700'] }} /> <Typography variant="h5"
+                    sx={{ letterSpacing: 1 }}>Popular</Typography>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, my: 4 }}>
                 {
@@ -49,7 +44,19 @@ const PopularMovies = ({ popularMovies }) => {
                 }
             </Box>
             <Link to="/movie/popular" style={{ textDecoration: 'none' }}>
-                <Typography sx={{ width: { sm: 1, xl: '70%' }, textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundColor: '#f3001d', color: '#fff', borderRadius: '100px', padding: '.75rem 2rem', mx: 'auto', mt: { xs: 1, sm: 0 } }}>
+                <Typography sx={{
+                    width: { sm: 1, xl: '70%' },
+                    textAlign: 'center',
+                    textTransform: 'capitalize',
+                    letterSpacing: 1,
+                    background: 'linear-gradient(to right,#f3001d,#ff004d)',
+                    '&:hover': { background: 'linear-gradient(to right,#ff1632,#ff2164)' },
+                    color: '#fff',
+                    borderRadius: '100px',
+                    padding: '.75rem 2rem',
+                    mx: 'auto',
+                    mt: { xs: 1, sm: 0 }
+                }}>
                     see more
                 </Typography>
             </Link>

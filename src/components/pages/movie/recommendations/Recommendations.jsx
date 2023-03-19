@@ -29,12 +29,12 @@ const Recommendations = ({ id, title }) => {
   }, []);
   return (
     <Box sx={{ my: 4 }}>
-      <Typography variant="h6" gutterBottom sx={{ letterSpacing: 1, mb: 3 }}>
+      <Typography variant="h6" sx={{ letterSpacing: 1, mb: 3 }}>
         Recommendations
       </Typography>
       {_.isEmpty(movies?.results) ? (
         <Typography sx={{ fontSize: ".89rem", color: "text.secondary" }}>
-          {`We don't have enough data to suggest any movies based on ${title}. You can help by rating movies you've seen.`}
+          {`We don't have enough data to suggest any movies based on ${title}.`}
         </Typography>
       ) : (
         <>

@@ -25,7 +25,6 @@ const PlayVideo = ({ open, handleClose, play, video }) => {
                     </IconButton>
                     <Youtube
                         videoId={video.key}
-                        title={"hello mojooo"}
                         opts={{
                             width: "640",
                             height: "390",

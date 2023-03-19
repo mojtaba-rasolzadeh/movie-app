@@ -8,8 +8,8 @@ const Trending = ({ trending }) => {
     const settings = {
         dots: true,
         arrows: false,
-        autoplay:true,
-        autoplaySpeed:3000,
+        autoplay: true,
+        autoplaySpeed: 3000,
         infinite: true,
         speed: 3500,
         slidesToShow: 3,
@@ -57,10 +57,7 @@ const Trending = ({ trending }) => {
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
                 <Typography variant="h5" sx={{
-                    fontSize: { xs: '1rem', sm: '1.5rem' }, fontWeight: 700,
-                    backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    fontSize: { xs: '1rem', sm: '1.5rem' },
                     letterSpacing: 1
                 }}>Trending</Typography>
                 <Link to={`/tv/trending`} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
@@ -84,12 +81,33 @@ const Trending = ({ trending }) => {
                                         } />
                                         <Chip sx={{ backgroundColor: grey[900] }} label={tv.first_air_date.slice(0, 4)} />
                                     </Box>
-                                    <Link to={`/tv/${tv.id}`} style={{ textDecoration: 'none' }}>
+                                    <Link to={`/tv/${tv.id}-${tv.name?.split(/[\s:,]/)
+                                        .join("-")
+                                        .split("--")
+                                        .join("-")
+                                        .toLowerCase()
+                                        }`} style={{ textDecoration: 'none' }}>
                                         <Typography sx={{ width: 137, mt: 2, letterSpacing: 1, color: '#fff', '&:hover': { color: 'text.secondary' } }}>{tv.name}</Typography>
                                     </Link>
                                 </Box>
-                                <Link to={`/tv/${tv.id}`} style={{ textDecoration: 'none' }}>
-                                    <Typography sx={{ textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: { xs: '.15rem .75rem', sm: '.25rem 1rem', md: '.5rem 2rem' }, mt: { xs: 1, sm: 0 } }}>
+                                <Link to={`/tv/${tv.id}-${tv.name?.split(/[\s:,]/)
+                                    .join("-")
+                                    .split("--")
+                                    .join("-")
+                                    .toLowerCase()
+                                    }`} style={{ textDecoration: 'none' }}>
+                                    <Typography sx={{
+                                        textAlign: 'center',
+                                        textTransform: 'capitalize',
+                                        letterSpacing: 1,
+                                        background: 'linear-gradient(to right,#f3001d,#ff004d)',
+                                        '&:hover': { background: 'linear-gradient(to right,#ff1632,#ff2164)' },
+                                        color: '#fff',
+                                        transform: 'skew(-15deg)',
+                                        borderRadius: '10px',
+                                        padding: { xs: '.15rem .75rem', sm: '.25rem 1rem', md: '.5rem 2rem' },
+                                        mt: { xs: 1, sm: 0 }
+                                    }}>
                                         view more
                                     </Typography>
                                 </Link>
