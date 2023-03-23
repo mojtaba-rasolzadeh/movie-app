@@ -1,17 +1,49 @@
 import { useState } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import { Box, IconButton, InputBase } from '@mui/material';
+import { IconButton, InputBase, styled } from '@mui/material';
 import { grey } from '@mui/material/colors';
-import { Search } from '@mui/icons-material';
+import { SearchRounded } from '@mui/icons-material';
 import { toast } from 'react-hot-toast';
+
+const Search = styled('Box')(({ theme }) => ({
+    position: 'relative',
+    borderRadius: 200,
+    border: `1px solid ${grey[600]}`,
+    width: '100%',
+    display: 'flex',
+    [theme.breakpoints.up('sm')]: {
+        marginLeft: theme.spacing(1),
+        width: 'auto',
+    },
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+    color: 'inherit',
+    '&.MuiInputBase-root': { width: '100%' },
+    '& .MuiInputBase-input': {
+        padding: theme.spacing(1, 1, 1, 3),
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            width: '12ch',
+            '&:focus': {
+                width: '25ch',
+            },
+        },
+    },
+}));
 
 const SearchInput = () => {
 
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState('');
+
     const navigate = useNavigate();
 
-    const handleSearch = () => {
-        if (query.replace(/\s/g, "")) {
+    const handleSearch = (event) => {
+
+        event.preventDefault();
+
+        if (query?.replace(/\s/g, "")) {
             navigate({
                 pathname: "/search",
                 search: createSearchParams({
@@ -25,20 +57,25 @@ const SearchInput = () => {
     };
 
     return (
-        <Box
-            sx={{ maxWidth: {sm:200,md:400}, width: 1, display: 'flex', alignItems: 'center', borderRadius: 200, border: `1px solid ${grey[600]}`, px: .4}}
-        >
-            <InputBase
-                type="search"
-                sx={{ ml: 1, flex: 1, pl: 1.2, letterSpacing: 1 }}
-                placeholder="Search for a movie, tv show, person......"
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={(event) => setQuery(event.target.value)}
-            />
-            <IconButton type="button" sx={{ p: '10px', color: grey[500] }} aria-label="search" onClick={handleSearch}>
-                <Search />
-            </IconButton>
-        </Box>
+        <Search >
+            <form onSubmit={handleSearch}
+                style={{
+                    width: '100%',
+                    display: "flex",
+                    alignItems: "center"
+                }}>
+                <StyledInputBase
+                    placeholder="Search for a movie, tv show..."
+                    inputProps={{ 'aria-label': 'search' }}
+                    type="search"
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                />
+                <IconButton type="submit" sx={{ p: '10px', color: grey[500] }} aria-label="search">
+                    <SearchRounded />
+                </IconButton>
+            </form>
+        </Search>
     )
 }
 export default SearchInput;
