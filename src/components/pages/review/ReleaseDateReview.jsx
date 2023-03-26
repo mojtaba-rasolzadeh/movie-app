@@ -5,8 +5,6 @@ const ReleaseDateReview = ({ review }) => {
         <Typography
             component="p"
             variant="h6" sx={{
-                fontWeight: 700,
-                color: '#e76f00',
                 letterSpacing: 1,
             }}>
             Written by

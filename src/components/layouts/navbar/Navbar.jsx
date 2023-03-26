@@ -1,13 +1,13 @@
-import { useState, cloneElement } from "react";
-import { Box, AppBar, Toolbar, IconButton } from "@mui/material";
-import { purple } from "@mui/material/colors";
-import { MenuRounded } from "@mui/icons-material";
-import PropTypes from 'prop-types';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { useState, cloneElement, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import { Box, AppBar, Toolbar, Avatar, useMediaQuery } from "@mui/material";
 
-import { Sidebar } from "../../";
-import SearchInput from "./SearchInput";
-import NavLinks from "./NavLinks";
+import Sidebar from "../sidebar/Sidebar";
+import movieLogo from "../../../assets/movie-logo.png";
+import { NavLinks, SearchInput, HamburgerMenuButton } from "./";
+
 function ElevationScroll(props) {
   const { children, window } = props;
 
@@ -22,17 +22,21 @@ function ElevationScroll(props) {
   });
 }
 
-ElevationScroll.propTypes = {
-  children: PropTypes.element.isRequired,
-  window: PropTypes.func,
-};
-
 const Navbar = (props) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up("sm"));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  useEffect(() => {
+    if (isMdUp) {
+      setMobileOpen(false);
+    }
+  }, [isMdUp]);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -40,7 +44,6 @@ const Navbar = (props) => {
         <AppBar component="nav">
           <Toolbar
             sx={{
-              // width: { xs: "auto", sm: 564, md: 864, lg: 1164, xl: 1500 },
               width: 1,
               mx: "auto",
               px: { xs: 5, sm: 4 },
@@ -55,15 +58,21 @@ const Navbar = (props) => {
                 gap: 2,
               }}
             >
-              <NavLinks />
+              <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+                <Link to="/" style={{ textDecoration: "none" }}>
+                  <Avatar
+                    variant="rounded"
+                    sx={{ width: 40 }}
+                    src={movieLogo}
+                  />
+                </Link>
+                <NavLinks />
+              </Box>
               <SearchInput />
-              <IconButton
-                aria-label="menu"
-                sx={{ display: { sm: "none" }, color: purple[600] }}
-                onClick={handleDrawerToggle}
-              >
-                <MenuRounded sx={{ fontSize: "2rem" }} />
-              </IconButton>
+              <HamburgerMenuButton
+                mobileOpen={mobileOpen}
+                handleDrawerToggle={handleDrawerToggle}
+              />
             </Box>
           </Toolbar>
         </AppBar>
@@ -72,7 +81,7 @@ const Navbar = (props) => {
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       />
-    </Box >
+    </Box>
   );
 };
 export default Navbar;

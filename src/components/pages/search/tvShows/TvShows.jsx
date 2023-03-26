@@ -3,9 +3,9 @@ import _ from "lodash";
 import { Typography } from '@mui/material';
 
 import { getSearchTvShows } from "../../../../services/MovieService";
-import { Loader } from "../../../constant";
 import TvShowItem from '../../tvShows/TvShowItem';
 import TvShowPagination from '../../../pages/tvShows/TvShowPagination';
+import MovieAndTvShowSkeleton from "../../constant/skeletons/MovieAndTvShowSkeleton";
 
 const TvShows = ({ tvShowsData, query }) => {
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ const TvShows = ({ tvShowsData, query }) => {
         </Typography>
       ) : (
         <>
-          {loading ? (<Loader />) : (<TvShowItem tvShowData={tvShows} />)}
+          {loading ? (<MovieAndTvShowSkeleton />) : (<TvShowItem tvShowData={tvShows} />)}
           <TvShowPagination tvShowData={tvShows} fetchData={handleChangePage} />
         </>
       )}

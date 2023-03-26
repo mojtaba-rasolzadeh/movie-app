@@ -7,9 +7,9 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getLanguagesList, getMovie } from '../../services/MovieService';
 import BackToMain from '../../components/constant/BackToMain';
 import { Loader } from '../../components';
-import Images from '../../components/pages/movie/backdrops/Images';
 import TabPanel from '../../components/constant/TabPanel';
-import BackdropsPanel from '../../components/pages/movie/backdrops/BackdropsPanel';
+import BackdropsPanel from '../../components/pages/constant/backdrops/BackdropsPanel';
+import Images from '../../components/pages/constant/backdrops/Images';
 
 const MovieBackdrops = () => {
     const { movieId } = useParams();
@@ -71,21 +71,22 @@ const MovieBackdrops = () => {
                         </Helmet>
                         <Box sx={{ py: 5 }}>
                             <BackToMain media_type="movie" media_data={movie} searchParams={movieId} />
-                            <Grid container spacing={{ xs: 3, sm: 2 }} sx={{ width: "100%", my: 5 }}>
-                                <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
+                            <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 4 }} sx={{ width: "100%", my: 5 }}>
+                                <Grid xs={12} sm={7} md={4} lg={4} xl={2}>
                                     <BackdropsPanel
                                         value={value}
+                                        images={images}
                                         handleChange={handleChange}
                                         imageLanguageArray={imageLanguageArray}
                                         displayLanguage={displayLanguage}
                                         displayLengthItem={displayLengthItem}
                                     />
                                 </Grid>
-                                <Grid xs={12} sm={6} md={8} lg={9} xl={10}>
+                                <Grid xs={12} sm={12} md={8} lg={8} xl={10}>
                                     {
                                         imageLanguageArray.map((image, index) => (
                                             <TabPanel key={index} value={value} index={index}>
-                                                <Images allImages={images} imageType={image} moiveTitle={movie} />
+                                                <Images allImages={images} imageType={image} mediaTitle={movie.title} />
                                             </TabPanel>
                                         ))
                                     }

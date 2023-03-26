@@ -1,7 +1,6 @@
 import { Box } from '@mui/material';
 import Youtube from "react-youtube";
 
-
 const YouTubePlayer = ({trailer}) => {
     return (
         <Box sx={{ position: 'relative' }}>

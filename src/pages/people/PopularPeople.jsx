@@ -3,9 +3,9 @@ import { Helmet } from "react-helmet-async";
 import { Box, Typography } from "@mui/material";
 
 import { getPeople } from "../../services/MovieService";
-import { Loader } from "../../components";
 import PeopleItem from "../../components/pages/people/PeopleItem";
 import MoviePagination from "../../components/pages/movie/MoviePagination";
+import MovieAndTvShowSkeleton from "../../components/pages/constant/skeletons/MovieAndTvShowSkeleton";
 
 const PopularPeople = () => {
   const [loading, setLoading] = useState(false);
@@ -34,11 +34,13 @@ const PopularPeople = () => {
       <Helmet>
         <title>Popular People | Movie App</title>
       </Helmet>
-      <Box sx={{ py: 3.75 }}>
-        <Typography variant="h5" sx={{ mb: 1 }}>
+      <Box sx={{ py: 4 }}>
+        <Typography variant="h5" mb={4} sx={{ letterSpacing: 1 }}>
           Popular People
         </Typography>
-        {loading ? (<Loader />) : (
+        {loading ? (
+          <MovieAndTvShowSkeleton />
+        ) : (
           <PeopleItem peopleData={people} />
         )}
         <MoviePagination movieData={people} fetchData={fetchData} />

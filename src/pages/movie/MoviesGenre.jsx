@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Box, Typography, Divider, Chip } from "@mui/material";
+import { Box, Typography, Chip } from "@mui/material";
 
 import { getDiscoverMovieWithGenres, getGenresMovieList } from "../../services/MovieService";
 import MoviePagination from "../../components/pages/movie/MoviePagination";
-import { Loader } from "../../components";
 import MovieItem from "../../components/pages/movie/MovieItem";
+import MovieAndTvShowSkeleton from "../../components/pages/constant/skeletons/MovieAndTvShowSkeleton";
 
 const MoviesGenre = () => {
   const { genreId } = useParams();
@@ -36,14 +36,16 @@ const MoviesGenre = () => {
 
   return (
     <Box sx={{ py: 4 }}>
-      <Box sx={{ display: "flex", flexWrap: 'wrap', justifyContent: "space-between", alignItems: "center", mb: 3 }}>
-        <Typography sx={{
-          fontSize: "2rem", fontWeight: 700, letterSpacing: 2,
-          background: 'linear-gradient(to right,#ED4700,#E76F00)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          // letterSpacing: 1,
-
+      <Box sx={{
+        display: "flex",
+        flexWrap: 'wrap',
+        justifyContent: "space-between",
+        alignItems: "center",
+        mb: 3
+      }}>
+        <Typography variant="h5" sx={{
+          fontSize: { xs: '1rem', sm: '1.5rem' },
+          letterSpacing: 1
         }}>
           {genre.name}
         </Typography>
@@ -54,12 +56,11 @@ const MoviesGenre = () => {
                 {movies?.total_results.toLocaleString()}{" "}movies
               </Typography>
             }
-            sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
+            variant='outlined'
           />
         )}
       </Box>
-      <Divider />
-      {loading ? (<Loader />) : (
+      {loading ? (<MovieAndTvShowSkeleton />) : (
         <>
           <Helmet>
             <title>{`${genre.name}`} Movies | Movie App</title>

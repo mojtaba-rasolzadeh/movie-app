@@ -51,13 +51,10 @@
 }
 
 .arrow {
-    font-size: 0;
     line-height: 0;
     position: absolute;
     top: 50%;
     display: block;
-    width: 20px;
-    height: 20px;
     padding: 0;
     transform: translate(0, -50%);
     cursor: pointer;
@@ -65,6 +62,7 @@
     border: none;
     outline: none;
     background: transparent;
+    z-index: 1000;
 }
 
 .arrow:hover {
@@ -72,14 +70,59 @@
 }
 
 .arrow-next {
-    right: -25px;
+    right: 0;
 }
 
 .arrow-prev {
-    left: -25px;
+    left: 0;
 }
 
 .slick-track {
     display: flex !important;
     align-items: center !important;
+}
+
+.hamburger {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    transition: all .25s;
+}
+
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+    position: absolute;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    transform: translate(0);
+    transition: all .5s;
+}
+
+.hamburger-middle {
+    transform: translateY(7px);
+}
+
+.hamburger-bottom {
+    transform: translateY(14px);
+}
+
+.open {
+    transform: rotate(90deg);
+    transform: translateY(0);
+}
+
+.open .hamburger-top {
+    transform: rotate(45deg) translateY(6px) translate(6px);
+}
+
+.open .hamburger-middle {
+    display: none;
+}
+
+.open .hamburger-bottom {
+    transform: rotate(-45deg) translateY(6px) translate(-6px);
 }

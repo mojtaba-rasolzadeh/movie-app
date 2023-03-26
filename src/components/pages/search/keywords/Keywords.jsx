@@ -48,7 +48,7 @@ const Keywords = ({ keywordsData, query }) => {
               {keywords.results.map((keyword) => (
                 <Box key={keyword.id}>
                   <Link
-                    to={`/keyword/${keyword.id}`}
+                    to={`/keyword/${keyword.id}/movie`}
                     style={{ textDecoration: "none" }}
                   >
                     <ListItem disablePadding>

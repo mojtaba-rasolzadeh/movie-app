@@ -4,8 +4,17 @@ import { Helmet } from 'react-helmet-async';
 import { Box, Divider } from '@mui/material';
 
 import { getTvSeasonDetails } from '../../services/MovieService';
-import { BackToSeasonList, EpisodesLength, Episode, GuestStarItemLength, GuestStar, Crews, CrewItemLength, EpisodesMenu } from '../../components/pages/tvShows/tvShowSeason';
 import { Loader } from '../../components';
+import {
+    BackToSeasonList,
+    EpisodesLength,
+    Episode,
+    GuestStarItemLength,
+    GuestStar,
+    Crews,
+    CrewItemLength,
+    EpisodesMenu
+} from '../../components/pages/tvShows/tvShowSeason';
 
 const TvShowSeason = () => {
     const { tvId, seasonId } = useParams();
@@ -42,9 +51,17 @@ const TvShowSeason = () => {
                 loading ? <Loader /> :
                     <Box>
                         <BackToSeasonList {...season} searchParams={tvId} />
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                        <Box sx={{
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            justifyContent: 'space-between',
+                            alignItems: 'baseline'
+                        }}>
                             <EpisodesLength episodes={episodes} />
-                            <EpisodesMenu episodes={episodes} selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
+                            <EpisodesMenu
+                                episodes={episodes}
+                                selectedIndex={selectedIndex}
+                                setSelectedIndex={setSelectedIndex} />
                         </Box>
                         <Divider />
                         <Box sx={{ display: 'flex', flexDirection: 'column', mt: 4 }}>

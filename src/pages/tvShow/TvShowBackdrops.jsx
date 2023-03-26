@@ -8,8 +8,8 @@ import { getLanguagesList, getTv } from '../../services/MovieService';
 import BackToMain from '../../components/constant/BackToMain';
 import { Loader } from '../../components';
 import TabPanel from '../../components/constant/TabPanel';
-import BackdropsPanel from '../../components/pages/tvShows/backdrops/BackdropsPanel';
-import Images from '../../components/pages/tvShows/backdrops/Images';
+import BackdropsPanel from '../../components/pages/constant/backdrops/BackdropsPanel';
+import Images from '../../components/pages/constant/backdrops/Images';
 
 const TvShowBackdrops = () => {
     const { tvId } = useParams();
@@ -72,6 +72,7 @@ const TvShowBackdrops = () => {
                                 <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
                                     <BackdropsPanel
                                         value={value}
+                                        images={images}
                                         handleChange={handleChange}
                                         imageLanguageArray={imageLanguageArray}
                                         displayLanguage={displayLanguage}
@@ -82,7 +83,7 @@ const TvShowBackdrops = () => {
                                     {
                                         imageLanguageArray.map((image, index) => (
                                             <TabPanel key={index} value={value} index={index}>
-                                                <Images allImages={images} imageType={image} tvTitle={tvShow} />
+                                                <Images allImages={images} imageType={image} mediaTitle={tvShow.name} />
                                             </TabPanel>
                                         ))
                                     }

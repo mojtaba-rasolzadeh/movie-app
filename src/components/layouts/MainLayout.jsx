@@ -16,7 +16,7 @@ const MainLayout = ({ children }) => {
           <Toolbar />
           <Box
             sx={{
-              px: { xs: '1rem', sm: 4 },
+              px: { xs: "1rem", sm: 4 },
               mx: "auto",
             }}
           >

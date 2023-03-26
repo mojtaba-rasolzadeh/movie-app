@@ -2,10 +2,10 @@ import { useState } from "react";
 import _ from "lodash";
 import { Typography } from '@mui/material';
 
-import { getSearchMovies } from "../../../../services/MovieService";
-import { Loader } from "../../../constant";
 import MovieItem from '../../movie/MovieItem'
 import MoviePagination from '../../../pages/movie/MoviePagination';
+import { getSearchMovies } from "../../../../services/MovieService";
+import MovieAndTvShowSkeleton from "../../constant/skeletons/MovieAndTvShowSkeleton";
 
 const Movies = ({ moviesData, query }) => {
   const [loading, setLoading] = useState(false);
@@ -20,6 +20,7 @@ const Movies = ({ moviesData, query }) => {
         setMovies(data);
       }
     } catch (err) {
+      setLoading(false);
       console.log(err.message);
     }
   };
@@ -32,7 +33,7 @@ const Movies = ({ moviesData, query }) => {
         </Typography>
       ) : (
         <>
-          {loading ? (<Loader />) : (<MovieItem movieData={movies} />)}
+          {loading ? (<MovieAndTvShowSkeleton />) : (<MovieItem movieData={movies} />)}
           <MoviePagination movieData={movies} fetchData={handleChangePage} />
         </>
       )}

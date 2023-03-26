@@ -1,3 +1,6 @@
-export { default as MovieMenu } from './MovieMenu';
-export { default as TvShowsMenu } from './TvShowsMenu';
-export { default as PeopleMenu } from './PeopleMenu';
+export { default as SearchInput }
+from "./SearchInput";
+export { default as NavLinks }
+from "./NavLinks";
+export { default as HamburgerMenuButton }
+from "./HamburgerMenuButton";

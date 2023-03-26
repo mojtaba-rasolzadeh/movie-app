@@ -1,16 +1,16 @@
-import Popular from "../components/pages/home/popular/Popular";
-import Trailers from "../components/pages/home/trailers/Trailers";
-import Trending from "../components/pages/home/trending/Trending";
-import FreeToWatch from "../components/pages/home/watch/FreeToWatch";
+import { Box } from "@mui/material";
+
+import { Popular, Trailers, Trending, FreeToWatch } from "../components/pages/home";
 
 const Home = () => {
+
   return (
-    <div>
-      {/* <Trailers />
+    <Box>
       <Popular />
+      <Trending />
+      <Trailers />
       <FreeToWatch />
-      <Trending /> */}
-    </div>
+    </Box>
   );
 };
 

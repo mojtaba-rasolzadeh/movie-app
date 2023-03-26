@@ -1,48 +1,67 @@
 import { useState, useEffect } from "react";
-import { Box, Typography, Backdrop } from "@mui/material";
-import { amber } from "@mui/material/colors";
+import { Box, Typography } from "@mui/material";
 
-import { getDiscoverMovie, getMovie } from "../../../../services/MovieService";
-import { Loader } from "../../../constant";
-import YouTubePlayer from "./YouTubePlayer";
-import TrailerSlider from "./TrailerSlider";
+import TabPanel from "../../../constant/TabPanel";
+import { MoviesTrailer, TvShowsTrailer, TrailersTabs } from "./";
+import {
+  TrailersSliderSkeleton,
+  TrailerShow,
+} from "../../constant/trailersAndVideos";
+import {
+  getMovies,
+  getMovie,
+  getMoviesForRent,
+} from "../../../../services/MovieService";
 
 const Trailers = () => {
-  const [popularMovie, setPopularMovie] = useState({});
-  const [trailer, setTrailer] = useState(null);
-  const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState(0);
+  const [forRentItems, setForRentItems] = useState({});
+  const [inTheaters, setInTheaters] = useState({});
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const [open, setOpen] = useState(false);
+  const [trailer, setTrailer] = useState(null);
   const [play, setPlay] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
     setPlay(false);
   };
+
   const handleToggle = async (movieId) => {
     setPlay(true);
     setOpen((prevOpen) => !prevOpen);
 
     try {
-      setLoading(true);
       const { status, data } = await getMovie(movieId);
       if (status === 200) {
-        setLoading(false);
-        const trailer = data.videos.results.find(item => item.name === "Official Trailer");
+        const trailer = data.videos.results.find(
+          (item) => item.name === "Official Trailer"
+        );
         setTrailer(trailer ? trailer : data.videos.results[0]);
       }
     } catch (err) {
-      setLoading(false);
       console.log(err.message);
     }
   };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { status, data: movieData } = await getDiscoverMovie();
+        setLoading(true);
+        const { status, data: forRentData } = await getMoviesForRent();
+        const { data: inTheatersData } = await getMovies("now_playing");
         if (status === 200) {
-          setPopularMovie(movieData);
+          setLoading(false);
+          setForRentItems(forRentData);
+          setInTheaters(inTheatersData);
         }
       } catch (err) {
+        setLoading(false);
         console.log(err.message);
       }
     };
@@ -50,31 +69,57 @@ const Trailers = () => {
   }, []);
 
   return (
-    <Box sx={{ my: 10, py: 3 }}>
-      <Typography
-        variant="h5"
-        sx={{
-          fontSize: { xs: "1.25rem", md: "1.5rem" },
-          color: amber[500],
-          letterSpacing: 1,
-        }}
-      >
-        Trailers{" "}
-      </Typography>{" "}
-      <TrailerSlider popularMovie={popularMovie} handleToggle={handleToggle} />{" "}
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+    <>
+      <Box sx={{ width: "100%", mt: 5 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: { xs: 2.5, sm: 5 },
+            mb: 4,
+          }}
+        >
+          <Typography
+            variant="h5"
+            sx={{
+              fontSize: { xs: "1.25rem", md: "1.5rem" },
+              letterSpacing: 1,
+            }}
+          >
+            Trailers
+          </Typography>
+          <TrailersTabs value={value} handleChange={handleChange} />
+        </Box>
+        {loading ? (
+          <TrailersSliderSkeleton />
+        ) : (
+          <>
+            <TabPanel value={value} index={0}>
+              <MoviesTrailer
+                movieData={forRentItems}
+                handleToggle={handleToggle}
+              />{" "}
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+              <MoviesTrailer
+                movieData={inTheaters}
+                handleToggle={handleToggle}
+              />{" "}
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              <TvShowsTrailer />{" "}
+            </TabPanel>
+          </>
+        )}
+      </Box>
+      <TrailerShow
+        trailer={trailer}
         open={open}
-        onClick={handleClose}
-      >
-        {loading
-          ? <Loader />
-          :
-          trailer && play ? <YouTubePlayer trailer={trailer} /> : 'Sorry, no trailer available'
-        }
-        {" "}
-      </Backdrop>{" "}
-    </Box>
+        play={play}
+        handleClose={handleClose}
+      />
+    </>
   );
 };
 export default Trailers;

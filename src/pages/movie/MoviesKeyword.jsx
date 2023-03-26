@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Box, Typography, Divider, Chip } from "@mui/material";
+import { Box, Typography, Chip } from "@mui/material";
 
 import MoviePagination from "../../components/pages/movie/MoviePagination";
-import { Loader } from "../../components";
-
 import { getKeywordDetails, getMoviesRelatedToTheKeyword } from "../../services/MovieService";
 import MovieItem from "../../components/pages/movie/MovieItem";
+import MovieAndTvShowSkeleton from "../../components/pages/constant/skeletons/MovieAndTvShowSkeleton";
 
 const MoviesKeyword = () => {
   const { keywordId } = useParams();
@@ -49,23 +48,12 @@ const MoviesKeyword = () => {
           mb: 3,
         }}
       >
-        <Link
-          href={`/keyword/${keyword.id}-${keyword.name}/movie`}
-          style={{ textDecoration: "none" }}
-        >
-          <Typography
-            sx={{
-              fontSize: "2rem",
-              fontWeight: 700,
-              letterSpacing: 1,
-              background: 'linear-gradient(to right,#ED4700,#E76F00)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
-            {keyword?.name}
-          </Typography>
-        </Link>
+        <Typography variant="h5" sx={{
+          fontSize: { xs: '1rem', sm: '1.5rem' },
+          letterSpacing: 1,
+        }}>
+          {keyword?.name}
+        </Typography>
         {movies.total_results && (
           <Chip
             label={
@@ -74,12 +62,11 @@ const MoviesKeyword = () => {
                 movies
               </Typography>
             }
-            sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
+            variant="outlined"
           />
         )}
       </Box>
-      <Divider />
-      {loading ? (<Loader />) : (
+      {loading ? (<MovieAndTvShowSkeleton />) : (
         <>
           <Helmet>
             <title>{`"${keyword.name}"`} Movies | Movie App</title>

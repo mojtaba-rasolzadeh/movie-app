@@ -1,30 +1,20 @@
 import { useState, useEffect } from "react";
-import SwipeableViews from "react-swipeable-views";
-import { Box, Typography, Tabs, Tab } from "@mui/material";
-import { amber } from "@mui/material/colors";
+import { Box, Typography } from "@mui/material";
 
-import { getFreeToWatch } from "../../../../services/MovieService";
-import { Movies, Tv } from "./";
+import { Movies, TvShows } from "../";
+import FreeToWatchTabs from "./FreeToWatchTabs";
 import TabPanel from "../../../constant/TabPanel";
-
-function tabProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
+import { MoviesSliderSkeleton } from "../../constant/movie&tvShow";
+import { getFreeToWatch } from "../../../../services/MovieService";
 
 const FreeToWatch = () => {
+  const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(0);
   const [typeWatch, setTypeWatch] = useState("movie");
   const [freeWatch, setFreeWatch] = useState({});
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
   };
 
   const handleChangeTypeWatch = (query) => {
@@ -34,11 +24,14 @@ const FreeToWatch = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const { status, data: watchData } = await getFreeToWatch(typeWatch);
         if (status === 200) {
+          setLoading(false);
           setFreeWatch(watchData);
         }
       } catch (err) {
+        setLoading(false);
         console.log(err.message);
       }
     };
@@ -46,69 +39,43 @@ const FreeToWatch = () => {
   }, [typeWatch]);
 
   return (
-    <Box sx={{ width: "100%", my: 10 }}>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 5 }}>
+    <Box sx={{ width: "100%", mt: 5 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          gap: { xs: 2.5, sm: 5 },
+          mb: 4,
+        }}
+      >
         <Typography
           variant="h5"
           sx={{
             fontSize: { xs: "1.25rem", md: "1.5rem" },
-            color: amber[500],
             letterSpacing: 1,
           }}
         >
           Free To Watch
         </Typography>
-        <Tabs
+        <FreeToWatchTabs
           value={value}
-          onChange={handleChange}
-          aria-label="basic-tabs"
-          sx={{
-            ".MuiTabs-indicator": {
-              display: "none",
-            },
-            ".MuiTab-root.Mui-selected": {
-              color: "#000",
-              backgroundColor: amber[700],
-              borderRadius: 10,
-            },
-            borderRadius: 10,
-            border: `1px solid ${amber[700]}`,
-          }}
-        >
-          <Tab
-            label={
-              <Typography
-                variant="body2"
-                sx={{ fontWeight: "700", letterSpacing: 1 }}
-              >
-                Movies
-              </Typography>
-            }
-            {...tabProps(0)}
-            onClick={() => handleChangeTypeWatch("movie")}
-          />
-          <Tab
-            label={
-              <Typography
-                variant="body2"
-                sx={{ fontWeight: "700", letterSpacing: 1 }}
-              >
-                Tv
-              </Typography>
-            }
-            {...tabProps(1)}
-            onClick={() => handleChangeTypeWatch("tv")}
-          />
-        </Tabs>
+          handleChange={handleChange}
+          handleChangeTypeWatch={handleChangeTypeWatch}
+        />
       </Box>
-      <SwipeableViews axis="x" index={value} onChangeIndex={handleChangeIndex}>
-        <TabPanel value={value} index={0}>
-          <Movies freeWatch={freeWatch} />
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <Tv freeWatch={freeWatch} />
-        </TabPanel>
-      </SwipeableViews>
+      {loading ? (
+        <MoviesSliderSkeleton />
+      ) : (
+        <>
+          <TabPanel value={value} index={0}>
+            <Movies moviesData={freeWatch} />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <TvShows tvShowsData={freeWatch} />
+          </TabPanel>
+        </>
+      )}
     </Box>
   );
 };

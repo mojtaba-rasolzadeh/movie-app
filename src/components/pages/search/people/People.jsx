@@ -3,9 +3,9 @@ import _ from "lodash";
 import { Typography } from "@mui/material";
 
 import { getSearchPeople } from "../../../../services/MovieService";
-import { Loader } from "../../../constant";
-import PeopleItem from '../../people/PeopleItem';
+import PeopleItem from "../../people/PeopleItem";
 import MoviePagination from "../../movie/MoviePagination";
+import MovieAndTvShowSkeleton from "../../constant/skeletons/MovieAndTvShowSkeleton";
 
 const People = ({ peopleData, query }) => {
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,11 @@ const People = ({ peopleData, query }) => {
         </Typography>
       ) : (
         <>
-          {loading ? (<Loader />) : (<PeopleItem peopleData={people} />)}
+          {loading ? (
+            <MovieAndTvShowSkeleton />
+          ) : (
+            <PeopleItem peopleData={people} />
+          )}
           <MoviePagination movieData={people} fetchData={handleChangePage} />
         </>
       )}

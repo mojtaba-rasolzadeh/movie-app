@@ -7,9 +7,9 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getLanguagesList, getTv } from '../../services/MovieService';
 import BackToMain from '../../components/constant/BackToMain';
 import { Loader } from '../../components';
-import Images from '../../components/pages/tvShows/posters/Images';
-import PostersPanel from '../../components/pages/tvShows/posters/PostersPanel';
 import TabPanel from '../../components/constant/TabPanel';
+import PostersPanel from '../../components/pages/constant/posters/PostersPanel';
+import Images from '../../components/pages/constant/posters/Images';
 
 const TvShowPosters = () => {
     const { tvId } = useParams();
@@ -73,6 +73,7 @@ const TvShowPosters = () => {
                                 <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
                                     <PostersPanel
                                         value={value}
+                                        images={images}
                                         handleChange={handleChange}
                                         imageLanguageArray={imageLanguageArray}
                                         displayLanguage={displayLanguage}
@@ -83,7 +84,7 @@ const TvShowPosters = () => {
                                     {
                                         imageLanguageArray.map((image, index) => (
                                             <TabPanel key={index} value={value} index={index}>
-                                                <Images allImages={images} imageType={image} tvTitle={tvShow} />
+                                                <Images allImages={images} imageType={image} mediaTitle={tvShow.name} />
                                             </TabPanel>
                                         ))
                                     }

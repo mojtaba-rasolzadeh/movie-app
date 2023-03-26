@@ -49,7 +49,12 @@ const Companies = ({ companiesData, query }) => {
               {companies.results.map((company) => (
                 <Box key={company.id}>
                   <Link
-                    to={`/company/${company.id}`}
+                    to={`/company/${company.id}-${company.name?.split(/[\s:,]/)
+                      .join("-")
+                      .split("--")
+                      .join("-")
+                      .toLowerCase()
+                      }/movie`}
                     style={{ textDecoration: "none" }}
                   >
                     <ListItem disablePadding disableGutters>
@@ -70,6 +75,7 @@ const Companies = ({ companiesData, query }) => {
                                 <Chip
                                   label={company.origin_country}
                                   size="small"
+                                  variant="outlined"
                                 />
                               )}
                             </Box>

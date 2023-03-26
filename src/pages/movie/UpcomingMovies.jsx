@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Box, Typography } from '@mui/material';
 
-import { Loader } from '../../components';
 import { getMovies } from '../../services/MovieService';
-import MoviePagination from '../../components/pages/movie/MoviePagination';
 import MovieItem from '../../components/pages/movie/MovieItem';
+import MoviePagination from '../../components/pages/movie/MoviePagination';
+import MovieAndTvShowSkeleton from '../../components/pages/constant/skeletons/MovieAndTvShowSkeleton';
 
 const UpcomingMovies = () => {
   const [loading, setLoading] = useState(false);
@@ -34,13 +34,9 @@ const UpcomingMovies = () => {
       </Helmet>
       <Box sx={{ py: 4 }} >
         <Typography variant='h5' mb={4} sx={{
-          fontWeight: 700,
-          backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
           letterSpacing: 1
         }}>Upcoming Movies</Typography>
-        {loading ? <Loader /> : <MovieItem movieData={movies} />}
+        {loading ? <MovieAndTvShowSkeleton /> : <MovieItem movieData={movies} />}
         <MoviePagination movieData={movies} fetchData={fetchData} />
       </Box>
     </>

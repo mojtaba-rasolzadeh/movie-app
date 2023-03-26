@@ -34,7 +34,12 @@ const Review = () => {
                 loading ? (<Loader />) :
                     (<Box sx={{ my: 6 }}>
                         <BackToMedia review={review} />
-                        <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: 3, py: 5 }}>
+                        <Box sx={{
+                            display: 'flex',
+                            flexDirection: { xs: 'column', sm: 'row' },
+                            gap: 3,
+                            py: 5
+                        }}>
                             <AuthorAvatar review={review} />
                             <Box>
                                 <AuthorDetails review={review} />

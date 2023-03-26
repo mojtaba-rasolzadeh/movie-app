@@ -6,10 +6,10 @@ import Grid from "@mui/material/Unstable_Grid2";
 
 import { getTv } from '../../services/MovieService';
 import BackToMain from '../../components/constant/BackToMain';
-import Videos from '../../components/pages/tvShows/trailersAndVideos/Videos';
 import { Loader } from '../../components';
 import TabPanel from '../../components/constant/TabPanel';
 import VideosPanel from '../../components/pages/tvShows/trailersAndVideos/VideosPanel';
+import Videos from '../../components/pages/constant/trailersAndVideos/Videos';
 
 const videoType = ["Trailer", "Teaser", "Clips", "Behind the Scenes", "Opening Credits", "Blooper", "Featurette"];
 
@@ -47,8 +47,8 @@ const TvShowVideos = () => {
                         </Helmet>
                         <Box sx={{ py: 5 }}>
                             <BackToMain media_data={tvShow} media_type="tv" searchParams={tvId} />
-                            <Grid container spacing={{ xs: 3, sm: 1 }} sx={{ width: "100%", my: 5 }}>
-                                <Grid xs={12} sm={6} md={4} lg={3} xl={2}>
+                            <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 4 }} sx={{ width: "100%", my: 5 }}>
+                                <Grid xs={12} sm={7} md={4} lg={4} xl={2}>
                                     <VideosPanel
                                         videos={videos}
                                         videoType={videoType}
@@ -56,11 +56,11 @@ const TvShowVideos = () => {
                                         setValue={setValue}
                                     />
                                 </Grid>
-                                <Grid xs={12} sm={6} md={8} lg={8} xl={10}>
+                                <Grid xs={12} sm={12} md={8} lg={8} xl={10}>
                                     {
                                         videoType.map((type, index) => (
                                             <TabPanel key={index} value={value} index={index}>
-                                                <Videos allVideos={videos} videoType={type} tvTitle={tvShow} />
+                                                <Videos allVideos={videos} videoType={type} mediaTitle={tvShow.name} />
                                             </TabPanel>
                                         ))
                                     }

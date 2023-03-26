@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Box, Divider } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { Loader } from "../../components/constant";
 import { getMovie } from "../../services/MovieService";
@@ -43,7 +43,7 @@ const MovieCastAndCrew = () => {
       {loading ? (
         <Loader />
       ) : (
-        <>
+        <Box>
           <Helmet>
             <title>{`${movie.title} (${movie.release_date?.slice(0, 4)}) - Cast & Crew`} | Movie App</title>
           </Helmet>
@@ -52,9 +52,8 @@ const MovieCastAndCrew = () => {
             <CastAndCrewTitle selectedIndex={selectedIndex} castAndCrew={castAndCrew} />
             <CastAndCrewMenu selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
           </Box>
-          <Divider />
           {selectedIndex === 0 ? <Actors castAndCrew={castAndCrew} /> : <Crews castAndCrew={castAndCrew} />}
-        </>
+        </Box>
       )}
     </>
   );

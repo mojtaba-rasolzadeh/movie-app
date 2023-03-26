@@ -5,8 +5,8 @@ import { Box } from '@mui/material';
 
 import { getTv } from '../../services/MovieService';
 import BackToMain from '../../components/constant/BackToMain';
-import { Loader } from '../../components';
 import Season from '../../components/pages/tvShows/allSeasons/Season';
+import ReviewsSkeleton from '../../components/pages/constant/skeletons/ReviewsSkeleton';
 
 const AllSeasons = () => {
     const { tvId } = useParams();
@@ -35,7 +35,7 @@ const AllSeasons = () => {
     return (
         <>
             {
-                loading ? <Loader /> :
+                loading ? <ReviewsSkeleton /> :
                     <>
                         <Helmet>
                             <title>{`${tvShow.name} (TV Series ${tvShow.first_air_date?.slice(0, 4)}) - Seasons`} | Movie App</title>

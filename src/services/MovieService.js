@@ -3,40 +3,35 @@ import axios from "axios";
 const API_KEY = "e5f34d07a7faa12dae140e0a4798d6ba";
 const url = `https://api.themoviedb.org/3`;
 
-export const getMultiSearch = (query) => {
-    return axios.get(
-        `${url}/search/multi?api_key=${API_KEY}&query=${query}&include_adult=true`
-    );
-};
-
+// search
 export const getSearchMovies = (query, page = 1) => {
     return axios.get(`
-    ${url}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`);
+    ${url}/search/movie?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`);
 };
 
 export const getSearchTvShows = (query, page = 1) => {
     return axios.get(`
-    ${url}/search/tv?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`);
+    ${url}/search/tv?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`);
 };
 
 export const getSearchPeople = (query, page = 1) => {
     return axios.get(`
-    ${url}/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`);
+    ${url}/search/person?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`);
 };
 
 export const getSearchCollections = (query, page = 1) => {
     return axios.get(`
-    ${url}/search/collection?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`);
+    ${url}/search/collection?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`);
 };
 
 export const getSearchCompanies = (query, page = 1) => {
     return axios.get(`
-    ${url}/search/company?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`);
+    ${url}/search/company?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`);
 };
 
 export const getSearchKeywords = (query, page = 1) => {
     return axios.get(`
-    ${url}/search/keyword?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`);
+    ${url}/search/keyword?api_key=${API_KEY}&language=en-US&query=${query}&page=${page}`);
 };
 
 export const getListCountries = () => {
@@ -48,19 +43,6 @@ export const getLanguagesList = () => {
     return axios.get(`${url}/configuration/languages?api_key=${API_KEY}`);
 };
 
-// counteries list
-export const getListCountriesWatchProvider = () => {
-    return axios.get(
-        `${url}/watch/providers/regions?api_key=${API_KEY}&language=en-US`
-    );
-};
-
-export const getWatchProviderMovies = (watch_region = "DE") => {
-    return axios.get(
-        `${url}/watch/providers/movie?api_key=${API_KEY}&language=en-US&watch_region=${watch_region}`
-    );
-};
-
 // movies start
 export const getMovies = (moviesType = "popular", page = 1) => {
     return axios.get(
@@ -68,10 +50,12 @@ export const getMovies = (moviesType = "popular", page = 1) => {
     );
 };
 
-// get recommendations 
+// get recommendations
 export const getRecommendations = (mediaType = "movie", mediaId, page = 1) => {
-    return axios.get(`${url}/${mediaType}/${mediaId}/recommendations?api_key=${API_KEY}&language=en-US&page=${page}`)
-}
+    return axios.get(
+        `${url}/${mediaType}/${mediaId}/recommendations?api_key=${API_KEY}&language=en-US&page=${page}`
+    );
+};
 
 // tvShows start
 export const getTvShows = (tvShowsType = "popular", page = 1) => {
@@ -96,7 +80,9 @@ export const getMovie = (movieId, reviewsPage = 1) => {
 
 // trending
 export const getTrending = (mediaType = "movie", time = "week", page = 1) => {
-    return axios.get(`${url}/trending/${mediaType}/${time}?api_key=${API_KEY}&page=${page}`);
+    return axios.get(
+        `${url}/trending/${mediaType}/${time}?api_key=${API_KEY}&page=${page}`
+    );
 };
 
 // tvShows
@@ -106,8 +92,16 @@ export const getTv = (tvId, reviewsPage = 1) => {
     );
 };
 
-export const getDiscoverMovie = () => {
-    return axios.get(`${url}/discover/movie?api_key=${API_KEY}&page=3`);
+// get network details
+export const getNetworkDtails = (networkId) => {
+    return axios.get(`${url}/network/${networkId}?api_key=${API_KEY}`);
+};
+
+// get tvShows related to the network
+export const getTvShowsRelatedToTheNetwork = (networkId, page = 1) => {
+    return axios.get(
+        `${url}/discover/tv?api_key=${API_KEY}&language=en-US&page=${page}&with_networks=${networkId}`
+    );
 };
 
 // dicover movie with genres
@@ -144,21 +138,9 @@ export const getDailyOrWeeklyTrendingItems = (time) => {
     return axios.get(`${url}/trending/all/${time}?api_key=${API_KEY}`);
 };
 
-export const getShowListOnTv = () => {
-    return axios.get(
-        `${url}/tv/on_the_air?api_key=${API_KEY}&language=en-US&page=1`
-    );
-};
-
 export const getMoviesForRent = () => {
     return axios.get(
         `${url}/discover/movie?api_key=${API_KEY}&language=en-US&page=1&with_watch_monetization_types=rent`
-    );
-};
-
-export const getListOfMoviesInTheatres = () => {
-    return axios.get(
-        `${url}/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=us`
     );
 };
 
@@ -171,25 +153,43 @@ export const getFreeToWatch = (typeWatch) => {
 // get keyword details
 export const getKeywordDetails = (keywordId) => {
     return axios.get(`${url}/keyword/${keywordId}?api_key=${API_KEY}`);
-}
+};
 
 // movies related keyword
 export const getMoviesRelatedToTheKeyword = (keywordId, page = 1) => {
-    return axios.get(`${url}/keyword/${keywordId}/movies?api_key=${API_KEY}&language=en-US&page=${page}`);
-}
+    return axios.get(
+        `${url}/keyword/${keywordId}/movies?api_key=${API_KEY}&language=en-US&page=${page}`
+    );
+};
 
+// Movies related Company
+export const getMoviesCompany = (companyId, page = 1) => {
+    return axios.get(
+        `${url}/discover/movie?api_key=${API_KEY}&language=en-USpage=${page}&with_companies=${companyId}`
+    );
+};
+// Movies related Collection
+export const getMoviesCollection = (collectionId) => {
+    return axios.get(
+        `${url}/collection/${collectionId}?api_key=${API_KEY}&language=en-US`
+    );
+};
 
 // tvShow related keyword
 export const getTvShowsRelatedToTheKeyword = (keywordId, page = 1) => {
-    return axios.get(`${url}/discover/tv?api_key=${API_KEY}&language=en-US&page=${page}&with_keywords=${keywordId}`);
-}
+    return axios.get(
+        `${url}/discover/tv?api_key=${API_KEY}&language=en-US&page=${page}&with_keywords=${keywordId}`
+    );
+};
 
 // Retrieve the details of a movie or TV show review
 export const getDetailsOfMovieOrTvShowReview = (reviewId) => {
-    return axios.get(`${url}/review/${reviewId}?api_key=${API_KEY}`)
-}
+    return axios.get(`${url}/review/${reviewId}?api_key=${API_KEY}`);
+};
 
 // Get the TV season details by id
 export const getTvSeasonDetails = (tvId, seasonNnumber) => {
-    return axios.get(`${url}/tv/${tvId}/season/${seasonNnumber}?api_key=${API_KEY}&language=en-US`);
-}
+    return axios.get(
+        `${url}/tv/${tvId}/season/${seasonNnumber}?api_key=${API_KEY}&language=en-US`
+    );
+};

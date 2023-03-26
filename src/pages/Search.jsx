@@ -13,9 +13,17 @@ import {
   getSearchTvShows,
 } from "../services/MovieService";
 import { Loader } from "../components/constant";
-import { Movies, TvShows, People, Collections, Companies, Keywords, SearchPanel } from "../components/pages/search";
+import {
+  Movies,
+  TvShows,
+  People,
+  Collections,
+  Companies,
+  Keywords,
+  SearchPanel,
+  SearchInput
+} from "../components/pages/search";
 import TabPanel from "../components/constant/TabPanel";
-import { SearchInputStandard } from "../components/constant/SearchInputs";
 
 const Search = () => {
   const [loading, setLoading] = useState(false);
@@ -100,17 +108,17 @@ const Search = () => {
             <title>{`${query}`} | Movie App</title>
           </Helmet>
           <Box sx={{ mb: 5 }}>
-            <Box sx={{ display: "flex", alignItems: "center" }}>
-              <SearchInputStandard searchParams={searchParams} />
+            <Box>
+              <SearchInput searchParams={searchParams} />
             </Box>
-            <Grid container spacing={2}>
-              <Grid xs={12} sm={6} md={4} lg={3} xl={1.6}>
+            <Grid container spacing={4} mt={1}>
+              <Grid xs={12} md={4} lg={3} xl={2}>
                 <SearchPanel
                   value={value}
                   handleChange={handleChange}
                   displayLengthItem={displayLengthItem} />
               </Grid>
-              <Grid xs={12} sm={6} md={8} lg={9} xl={10.4}>
+              <Grid xs={12} md={8} lg={9} xl={10}>
                 <TabPanel value={value} index={0}>
                   <Movies moviesData={movies} query={query} />
                 </TabPanel>
@@ -133,7 +141,8 @@ const Search = () => {
             </Grid>
           </Box>
         </>
-      )}
+      )
+      }
     </>
   );
 };

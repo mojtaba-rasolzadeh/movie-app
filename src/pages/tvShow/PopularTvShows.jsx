@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import { Box, Typography } from "@mui/material";
 
 import { getTvShows } from "../../services/MovieService";
-import { Loader } from "../../components";
 import TvShowItem from "../../components/pages/tvShows/TvShowItem";
 import TvShowPagination from "../../components/pages/tvShows/TvShowPagination";
+import MovieAndTvShowSkeleton from '../../components/pages/constant/skeletons/MovieAndTvShowSkeleton';
 
 const PopularTvShows = () => {
   const [loading, setLoading] = useState(false);
@@ -36,13 +36,9 @@ const PopularTvShows = () => {
       </Helmet>
       <Box sx={{ py: 4 }} >
         <Typography variant='h5' mb={4} sx={{
-          fontWeight: 700,
-          backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
           letterSpacing: 1
         }}>Popular Tv Shows</Typography>
-        {loading ? <Loader /> : <TvShowItem tvShowData={tvShows} />}
+        {loading ? <MovieAndTvShowSkeleton /> : <TvShowItem tvShowData={tvShows} />}
         <TvShowPagination tvShowData={tvShows} fetchData={fetchData} />
       </Box>
     </>

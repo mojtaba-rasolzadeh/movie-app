@@ -4,8 +4,6 @@ import {
     Tab,
     Typography,
     Card,
-    CardHeader,
-    CardContent,
     Chip,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
@@ -17,84 +15,82 @@ function tabProps(index) {
     };
 }
 
-const SearchPanel = ({ value, handleChange, displayLengthItem }) => {
+const SearchPanel = ({ value,
+    handleChange,
+    displayLengthItem }) => {
 
     const tabsTitle = ["movies", "tvShows", "people", "collections", "companies", "keywords"];
 
     return (
         <Card sx={{
-            //  maxWidth: 258,
-            width: 1,
+            width: { xs: 1, sm: 400, md: 1 },
+            maxWidth: { xl: 400 },
             minHeight: 385,
-            borderRadius: '20px'
+            borderRadius: '20px',
+            p: 3
         }}>
-            <CardHeader
-                title="Search Results"
-                sx={{ backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', textAlign: 'center', p: '2rem 0' }}
-            />
-            <CardContent>
-                <Tabs
-                    orientation="vertical"
-                    // variant="scrollable"
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="vertical tabs example"
-                    sx={{
-                        borderRight: 1,
-                        borderColor: "divider",
-                        minHeight: 288,
-                        ".Mui-selected": {
-                            backgroundColor: grey[800],
-                            color: "#ffeb3b!important",
-                        },
-                        ".MuiTabs-indicator": {
-                            backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
-                        },
-                    }}
-                >
-                    {
-                        tabsTitle.map((text, index) => (
-                            <Tab
-                                key={index}
-                                label={
-                                    <Box
+            <Typography variant="h6" textAlign="center">Search Results</Typography>
+            <Tabs
+                orientation="vertical"
+                // variant="scrollable"
+                value={value}
+                onChange={handleChange}
+                aria-label="vertical tabs example"
+                sx={{
+                    mt: 2,
+                    borderRight: 1,
+                    borderColor: "divider",
+                    minHeight: 288,
+                    ".Mui-selected": {
+                        backgroundColor: grey[800],
+                        color: "#ffeb3b!important",
+                    },
+                    ".MuiTabs-indicator": {
+                        background: 'linear-gradient(to right,#ED4700,#E76F00)'
+                    },
+                }}
+            >
+                {
+                    tabsTitle.map((text, index) => (
+                        <Tab
+                            key={index}
+                            label={
+                                <Box
+                                    sx={{
+                                        width: "100%",
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                    }}
+                                >
+                                    <Typography variant="subtitle2"
                                         sx={{
-                                            width: "100%",
-                                            display: "flex",
-                                            justifyContent: "space-between",
-                                            alignItems: "center",
-                                        }}
-                                    >
-                                        <Typography variant="subtitle2" sx={{ textTransform: 'capitalize', letterSpacing: 1 }}>{text}</Typography>
-                                        <Chip
-                                            label={
-                                                <Typography
-                                                    variant="caption"
-                                                    color="text.primary"
-                                                    sx={{
-                                                        ".Mui-selected": { color: "yellow[500]" },
-                                                    }}
-                                                >
-                                                    {displayLengthItem(text)}
-                                                </Typography>
-                                            }
-                                            size="small"
-                                            sx={{
-                                                backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
-                                            }}
-                                        />
-                                    </Box>
-                                }
-                                {...tabProps(index)}
-                                sx={{
-                                    borderRadius: 1,
-                                    mr: 1,
-                                }}
-                            />
-                        ))
-                    }
-                </Tabs>
-            </CardContent>
+                                            textTransform: 'capitalize',
+                                            letterSpacing: 1
+                                        }}>{text}</Typography>
+                                    <Chip
+                                        label={
+                                            <Typography
+                                                variant="caption"
+                                                color="text.primary"
+                                                sx={{
+                                                    ".Mui-selected": { color: "yellow[500]" },
+                                                }}
+                                            >
+                                                {displayLengthItem(text)}
+                                            </Typography>
+                                        }
+                                        size="small"
+                                        sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
+                                    />
+                                </Box>
+                            }
+                            {...tabProps(index)}
+                            sx={{ borderRadius: 1 }}
+                        />
+                    ))
+                }
+            </Tabs>
         </Card>
     );
 }

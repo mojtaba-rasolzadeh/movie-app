@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Box, Typography, Divider, Chip, } from "@mui/material";
+import { Box, Typography, Chip } from "@mui/material";
 
 import { getDiscoverTvShowWithGenres, getGenresTvShowList } from "../../services/MovieService";
 import TvShowPagination from "../../components/pages/tvShows/TvShowPagination";
-import { Loader } from "../../components";
 import TvShowItem from "../../components/pages/tvShows/TvShowItem";
+import MovieAndTvShowSkeleton from "../../components/pages/constant/skeletons/MovieAndTvShowSkeleton";
 
 const TvShowsGenre = () => {
     const { genreId } = useParams();
@@ -42,16 +42,10 @@ const TvShowsGenre = () => {
     return (
         <Box sx={{ py: 4 }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 3 }}>
-                <Typography
-                    sx={{
-                        fontSize: "2rem",
-                        fontWeight: 700,
-                        letterSpacing: 2,
-                        background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                    }}
-                >
+                <Typography variant="h5" sx={{
+                    fontSize: { xs: '1rem', sm: '1.5rem' },
+                    letterSpacing: 1
+                }}>
                     {genre.name}
                 </Typography>
                 {tvShows.total_results && (
@@ -62,14 +56,11 @@ const TvShowsGenre = () => {
                                 shows
                             </Typography>
                         }
-                        sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
+                        variant='outlined'
                     />
                 )}
             </Box>
-            <Divider />
-            {loading ? (
-                <Loader />
-            ) : (
+            {loading ? (<MovieAndTvShowSkeleton />) : (
                 <>
                     <Helmet>
                         <title>{`${genre.name}`} Tv Shows | Movie App</title>
