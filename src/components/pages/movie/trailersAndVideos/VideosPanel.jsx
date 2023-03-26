@@ -1,7 +1,7 @@
-import { Tabs, Tab, Card, CardHeader, CardContent } from "@mui/material";
+import { Tabs, Tab, Card, Box, Typography, Chip } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-import VideoItemLength from './VideoItemLength';
+import VideoItemLength from "../../constant/trailersAndVideos/VideoItemLength";
 
 function tabProps(index) {
     return {
@@ -11,47 +11,53 @@ function tabProps(index) {
 }
 
 const VideosPanel = ({ videos, videoType, value, setValue }) => {
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
     return (
-        <Card sx={{ width: 1, borderRadius: '20px', minHeight: 385 }}>
-            <CardHeader
-                title="Videos"
-                sx={{ backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)', textAlign: 'center', p: '2rem 0' }} />
-            <CardContent>
-                <Tabs
-                    orientation="vertical"
-                    // variant="scrollable"
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="vertical tabs example"
-                    sx={{
-                        borderRight: 1,
-                        borderColor: "divider",
-                        minHeight: 288,
-                        ".Mui-selected": {
-                            backgroundColor: grey[800],
-                            color: "#ffeb3b!important",
-                        },
-                        ".MuiTabs-indicator": {
-                            backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)'
-                        },
-                    }}
-                >
-                    {
-                        videoType.map((type, index) => (
-                            <Tab
-                                key={index}
-                                label={<VideoItemLength videos={videos} type={type} />}
-                                {...tabProps(index)}
-                                sx={{ borderRadius: 1, mr: 1 }}
-                            />
-                        ))
-                    }
-                </Tabs>
-            </CardContent>
+        <Card sx={{ width: 1, borderRadius: '20px', minHeight: 385, p: 4 }}>
+            <Box sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            }}>
+                <Typography variant="h6">Videos</Typography>
+                <Chip label={videos?.length} variant="outlined" />
+            </Box>
+            <Tabs
+                orientation="vertical"
+                // variant="scrollable"
+                value={value}
+                onChange={handleChange}
+                aria-label="vertical tabs example"
+                sx={{
+                    mt: 3,
+                    borderRight: 1,
+                    borderColor: "divider",
+                    minHeight: 288,
+                    ".Mui-selected": {
+                        backgroundColor: grey[800],
+                        color: "#ffeb3b!important",
+                    },
+                    ".MuiTabs-indicator": {
+                        background: 'linear-gradient(to right,#ED4700,#E76F00)'
+                    },
+                }}
+            >
+                {
+                    videoType.map((type, index) => (
+                        <Tab
+                            key={index}
+                            label={<VideoItemLength videos={videos} type={type} />}
+                            {...tabProps(index)}
+                            sx={{ borderRadius: 1 }}
+                        />
+                    ))
+                }
+            </Tabs>
         </Card>
     );
 }

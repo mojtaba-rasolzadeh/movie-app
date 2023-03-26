@@ -1,30 +1,21 @@
-import { Box, IconButton, Backdrop } from "@mui/material";
+import { Box, Backdrop, IconButton } from "@mui/material";
 import { Close } from "@mui/icons-material";
 import Youtube from "react-youtube";
 
-const PlayVideo = ({ open, handleClose, play, video }) => {
+const TrailerShow = ({ open, handleClose, trailer, play }) => {
     return (
         <Backdrop
-            sx={{
-                color: "#fff",
-                zIndex: (theme) => theme.zIndex.drawer + 1,
-            }}
+            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
             open={open}
             onClick={handleClose}
         >
-            {play && (
+            {trailer && play && (
                 <Box sx={{ position: "relative" }}>
-                    <IconButton
-                        sx={{
-                            position: "absolute",
-                            top: "-40px",
-                            right: "0",
-                        }}
-                    >
+                    <IconButton sx={{ position: "absolute", top: "-40px", right: 0 }}>
                         <Close />
                     </IconButton>
                     <Youtube
-                        videoId={video.key}
+                        videoId={trailer.key}
                         opts={{
                             width: "640",
                             height: "390",
@@ -34,9 +25,9 @@ const PlayVideo = ({ open, handleClose, play, video }) => {
                         }}
                     />
                 </Box>
-            )}
+            )}{" "}
         </Backdrop>
     );
 }
 
-export default PlayVideo;
+export default TrailerShow;

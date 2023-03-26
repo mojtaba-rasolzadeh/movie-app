@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { Box, Card, CardContent } from "@mui/material";
 
-import { PlayVideoButton, PlayVideo, VideoDetails, VideoPoster, NoVideoMessage } from "./";
+import PlayVideoButton from "./PlayVideoButton";
+import VideoPoster from "./VideoPoster";
+import PlayVideo from "./PlayVideo";
+import VideoDetails from "./VideoDetails";
+import NoVideoMessage from "./NoVideoMessage";
 
-const Videos = ({ allVideos, videoType, moiveTitle }) => {
+const Videos = ({ allVideos, videoType, mediaTitle }) => {
 
     const filtredVideos = allVideos.filter(video => video.type === videoType);
 
@@ -42,7 +46,7 @@ const Videos = ({ allVideos, videoType, moiveTitle }) => {
                             </CardContent>
                         </Card>
                     ))
-                ) : (<NoVideoMessage videoType={videoType} moiveTitle={moiveTitle} />)
+                ) : (<NoVideoMessage videoType={videoType} mediaTitle={mediaTitle} />)
             }
         </Box>
     );

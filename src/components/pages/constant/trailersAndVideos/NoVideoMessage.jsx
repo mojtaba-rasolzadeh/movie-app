@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material";
 
-const NoVideoMessage = ({videoType,tvTitle}) => {
+const NoVideoMessage = ({videoType,mediaTitle}) => {
     return (
         <Typography variant="body1" sx={{ letterSpacing: 1 }}>
-            {`There are no English ${videoType} added to ${tvTitle?.title}.`}
+            {`There are no English ${videoType} added to ${mediaTitle}.`}
         </Typography>
     );
 }
