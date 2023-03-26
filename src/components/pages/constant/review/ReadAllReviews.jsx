@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
-const ReadAllReviews = ({ movieId, movieTitle }) => {
+const ReadAllReviews = ({mediaType, mediaId, mediaTitle }) => {
     return (
-        <Link to={`/movie/${movieId}-${movieTitle?.split(/[\s:,]/)
+        <Link to={`/${mediaType}/${mediaId}-${mediaTitle?.split(/[\s:,]/)
             .join("-").split("--").join("-").toLowerCase()}/reviews`}
             style={{ textDecoration: "none" }}>
             <Typography
+                variant="body2"
                 sx={{
                     display: "inline-block",
-                    color: '#fff',
-                    "&:hover": { color: 'text.secondary' },
-                    fontWeight: "700",
-                    mt: 6.25,
+                    fontWeight: "600",
+                    color: "#fff",
+                    "&:hover": { color: grey[600] },
                 }}
             >
                 Read All Reviews
