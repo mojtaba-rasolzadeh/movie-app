@@ -8,7 +8,7 @@ import { grey } from "@mui/material/colors";
 import { getNetworkDtails, getTvShowsRelatedToTheNetwork } from "../../../services/MovieService";
 import TvShowPagination from "../../../components/pages/tvShows/TvShowPagination";
 import TvShowItem from "../../../components/pages/tvShows/TvShowItem";
-import { Loader } from "../../../components";
+import MovieAndTvShowSkeleton from "../../../components/pages/constant/skeletons/MovieAndTvShowSkeleton";
 
 const TvShowsRelatedToTheNetwork = () => {
     const { networkId } = useParams();
@@ -38,8 +38,7 @@ const TvShowsRelatedToTheNetwork = () => {
 
     return (
         <Box sx={{ py: 4 }}>
-
-            {loading ? (<Loader />) : (
+            {loading ? (<MovieAndTvShowSkeleton />) : (
                 <>
                     <Helmet>
                         <title>TV Shows on {`${network.name}`} | Movie App</title>
@@ -52,7 +51,7 @@ const TvShowsRelatedToTheNetwork = () => {
                         mb: 3
                     }}>
                         <img src={`https://www.themoviedb.org/t/p/h50_filter(negate,000,666)${network?.logo_path}`}
-                            srcset={`https://www.themoviedb.org/t/p/h50_filter(negate,000,666)${network?.logo_path} 1x ,
+                            srcSet={`https://www.themoviedb.org/t/p/h50_filter(negate,000,666)${network?.logo_path} 1x ,
                      https://www.themoviedb.org/t/p/h50_filter(negate,000,666)${network?.logo_path}2x`}
                             alt={network?.name}
                             style={{ maxHeight: 50 }} />
