@@ -1,5 +1,12 @@
-import { Box } from '@mui/material';
-import { MovieTitle, RuntimeMovie, GenresMovie, RatingMovie, ReleaseDateMovie } from './';
+import { Box } from "@mui/material";
+
+import {
+  MediaTitle,
+  GenresMedia,
+  RatingMedia,
+  MediaRuntime,
+  MediaReleaseDate,
+} from "../constant/movie&tvShow";
 
 const MovieDetails = ({
   title,
@@ -8,14 +15,13 @@ const MovieDetails = ({
   runtime,
   vote_average,
 }) => {
-
   return (
-    <Box sx={{ mt: { xs: 2, sm: 1, md: 0 } }} >
-      <ReleaseDateMovie release_date={release_date} />
-      <MovieTitle title={title} />
-      <GenresMovie genres={genres} />
-      <RuntimeMovie runtime={runtime} />
-      <RatingMovie vote_average={vote_average} />
+    <Box sx={{ mt: { xs: 2, sm: 1, md: 0 } }}>
+      <MediaReleaseDate releaseDate={release_date} />
+      <MediaTitle title={title} />
+      <GenresMedia mediaType="movie" genres={genres} />
+      <MediaRuntime runtime={runtime} />
+      <RatingMedia vote_average={vote_average} />
     </Box>
   );
 };

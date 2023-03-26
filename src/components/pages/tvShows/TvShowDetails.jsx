@@ -1,23 +1,28 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
-import { TvShowTitle, ReleaseDateTvShow, GenresTvShow, RuntimeTvShow, RatingTvShow } from './';
+import {
+  MediaReleaseDate,
+  MediaTitle,
+  RatingMedia,
+  MediaRuntime,
+  GenresMedia,
+} from "../constant/movie&tvShow";
 
 const TvShowDetails = ({
-    name,
-    first_air_date,
-    genres,
-    episode_run_time,
-    vote_average,
+  name,
+  first_air_date,
+  genres,
+  episode_run_time,
+  vote_average,
 }) => {
-    console.log(name);
-    return (
-        <Box sx={{ mt: { xs: 2, sm: 1, md: 0 } }} >
-            <ReleaseDateTvShow first_air_date={first_air_date} />
-            <TvShowTitle name={name} />
-            <GenresTvShow genres={genres} />
-            <RuntimeTvShow runtime={episode_run_time} />
-            <RatingTvShow vote_average={vote_average} />
-        </Box>
-    );
+  return (
+    <Box sx={{ mt: { xs: 2, sm: 1, md: 0 } }}>
+      <MediaReleaseDate releaseDate={first_air_date} />
+      <MediaTitle title={name} />
+      <GenresMedia genres={genres} mediaType="tv" />
+      <MediaRuntime runtime={episode_run_time} />
+      <RatingMedia vote_average={vote_average} />
+    </Box>
+  );
 };
 export default TvShowDetails;
