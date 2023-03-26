@@ -1,57 +1,16 @@
-import { Link } from 'react-router-dom';
-import { Avatar, Box, Chip, Typography } from '@mui/material';
-import { grey, yellow } from '@mui/material/colors';
-import { GradeRounded, KeyboardArrowRight } from '@mui/icons-material';
+import { useRef } from 'react';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
+import { grey, yellow } from '@mui/material/colors';
+import { Avatar, Box, Chip, Typography } from '@mui/material';
+import { GradeRounded, KeyboardArrowRight } from '@mui/icons-material';
+
+import PreviousAndNextArrow from '../constant/PreviousAndNextArrow';
+import { trendingSliderSettings } from '../constant/SliderSettings';
 
 const Trending = ({ trending }) => {
-    const settings = {
-        dots: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        infinite: true,
-        speed: 3500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 2500,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 1860,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 533,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1,
-                    dots: false,
-                    arrows: true
-                }
-            },
-        ]
-    };
+
+    const sliderRef = useRef(null);
 
     return (
         <Box sx={{ mb: 6 }}>
@@ -67,7 +26,7 @@ const Trending = ({ trending }) => {
                     <KeyboardArrowRight sx={{ color: grey[600] }} />
                 </Link>
             </Box>
-            <Slider {...settings}>
+            <Slider ref={sliderRef} {...trendingSliderSettings}>
                 {
                     trending.results?.slice(0, 8).map((tv) => (
                         <Box key={tv.id} sx={{ position: 'relative', width: 1 }}>
@@ -116,6 +75,7 @@ const Trending = ({ trending }) => {
                     ))
                 }
             </Slider>
+            <PreviousAndNextArrow sliderRef={sliderRef} />
         </Box>
     );
 }

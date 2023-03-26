@@ -1,57 +1,17 @@
+import { useRef } from 'react';
+import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
-import { Avatar, Box, Card, CardActionArea, CardContent, Rating, Typography } from '@mui/material';
 import { grey, yellow } from '@mui/material/colors';
 import { KeyboardArrowRight, PlayCircleOutline } from '@mui/icons-material';
-import Slider from 'react-slick';
+import { Avatar, Box, Card, CardActionArea, CardContent, Rating, Typography } from '@mui/material';
+
+import PreviousAndNextArrow from '../constant/PreviousAndNextArrow';
+import { nowPlayingSliderSettings } from '../constant/SliderSettings';
 
 const AiringToday = ({ airingToday }) => {
-    const settings = {
-        dots: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        infinite: true,
-        speed: 3000,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 2500,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 1900,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 1
-                }
-            },
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 533,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1,
-                    dots: false,
-                    arrows: true
-                }
-            },
-        ]
-    };
+
+    const sliderRef = useRef(null);
+
     return (
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
@@ -69,10 +29,14 @@ const AiringToday = ({ airingToday }) => {
                     <KeyboardArrowRight sx={{ color: grey[600] }} />
                 </Link>
             </Box>
-            <Slider {...settings}>
+            <Slider ref={sliderRef} {...nowPlayingSliderSettings}>
                 {
                     airingToday.results?.slice(0, 8).map((tv) => (
-                        <Card key={tv.id} sx={{ display: 'flex!important', flexDirection: { xs: 'column', sm: 'row  ' }, alignItems: 'center', width: 1, height: { xs: 'auto', sm: 250 }, p: 1.5, borderRadius: '20px' }}>
+                        <Card key={tv.id} sx={{
+                            display: 'flex!important',
+                            flexDirection: { xs: 'column', sm: 'row  ' },
+                            alignItems: 'flex-start', width: 1, height: { xs: 'auto', sm: 250 }, p: 1.5, borderRadius: '20px'
+                        }}>
                             <CardActionArea sx={{ width: 150, borderRadius: '20px' }}>
                                 <Link to={`/tv/${tv.id}-${tv.name?.split(/[\s:,]/)
                                     .join("-")
@@ -115,6 +79,7 @@ const AiringToday = ({ airingToday }) => {
                     ))
                 }
             </Slider>
+            <PreviousAndNextArrow sliderRef={sliderRef} />
         </Box>
     );
 }

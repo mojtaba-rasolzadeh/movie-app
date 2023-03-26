@@ -10,11 +10,7 @@ const Crews = ({ crew }) => {
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mt: 2 }}>
       {department.map((item, index) => (
         <Box key={index} sx={{ mt: 2 }}>
-          <Typography variant="h6" sx={{
-            fontWeight: 700,
-            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+          <Typography variant="body1" sx={{
             letterSpacing: 1, mb: 2
           }}>
             {item}

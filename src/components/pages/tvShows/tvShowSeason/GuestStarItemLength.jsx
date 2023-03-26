@@ -11,19 +11,12 @@ const GuestStarItemLength = ({ episode }) => {
         }}>
             <Typography
                 variant="h6"
-                sx={{
-                    fontWeight: 700,
-                    background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    letterSpacing: 1,
-                }}>
+                sx={{ letterSpacing: 1 }}>
                 Gutest Stars
             </Typography>
             <Chip
                 label={episode?.guest_stars.length}
-                sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
-                size="small"
+                variant='outlined'
             />
         </Box>
     );

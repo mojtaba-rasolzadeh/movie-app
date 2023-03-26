@@ -3,9 +3,9 @@ import _ from "lodash";
 import { Box, Typography } from "@mui/material";
 
 import { getRecommendations } from "../../../../services/MovieService";
-import { Loader } from "../../../constant";
 import TvShowPagination from "../TvShowPagination";
 import RecommendationsTvShows from "./RecommendationsTvShows";
+import RecommendationsSkeleton from "../../constant/skeletons/RecommendationsSkeleton";
 
 const Recommendations = ({ id, name }) => {
   const [loading, setLoading] = useState(false);
@@ -39,7 +39,7 @@ const Recommendations = ({ id, name }) => {
         </Typography>
       ) : (
         <>
-          {loading ? <Loader /> : <RecommendationsTvShows tvShows={tvShows} />}
+          {loading ? <RecommendationsSkeleton /> : <RecommendationsTvShows tvShows={tvShows} />}
           <TvShowPagination tvShowData={tvShows} fetchData={fetchData} />
         </>
       )}

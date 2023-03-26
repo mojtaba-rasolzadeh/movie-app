@@ -33,13 +33,7 @@ const EpisodesMenu = ({ episodes, selectedIndex, setSelectedIndex }) => {
                     sx={{ display: 'flex', alignItems: 'center', gap: 1, borderRadius: 1 }}
                 >
                     <ListItemText primary={
-                        <Typography sx={{
-                            fontWeight: 700,
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            letterSpacing: 1,
-                        }} >
+                        <Typography sx={{ letterSpacing: 1 }} >
                             Episodes
                         </Typography>
                     }

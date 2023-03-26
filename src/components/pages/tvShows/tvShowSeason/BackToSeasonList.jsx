@@ -32,8 +32,8 @@ const BackToSeasonList = ({ poster_path, air_date, name, searchParams }) => {
                     >
                         {name}{" "}
                         <Typography
-                            variant="h6"
-                            sx={{ display: "inline-block"}}
+                            variant="body1"
+                            sx={{ fontSize: '1.25rem', display: "inline-block" }}
                         >
                             {`( ${air_date?.substring(0, 4)} )`}
                         </Typography>
