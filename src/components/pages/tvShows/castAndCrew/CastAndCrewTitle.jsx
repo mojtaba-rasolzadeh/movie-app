@@ -7,12 +7,8 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                 selectedIndex === 0 ? (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                         <Typography variant='h5' sx={{
-                            fontWeight: 700,
-                            textTransform: 'capitalize',
                             letterSpacing: 1,
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
+                            textTransform: 'capitalize'
                         }}>series actors</Typography>
                         <Chip
                             label={
@@ -21,17 +17,13 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                                 </Typography>
                             }
                             size="small"
-                            sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)', mt: '6px' }}
+                            variant='outlined'
                         />
                     </Box>) : (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                         <Typography variant='h5' sx={{
-                            fontWeight: 700,
-                            textTransform: 'capitalize',
                             letterSpacing: 1,
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
+                            textTransform: 'capitalize'
                         }}>series crews</Typography>
                         <Chip
                             label={
@@ -40,7 +32,7 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                                 </Typography>
                             }
                             size="small"
-                            sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)', mt: '6px' }}
+                            variant='outlined'
                         />
                     </Box>
                 )

@@ -6,14 +6,10 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
             {
                 selectedIndex === 0 ? (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                        <Typography variant='h5' sx={{
-                            fontWeight: 700,
-                            textTransform: 'capitalize',
-                            letterSpacing: 1,
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                        }}>actors</Typography>
+                        <Typography variant="h5" sx={{
+                            fontSize: { xs: '1rem', sm: '1.5rem' },
+                            letterSpacing: 1
+                        }}>Actors</Typography>
                         <Chip
                             label={
                                 <Typography variant="body2">
@@ -21,18 +17,14 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                                 </Typography>
                             }
                             size="small"
-                            sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)', mt: '6px' }}
+                            variant='outlined'
                         />
                     </Box>) : (
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
-                        <Typography variant='h5' sx={{
-                            fontWeight: 700,
-                            textTransform: 'capitalize',
-                            letterSpacing: 1,
-                            background: 'linear-gradient(to right,#ED4700,#E76F00)',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                        }}>crews</Typography>
+                        <Typography variant="h5" sx={{
+                            fontSize: { xs: '1rem', sm: '1.5rem' },
+                            letterSpacing: 1
+                        }}>Crews</Typography>
                         <Chip
                             label={
                                 <Typography variant="body2">
@@ -40,7 +32,7 @@ const CastAndCrewTitle = ({ selectedIndex, castAndCrew }) => {
                                 </Typography>
                             }
                             size="small"
-                            sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)', mt: '6px' }}
+                            variant='outlined'
                         />
                     </Box>
                 )
