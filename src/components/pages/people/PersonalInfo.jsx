@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Box, Typography, Divider } from "@mui/material";
-import { yellow } from "@mui/material/colors";
+import { grey, yellow } from "@mui/material/colors";
 
 const PersonalInfo = ({
   known_for_department,
@@ -18,65 +18,59 @@ const PersonalInfo = ({
   };
 
   return (
-    <Box>
+    <Box sx={{ mt: 4 }}>
       <Divider>
-        <Typography variant="h5" sx={{
-          fontWeight: 700,
-          background: 'linear-gradient(to right,#ED4700,#E76F00)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          letterSpacing: 1,
-        }}>
+        <Typography variant="h5" sx={{ letterSpacing: 1 }}>
           Personal Info
         </Typography>
       </Divider>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 3, mt: 4 }}>
         <Box>
-          <Typography variant="body1" sx={{ fontWeight: 700, letterSpacing: 1, color: yellow[700] }}>
+          <Typography variant="body1" sx={{ letterSpacing: 1 }}>
             Known For:
           </Typography>
-          <Typography variant="body2" sx={{ pl: 1 }} >
+          <Typography variant="body2" sx={{ fontWeight: 600, color: grey[600] }} >
             {_.isEmpty(known_for_department) ? "-" : known_for_department}
           </Typography>
         </Box>
         <Box>
-          <Typography variant="body1" sx={{ fontWeight: 700, letterSpacing: 1, color: yellow[700] }}>
+          <Typography variant="body1" sx={{ letterSpacing: 1 }}>
             Known Credits:
           </Typography>
-          <Typography variant="body2" sx={{ pl: 1 }}>
+          <Typography variant="body2" sx={{ fontWeight: 600, color: grey[600] }}>
             {_.isEmpty(combined_credits)
               ? "-"
               : combined_credits?.cast.length}
           </Typography>
         </Box>
         <Box>
-          <Typography variant="body1" sx={{ fontWeight: 700, letterSpacing: 1, color: yellow[700] }}>
+          <Typography variant="body1" sx={{ letterSpacing: 1 }}>
             Gender:
           </Typography>
-          <Typography variant="body2" sx={{ pl: 1 }}>
+          <Typography variant="body2" sx={{ fontWeight: 600, color: grey[600] }}>
             {gender === 0 ? "-" : gender === 1 ? "Female" : "Male"}
           </Typography>
         </Box>
         <Box>
-          <Typography variant="body1" sx={{ fontWeight: 700, letterSpacing: 1, color: yellow[700] }}>
+          <Typography variant="body1" sx={{ letterSpacing: 1 }}>
             Birthday:
           </Typography>
-          <Typography variant="body2" sx={{ pl: 1 }}>
+          <Typography variant="body2" sx={{ fontWeight: 600, color: grey[600] }}>
             {_.isEmpty(birthday)
               ? "-"
               : `${birthday} ( ${calculateAge(birthday)} years old )`}
           </Typography>
         </Box>
         <Box>
-          <Typography variant="body1" sx={{ fontWeight: 700, letterSpacing: 1, color: yellow[700] }}>
+          <Typography variant="body1" sx={{ letterSpacing: 1 }}>
             Place of Birth:
           </Typography>
-          <Typography variant="body2" sx={{ pl: 1 }}>
+          <Typography variant="body2" sx={{ fontWeight: 600, color: grey[600] }}>
             {_.isEmpty(place_of_birth) ? "-" : place_of_birth}
           </Typography>
         </Box>
         <Box>
-          <Typography variant="body1" sx={{ fontWeight: 700, letterSpacing: 1, color: yellow[700] }}>
+          <Typography variant="body1" sx={{ letterSpacing: 1 }}>
             Also Known As:
           </Typography>
           {_.isEmpty(also_known_as)
@@ -85,7 +79,7 @@ const PersonalInfo = ({
               <Typography
                 key={index}
                 variant="body2"
-                sx={{ my: 1, pl: 1 }}
+                sx={{ my: 1, fontWeight: 600, color: grey[600] }}
               >
                 {item}
               </Typography>

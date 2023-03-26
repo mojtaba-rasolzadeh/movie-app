@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Box, Typography } from "@mui/material";
-import { yellow } from "@mui/material/colors";
+import { Box, Divider, Typography } from "@mui/material";
 
 import { CombinedCredits, MovieCredits, TvCredits, ActingMediaMenu } from "./";
 
@@ -31,11 +30,15 @@ const Acting = ({ combined_credits, movie_credits, tv_credits }) => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          my: 2,
         }}
       >
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 3 }}>
-          <Typography variant="h5" sx={{ color: yellow[700] }}>
+        <Box sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          alignItems: 'center',
+          gap: 3
+        }}>
+          <Typography variant="h5" sx={{ letterSpacing: 1 }}>
             Acting
           </Typography>
         </Box>
@@ -44,6 +47,7 @@ const Acting = ({ combined_credits, movie_credits, tv_credits }) => {
           setSelectedIndex={setSelectedIndex}
         />
       </Box>
+      <Divider />
       {content}
     </>
   );

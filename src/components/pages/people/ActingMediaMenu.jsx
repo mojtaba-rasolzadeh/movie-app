@@ -6,7 +6,6 @@ import {
     ListItem,
     ListItemText,
 } from "@mui/material";
-import { yellow } from "@mui/material/colors";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 const options = ["all", "movies", "tv"];
@@ -37,9 +36,15 @@ const ActingMediaMenu = ({ selectedIndex, setSelectedIndex }) => {
                     aria-haspopup="true"
                     aria-expanded={open ? "true" : undefined}
                     onClick={handleClick}
-                    sx={{ textTransform: "capitalize", letterSpacing: 1, gap: 1, alignItems: 'center' }}
+                    sx={{
+                        textTransform: "capitalize",
+                        letterSpacing: 1,
+                        gap: 1,
+                        alignItems: 'center',
+                        borderRadius: 1
+                    }}
                 >
-                    <ListItemText sx={{ fontWeight: 700, color: yellow[700] }}>{options[selectedIndex]}</ListItemText>
+                    <ListItemText sx={{ fontWeight: 700 }}>{options[selectedIndex]}</ListItemText>
                     {open ? <ExpandLess fontSize='small' /> : <ExpandMore fontSize='small' />}
                 </ListItem>
             </List>
