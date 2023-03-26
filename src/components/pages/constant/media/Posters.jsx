@@ -1,16 +1,16 @@
 import _ from "lodash";
 import { Box, ImageList, ImageListItem } from "@mui/material";
 
-import { ViewAllMedia, NoMediaMessage } from "./";
+import ViewAllMedia from "./ViewAllMedia";
+import NoMediaMessage from "./NoMediaMessage";
 
-const Backdrops = ({ id, title, images }) => {
+const Posters = ({ mediaType,mediaId, mediaTitle, images }) => {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
-      {_.isEmpty(images.backdrops) ? (<NoMediaMessage mediaType="backdrops" movieTitle={title} />
-      ) : (
-        <ImageList cols={2} gap={8}>
-          {images.backdrops?.slice(0, 4).map((item) => (
+      {_.isEmpty(images.posters) ? (<NoMediaMessage itemType="posters" mediaTitle={mediaTitle} />) : (
+        <ImageList cols={3} gap={8}>
+          {images.posters?.slice(0, 9).map((item) => (
             <ImageListItem key={item.file_path}>
               <img
                 src={`https://image.tmdb.org/t/p/w300_and_h450_bestv2${item.file_path}?w=248&fit=crop&auto=format`}
@@ -22,9 +22,9 @@ const Backdrops = ({ id, title, images }) => {
           ))}
         </ImageList>
       )}
-      <ViewAllMedia movieId={id} movieTitle={title} link="images/backdrops" text="View All Backdrops" />
+      <ViewAllMedia mediaType={mediaType} mediaId={mediaId} mediaTitle={mediaTitle} link="images/posters" text="View All Posters" />
     </Box>
   );
 };
 
-export default Backdrops;
+export default Posters;

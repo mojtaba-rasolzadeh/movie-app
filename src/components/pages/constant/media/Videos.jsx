@@ -2,10 +2,10 @@ import { useState } from "react";
 import _ from "lodash";
 import { Box, ImageList, ImageListItem } from "@mui/material";
 
-import { PlayVideo, PlayVideoButton } from "../trailersAndVideos";
 import { ViewAllMedia, NoMediaMessage } from "./";
+import { PlayVideoButton, PlayVideo } from "../trailersAndVideos";
 
-const Videos = ({ id, title, videos }) => {
+const Videos = ({ mediaType, mediaId, mediaTitle, videos }) => {
   const [open, setOpen] = useState(false);
   const [play, setPlay] = useState(false);
 
@@ -20,8 +20,18 @@ const Videos = ({ id, title, videos }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
-      {_.isEmpty(videos?.results) ? (<NoMediaMessage mediaType="videos" movie Title={title} />) :
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 3,
+      }}
+    >
+      {_.isEmpty(videos?.results) ? (
+        <NoMediaMessage itemType="videos" mediaTitle={mediaTitle} />
+      ) : (
         <ImageList cols={2} gap={8}>
           {videos.results?.slice(0, 6).map((video) => (
             <ImageListItem key={video.id} sx={{ position: "relative" }}>
@@ -32,12 +42,23 @@ const Videos = ({ id, title, videos }) => {
                 loading="lazy"
               />
               <PlayVideoButton handleToggle={handleToggle} />
-              <PlayVideo open={open} play={play} video={video} handleClose={handleClose} />
+              <PlayVideo
+                open={open}
+                play={play}
+                video={video}
+                handleClose={handleClose}
+              />
             </ImageListItem>
           ))}
         </ImageList>
-      }
-      <ViewAllMedia tvShowId={id} tvShowTitle={title} link="videos" text="View All Videos" />
+      )}
+      <ViewAllMedia
+        mediaType={mediaType}
+        mediaId={mediaId}
+        mediaTitle={mediaTitle}
+        link="videos"
+        text="View All Videos"
+      />
     </Box>
   );
 };
