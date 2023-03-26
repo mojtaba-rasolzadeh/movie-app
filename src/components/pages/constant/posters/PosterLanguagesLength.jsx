@@ -33,7 +33,7 @@ const PosterLanguagesLength = ({ image, displayLanguage, displayLengthItem }) =>
                     </Typography>
                 }
                 size="small"
-                sx={{ backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)' }}
+                sx={{ background: 'linear-gradient(to right,#ED4700,#E76F00)' }}
             />
         </Box>
     );

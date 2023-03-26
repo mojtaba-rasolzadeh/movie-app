@@ -1,6 +1,8 @@
-import { Box, Typography, Avatar, Link, Tooltip } from "@mui/material";
+import { Box, Avatar, Link, Tooltip } from "@mui/material";
 
-const Images = ({ allImages, imageType, tvTitle }) => {
+import NoImageMessage from "./NoImageMessage";
+
+const Images = ({ allImages, imageType, mediaTitle }) => {
     const filterdImages = allImages.filter(image => image.iso_639_1 === imageType);
     return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
@@ -17,11 +19,7 @@ const Images = ({ allImages, imageType, tvTitle }) => {
                             </Link>
                         </Tooltip>
                     ))
-                ) : (
-                    <Typography variant="body1" sx={{ letterSpacing: 1 }}>
-                        {`There are no English ${imageType} added to ${tvTitle.name}.`}
-                    </Typography>
-                )
+                ) : (<NoImageMessage imageType={imageType} mediaTitle={mediaTitle} />)
             }
         </Box>
     );
