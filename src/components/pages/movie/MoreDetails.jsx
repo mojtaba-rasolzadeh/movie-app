@@ -1,7 +1,7 @@
-import { Box, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-import Keywords from "./Keywords";
+import { Keywords } from "../constant/movie&tvShow";
 
 const MoreDetails = ({
   languagesList,
@@ -11,16 +11,52 @@ const MoreDetails = ({
   budget,
   revenue,
   keywords,
-  credits
+  credits,
 }) => {
-
-  const showJob = (job) => {
+  const showName = (job) => {
     return credits?.crew.find((crew) => crew.job.includes(job))?.name;
-  }
+  };
+
+  const StyledBox = styled(Box)({
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "center",
+  });
+
+  const StyledTypography = styled(Typography)({
+    pl: 1,
+    letterSpacing: 1,
+    fontWeight: 600,
+    color: grey[600],
+  });
+
+  const jobs = ["Director", "Producer", "Screenplay", "Writer"];
+
+  const moreDetails = [
+    {
+      title: "Original Title",
+      info: original_title,
+    },
+    {
+      title: "Status",
+      info: status,
+    },
+    {
+      title: "Budget",
+      info: `${budget ? `$${budget?.toLocaleString()}.00` : "-"}`,
+    },
+    {
+      title: "Revenue",
+      info: `${revenue ? `$${revenue?.toLocaleString()}.00` : "-"}`,
+    },
+  ];
 
   return (
-    <Box sx={{ mt: 4 }}>
-      <Typography variant="h6" gutterBottom>More Details</Typography>
+    <Box sx={{ mt: { xs: 4, md: 0 } }}>
+      <Typography variant="h6" gutterBottom>
+        More Details
+      </Typography>
       <Box
         sx={{
           display: "flex",
@@ -31,114 +67,40 @@ const MoreDetails = ({
           my: 2,
         }}
       >
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
-            Director:
-          </Typography>
-          <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-            {showJob('Director')}
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
-            Producer:
-          </Typography>
-          <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-            {showJob('Producer')}
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
-            Screenplay:
-          </Typography>
-          <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-            {showJob('Screenplay')}
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
-            Writer:
-          </Typography>
-          <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-            {showJob('Writer')}
-          </Typography>
-        </Box>
-        {
-          original_title &&
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Typography
-              variant="body1"
-              sx={{ letterSpacing: 1 }}
-            >
-              Original Title:
+        {jobs.map((job, index) => (
+          <StyledBox key={index}>
+            <Typography variant="body1" sx={{ letterSpacing: 1 }}>
+              {job}:
             </Typography>
-            <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-              {original_title}
-            </Typography>
-          </Box>
-        }
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
-            Status:
-          </Typography>
-          <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-            {status}
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
+            <StyledTypography variant="body2">
+              {showName(job) ?? "-"}
+            </StyledTypography>
+          </StyledBox>
+        ))}
+        <StyledBox>
+          <Typography variant="body1" sx={{ letterSpacing: 1 }}>
             Original Language:
           </Typography>
           {languagesList?.map(
             (language, index) =>
               language.iso_639_1 === original_language && (
-                <Typography key={index} variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
+                <StyledTypography key={index} variant="body2">
                   {language.english_name}
-                </Typography>
+                </StyledTypography>
               )
           )}
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
-            Budget:
-          </Typography>
-          <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-            {budget <= 0 ? "-" : `$${budget?.toLocaleString()}.00`}
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography
-            variant="body1"
-            sx={{ letterSpacing: 1 }}
-          >
-            Revenue:
-          </Typography>
-          <Typography variant="body2" sx={{ pl: 1, letterSpacing: 1, fontWeight: 600, color: grey[600] }}>
-            {revenue <= 0 ? "-" : `$${revenue?.toLocaleString()}.00`}
-          </Typography>
-        </Box>
-        <Keywords keywords={keywords} />
+        </StyledBox>
+        {moreDetails.map((item, index) => (
+          <StyledBox key={index}>
+            <Typography variant="body1" sx={{ letterSpacing: 1 }}>
+              {item.title}:
+            </Typography>
+            <StyledTypography variant="body2">
+              {item.info ?? "-"}
+            </StyledTypography>
+          </StyledBox>
+        ))}
+        <Keywords keywords={keywords?.keywords} mediaType="movie" />
       </Box>
     </Box>
   );
