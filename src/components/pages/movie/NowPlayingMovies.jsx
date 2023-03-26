@@ -1,57 +1,17 @@
+import { useRef } from 'react';
+import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
-import { Avatar, Box, Card, CardActionArea, CardContent, Rating, Typography } from '@mui/material';
 import { grey, yellow } from '@mui/material/colors';
 import { KeyboardArrowRight, PlayCircleOutline } from '@mui/icons-material';
-import Slider from 'react-slick';
+import { Avatar, Box, Card, CardActionArea, CardContent, Rating, Typography } from '@mui/material';
+
+import PreviousAndNextArrow from '../constant/PreviousAndNextArrow';
+import { nowPlayingSliderSettings } from '../constant/SliderSettings';
 
 const NowPlayingMovies = ({ nowPlayingMovies }) => {
-    const settings = {
-        dots: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        infinite: true,
-        speed: 3000,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 2500,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                }
-            },
-            {
-                breakpoint: 1900,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 1
-                }
-            },
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 533,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1,
-                    dots: false,
-                    arrows: true
-                }
-            },
-        ]
-    };
+
+    const sliderRef = useRef(null);
+
     return (
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
@@ -69,17 +29,26 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
                     <KeyboardArrowRight sx={{ color: grey[600] }} />
                 </Link>
             </Box>
-            <Slider {...settings}>
+            <Slider ref={sliderRef} {...nowPlayingSliderSettings}>
                 {
                     nowPlayingMovies.results?.slice(0, 8).map((movie) => (
-                        <Card key={movie.id} sx={{ display: 'flex!important', flexDirection: { xs: 'column', sm: 'row  ' }, alignItems: 'center', width: 1, height: { xs: 'auto', sm: 250 }, p: 1.5, borderRadius: '20px' }}>
+                        <Card key={movie.id} sx={{
+                            display: 'flex!important',
+                            flexDirection: { xs: 'column', sm: 'row  ' },
+                            alignItems: 'flex-start', width: 1, height: { xs: 'auto', sm: 250 }, p: 1.5, borderRadius: '20px'
+                        }}>
                             <CardActionArea sx={{ width: 150, borderRadius: '20px' }}>
                                 <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
                                     .join("-")
                                     .split("--")
                                     .join("-")
                                     .toLowerCase()}`} style={{ textDecoration: 'none' }}>
-                                    <Avatar variant="rounded" sx={{ width: 150, height: 1, borderRadius: '20px' }} src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`} />
+                                    <Avatar variant="rounded" sx={{
+                                        width: 150,
+                                        height: 1,
+                                        borderRadius: '20px'
+                                    }}
+                                        src={`https://www.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}`} />
                                 </Link>
                             </CardActionArea>
                             <CardContent>
@@ -97,13 +66,33 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
                                     <Rating sx={{ flexWrap: 'wrap' }} name="half-rating-read" value={movie.vote_average} precision={0.5} max={10} readOnly size="small" />
                                     <Typography variant='caption'>{movie.vote_average.toFixed(1)}</Typography>
                                 </Box>
-                                <Typography variant="caption" sx={{ mt: 1, color: 'text.secondary', letterSpacing: 1, display: '-webkit-box', textOverflow: 'ellipsis', overflow: 'hidden', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }} >{movie.overview}</Typography>
+                                <Typography variant="caption" sx={{
+                                    mt: 1,
+                                    color: 'text.secondary',
+                                    letterSpacing: 1,
+                                    display: '-webkit-box',
+                                    textOverflow: 'ellipsis',
+                                    overflow: 'hidden',
+                                    WebkitLineClamp: 4,
+                                    WebkitBoxOrient: 'vertical'
+                                }} >{movie.overview}</Typography>
                                 <Link to={`/movie/${movie.id}-${movie.title?.split(/[\W]/)
                                     .join("-")
                                     .split("--")
                                     .join("-")
                                     .toLowerCase()}`} style={{ textDecoration: 'none', cursor: 'pointer' }}>
-                                    <Typography sx={{ fontSize: '.9rem', textAlign: 'center', textTransform: 'capitalize', letterSpacing: 1, backgroundColor: grey[800], '&:hover': { backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)' }, color: '#fff', transform: 'skew(-15deg)', borderRadius: '10px', padding: '.5rem .5rem', mt: 1 }}>
+                                    <Typography sx={{
+                                        fontSize: '.9rem',
+                                        textAlign: 'center',
+                                        textTransform: 'capitalize',
+                                        letterSpacing: 1,
+                                        backgroundColor: grey[800],
+                                        '&:hover': { backgroundImage: 'linear-gradient(to right,#f3001d,#ff004d)' },
+                                        color: '#fff', transform: 'skew(-15deg)',
+                                        borderRadius: '10px',
+                                        padding: '.5rem .5rem',
+                                        mt: 1
+                                    }}>
                                         view more
                                     </Typography>
                                 </Link>
@@ -112,6 +101,7 @@ const NowPlayingMovies = ({ nowPlayingMovies }) => {
                     ))
                 }
             </Slider>
+            <PreviousAndNextArrow sliderRef={sliderRef} />
         </Box>
     );
 }

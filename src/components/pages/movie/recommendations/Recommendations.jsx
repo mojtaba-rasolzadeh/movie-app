@@ -4,8 +4,8 @@ import { Box, Typography } from "@mui/material";
 
 import { getRecommendations } from "../../../../services/MovieService";
 import MoviePagination from "../MoviePagination";
-import { Loader } from "../../../constant";
 import RecommendationsMovies from "./RecommendationsMovies";
+import RecommendationsSkeleton from "../../constant/skeletons/RecommendationsSkeleton";
 
 const Recommendations = ({ id, title }) => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ const Recommendations = ({ id, title }) => {
   const fetchData = async (page) => {
     try {
       setLoading(true);
-      const { status, data } = await getRecommendations('movie', id, page);
+      const { status, data } = await getRecommendations("movie", id, page);
       if (status === 200) {
         setLoading(false);
         setMovies(data);
@@ -22,7 +22,7 @@ const Recommendations = ({ id, title }) => {
     } catch (err) {
       console.log(err.message);
     }
-  }
+  };
 
   useEffect(() => {
     fetchData();
@@ -38,7 +38,11 @@ const Recommendations = ({ id, title }) => {
         </Typography>
       ) : (
         <>
-          {loading ? <Loader /> : <RecommendationsMovies movies={movies} />}
+          {loading ? (
+            <RecommendationsSkeleton />
+          ) : (
+            <RecommendationsMovies movies={movies} />
+          )}
           <MoviePagination movieData={movies} fetchData={fetchData} />
         </>
       )}

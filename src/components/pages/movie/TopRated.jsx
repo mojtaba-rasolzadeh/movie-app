@@ -1,89 +1,17 @@
-import { Link } from 'react-router-dom';
-import { Avatar, Box, Chip, Typography } from '@mui/material';
-import { grey, yellow } from '@mui/material/colors';
-import { KeyboardArrowRight, GradeRounded } from '@mui/icons-material';
+import { useRef } from 'react';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
+import { grey, yellow } from '@mui/material/colors';
+import { Avatar, Box, Chip, Typography } from '@mui/material';
+import { KeyboardArrowRight, GradeRounded } from '@mui/icons-material';
 
-const TopRate = ({ topRatedMovies }) => {
-    const settings = {
-        dots: true,
-        arrows: false,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        infinite: true,
-        speed: 3000,
-        slidesToShow: 7,
-        slidesToScroll: 7,
-        initialSlide: 0,
-        responsive: [
-            {
-                breakpoint: 2500,
-                settings: {
-                    slidesToShow: 7,
-                    slidesToScroll: 7,
-                }
-            },
-            {
-                breakpoint: 2300,
-                settings: {
-                    slidesToShow: 6,
-                    slidesToScroll: 6,
-                }
-            },
-            {
-                breakpoint: 1940,
-                settings: {
-                    slidesToShow: 5,
-                    slidesToScroll: 5,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 1550,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 4,
-                    initialSlide: 1
-                }
-            },
-            {
-                breakpoint: 1240,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    initialSlide: 1
-                }
-            },
-            {
-                breakpoint: 1000,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 1
-                }
-            },
-            {
-                breakpoint: 533,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 1,
-                    dots: false,
-                    arrows: true
-                }
-            },
-            {
-                breakpoint: 450,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    initialSlide: 1,
-                    dots: false,
-                    arrows: true
-                }
-            },
-        ]
-    };
+import PreviousAndNextArrow from '../constant/PreviousAndNextArrow';
+import { topRatedSliderSettings } from '../constant/SliderSettings';
+
+const TopRated = ({ topRatedMovies }) => {
+
+    const sliderRef = useRef(null);
+
     return (
         <Box sx={{ mb: 6 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
@@ -101,7 +29,7 @@ const TopRate = ({ topRatedMovies }) => {
                     <KeyboardArrowRight sx={{ color: grey[600] }} />
                 </Link>
             </Box>
-            <Slider {...settings}>
+            <Slider ref={sliderRef} {...topRatedSliderSettings}>
                 {
                     topRatedMovies.results?.slice(0, 8).map((movie) => (
                         <Box key={movie.id} sx={{ position: 'relative', width: 1, mb: 2, borderRadius: '20px' }}>
@@ -130,8 +58,9 @@ const TopRate = ({ topRatedMovies }) => {
                     ))
                 }
             </Slider>
+            <PreviousAndNextArrow sliderRef={sliderRef} />
         </Box>
     );
 }
 
-export default TopRate;
+export default TopRated;

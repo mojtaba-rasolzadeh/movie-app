@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { Avatar, Box, CardActionArea, Rating, Typography } from '@mui/material';
 import { yellow } from '@mui/material/colors';
 import { AutoGraph } from '@mui/icons-material';
+import { Avatar, Box, CardActionArea, Rating, Typography } from '@mui/material';
 
 const PopularMovies = ({ popularMovies }) => {
     return (
@@ -45,7 +45,7 @@ const PopularMovies = ({ popularMovies }) => {
             </Box>
             <Link to="/movie/popular" style={{ textDecoration: 'none' }}>
                 <Typography sx={{
-                    width: { sm: 1, xl: '70%' },
+                    width: { xs: '50%', sm: '50%', md: 1, xl: '50%' },
                     textAlign: 'center',
                     textTransform: 'capitalize',
                     letterSpacing: 1,
