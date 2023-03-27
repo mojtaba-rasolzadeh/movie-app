@@ -45,62 +45,60 @@ import {
 const App = () => {
   return (
     <MainLayout>
-      <Navbar /> {/* <Toolbar /> */}
+      <Navbar /> {/* <Toolbar /> */}{" "}
       <Routes>
-        <Route path="/" element={<Home />} />
-        {/* Movies */}
-        <Route path="/movie" element={<Movies />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/person" element={<PopularPeople />} />
-        <Route path="/movie/:movieId" element={<Movie />} />
-        <Route path="/review/:reviewId" element={<Review />} />
-        <Route path="/person/:personId" element={<Person />} />
-        <Route path="/movie/popular" element={<PopularMovies />} />
-        <Route path="/movie/upcoming" element={<UpcomingMovies />} />
-        <Route path="/movie/trending" element={<TrendingMovies />} />
-        <Route path="/movie/top_rated" element={<TopRatedMovies />} />
-        <Route path="/genre/:genreId/movie" element={<MoviesGenre />} />
-        <Route path="/movie/now_playing" element={<NowPlayingMovies />} />
-        <Route path="/collection/:collectionId" element={<Collection />} />
-        <Route path="/movie/:movieId/reviews" element={<MovieReviews />} />
-        <Route path="/movie/:movieId/cast" element={<MovieCastAndCrew />} />
-        <Route path="/company/:companyId/movie" element={<MoviesCompany />} />
-        <Route path="/keyword/:keywordId/movie" element={<MoviesKeyword />} />
-        <Route path="/movie/:movieId/videos" element={<TrailersAndVideos />} />
+        <Route path="/" element={<Home />} /> {/* Movies */}{" "}
+        <Route path="/movie" element={<Movies />} />{" "}
+        <Route path="/search" element={<Search />} />{" "}
+        <Route path="/person" element={<PopularPeople />} />{" "}
+        <Route path="/movie/:movieId" element={<Movie />} />{" "}
+        <Route path="/review/:reviewId" element={<Review />} />{" "}
+        <Route path="/person/:personId" element={<Person />} />{" "}
+        <Route path="/movie/popular" element={<PopularMovies />} />{" "}
+        <Route path="/movie/upcoming" element={<UpcomingMovies />} />{" "}
+        <Route path="/movie/trending" element={<TrendingMovies />} />{" "}
+        <Route path="/movie/top_rated" element={<TopRatedMovies />} />{" "}
+        <Route path="/genre/:genreId/movie" element={<MoviesGenre />} />{" "}
+        <Route path="/movie/now_playing" element={<NowPlayingMovies />} />{" "}
+        <Route path="/collection/:collectionId" element={<Collection />} />{" "}
+        <Route path="/movie/:movieId/reviews" element={<MovieReviews />} />{" "}
+        <Route path="/movie/:movieId/cast" element={<MovieCastAndCrew />} />{" "}
+        <Route path="/company/:companyId/movie" element={<MoviesCompany />} />{" "}
+        <Route path="/keyword/:keywordId/movie" element={<MoviesKeyword />} />{" "}
+        <Route path="/movie/:movieId/videos" element={<TrailersAndVideos />} />{" "}
         <Route
           path="/movie/:movieId/images/posters"
           element={<MoviePosters />}
-        />
+        />{" "}
         <Route
           path="/movie/:movieId/images/backdrops"
           element={<MovieBackdrops />}
-        />
-        {/* TV Shows */}
-        <Route path="/tv" element={<TvShows />} />
-        <Route path="/tv/:tvId" element={<TvShow />} />
-        <Route path="/tv/on-the-air" element={<OnTvShows />} />
-        <Route path="/tv/popular" element={<PopularTvShows />} />
-        <Route path="/tv/:tvId/seasons" element={<AllSeasons />} />
-        <Route path="/tv/trending" element={<TrendingTvShows />} />
-        <Route path="/tv/:tvId/videos" element={<TvShowVideos />} />
-        <Route path="/tv/top-rated" element={<TopRatedTvShows />} />
-        <Route path="/genre/:genreId/tv" element={<TvShowsGenre />} />
-        <Route path="/tv/:tvId/reviews" element={<TvShowReviews />} />
-        <Route path="/tv/:tvId/cast" element={<TvShowCastAndCrew />} />
-        <Route path="/tv/airing-today" element={<AiringTodayTvShows />} />
-        <Route path="/keyword/:keywordId/tv" element={<TvShowKeyword />} />
-        <Route path="/tv/:tvId/images/posters" element={<TvShowPosters />} />
-        <Route path="/tv/:tvId/season/:seasonId" element={<TvShowSeason />} />
+        />{" "}
+        {/* TV Shows */} <Route path="/tv" element={<TvShows />} />{" "}
+        <Route path="/tv/:tvId" element={<TvShow />} />{" "}
+        <Route path="/tv/on-the-air" element={<OnTvShows />} />{" "}
+        <Route path="/tv/popular" element={<PopularTvShows />} />{" "}
+        <Route path="/tv/:tvId/seasons" element={<AllSeasons />} />{" "}
+        <Route path="/tv/trending" element={<TrendingTvShows />} />{" "}
+        <Route path="/tv/:tvId/videos" element={<TvShowVideos />} />{" "}
+        <Route path="/tv/top-rated" element={<TopRatedTvShows />} />{" "}
+        <Route path="/genre/:genreId/tv" element={<TvShowsGenre />} />{" "}
+        <Route path="/tv/:tvId/reviews" element={<TvShowReviews />} />{" "}
+        <Route path="/tv/:tvId/cast" element={<TvShowCastAndCrew />} />{" "}
+        <Route path="/tv/airing-today" element={<AiringTodayTvShows />} />{" "}
+        <Route path="/keyword/:keywordId/tv" element={<TvShowKeyword />} />{" "}
+        <Route path="/tv/:tvId/images/posters" element={<TvShowPosters />} />{" "}
+        <Route path="/tv/:tvId/season/:seasonId" element={<TvShowSeason />} />{" "}
         <Route
           path="/tv/:tvId/images/backdrops"
           element={<TvShowBackdrops />}
-        />
+        />{" "}
         <Route
           path="/network/:networkId"
           element={<TvShowsRelatedToTheNetwork />}
-        />
-      </Routes>
-      {/* <Footer /> */}
+        />{" "}
+      </Routes>{" "}
+      {/* <Footer /> */}{" "}
     </MainLayout>
   );
 };

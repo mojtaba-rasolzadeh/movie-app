@@ -16,7 +16,7 @@ const MovieDetails = ({
   vote_average,
 }) => {
   return (
-    <Box sx={{ mt: { xs: 2, sm: 1, md: 0 } }}>
+    <Box sx={{ mt: { xs: 3, sm: 1, md: 0 } }}>
       <MediaReleaseDate releaseDate={release_date} />
       <MediaTitle title={title} />
       <GenresMedia mediaType="movie" genres={genres} />

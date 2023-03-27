@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import _ from "lodash";
 import { Box, Typography } from "@mui/material";
 
-import { getRecommendations } from "../../../../services/MovieService";
 import MoviePagination from "../MoviePagination";
 import RecommendationsMovies from "./RecommendationsMovies";
+import { getRecommendations } from "../../../../services/MovieService";
 import RecommendationsSkeleton from "../../constant/skeletons/RecommendationsSkeleton";
 
 const Recommendations = ({ id, title }) => {
@@ -28,7 +28,7 @@ const Recommendations = ({ id, title }) => {
     fetchData();
   }, []);
   return (
-    <Box sx={{ my: 4 }}>
+    <Box sx={{ mt: { xs: 6, md: 4 } }}>
       <Typography variant="h6" sx={{ letterSpacing: 1, mb: 3 }}>
         Recommendations
       </Typography>

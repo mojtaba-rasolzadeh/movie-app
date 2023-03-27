@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Tabs, Tab, styled } from "@mui/material";
+import { Tabs, Tab, styled, Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
 import MediaItemLength from "./MediaItemLength";
@@ -36,7 +36,7 @@ const Media = ({ mediaType, mediaId, mediaTitle, videos, images }) => {
   };
 
   return (
-    <>
+    <Box sx={{ mt: { xs: 2, md: 0 } }}>
       <StyledTabs
         value={value}
         onChange={handleChange}
@@ -84,7 +84,7 @@ const Media = ({ mediaType, mediaId, mediaTitle, videos, images }) => {
           images={images}
         />
       </TabPanel>
-    </>
+    </Box>
   );
 };
 export default Media;
